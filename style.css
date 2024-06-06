@@ -1,0 +1,98 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Container for the form */
+body {
+    background: url(diu.jpg) no-repeat center center/cover fixed;
+    display: flex;
+    flex-direction: column;
+    padding: 70px;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+}
+
+/* Form styling */
+.form {
+    color: #ffffff;
+    margin: auto;
+    padding: 50px;
+    border-radius: 40px;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 600px;
+    
+}
+.logo{
+    width: 10px;
+    height: 10px;
+}
+.logo img {
+    width: 150px;
+    padding: 10px;
+}
+
+::placeholder{
+    color: #cecece;
+}
+
+.form h1{
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+.form h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+
+/* Form group styling */
+div {
+    margin-bottom: 20px;
+}
+
+/* Label styling */
+label {
+    margin-bottom: 5px;
+    font-size: large;
+    color: #ffffff;
+    
+}
+
+/* Input styling */
+input {
+    width: 100%;
+    padding: 15px;
+    border: none ;
+    border-radius: 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: rgba(202, 202, 202, 0.4);
+    
+}
+
+/* Button styling */
+button[type="submit"] {
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+    opacity: .9;
+}
