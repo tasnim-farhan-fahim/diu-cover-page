@@ -33,15 +33,15 @@ document.getElementById('coverForm').addEventListener('submit', function(event) 
 
 document.getElementById('downloadPdf').addEventListener('click', function() {
     const { jsPDF } = window.jspdf;
-    var doc = new jsPDF('p', 'pt', 'a4');
+    const doc = new jsPDF('p', 'pt', 'a4');
 
 
     doc.html(document.getElementById('document'), {
         callback: function (doc) {
             doc.save('cover-page.pdf');
         },
-        x: 100,
-        y: 100
+        x: 10,
+        y: 10
     });
 });
 
