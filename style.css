@@ -29,10 +29,7 @@ body {
     width: 600px;
     
 }
-/* .logo{
-    width: 10px;
-    height: 10px;
-} */
+
 .logo img {
     width: 400px;
     align-content: center;
@@ -90,7 +87,7 @@ input {
     border: none;
     border-radius: 10px;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     margin-top: 20px;
     
@@ -100,32 +97,24 @@ input {
     background-color: #218838;
     opacity: .9;
 }
-.download{
+.download,.image{
     align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
     background-color: #28a745;
     border: none;
     border-radius: 10px;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
 
-.image{
-    align-items: center;
-    padding: 10px;
-    background-color: #28a745;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
+
 
 
 #document{
@@ -135,21 +124,20 @@ input {
     align-items: center;
     justify-content: center;
     width: 210mm;
-    height: 290mm;
+    height: 297mm;
     padding-top: 40px;
     padding-left: 90px;
     padding-right: 90px;
     padding-bottom: 40px;
-    background-color: #ffffff;
-    border: 10px solid #000000;
-    border-width: thick;
-    border-radius: 1px;
+    background-color: #ffffff; 
     color: rgb(0, 0, 0);
     font-size: 30px;
     background-image: linear-gradient(to right, rgba(255, 255, 255, 0.8) 0 100%), url(logo1.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: small;
+    border: 2px solid #000; /* Border style */
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
 }
 #logo img{
     display: block;
@@ -161,4 +149,21 @@ input {
     text-align: center;
     font-size: 18px;
     text-decoration: underline;
+}
+.underline{
+    text-decoration: underline;
+    color: #154394;
+}
+.space{
+    margin-left: 3.5cm;
+}
+
+.container{
+    display: flex;
+}
+.editButton{
+    padding-top:200px;
+    padding-left: 140px;
+    padding-right: 100px;
+    padding-bottom: 20px;
 }
