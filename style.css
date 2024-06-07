@@ -15,6 +15,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    font-family: Arial;
 
 }
 
@@ -28,13 +29,13 @@ body {
     width: 600px;
     
 }
-.logo{
+/* .logo{
     width: 10px;
     height: 10px;
-}
+} */
 .logo img {
-    width: 150px;
-    padding: 10px;
+    width: 400px;
+    align-content: center;
 }
 
 ::placeholder{
@@ -60,8 +61,7 @@ div {
 
 /* Label styling */
 label {
-    margin-bottom: 5px;
-    font-size: large;
+    font-size: larger;
     color: #ffffff;
     
 }
@@ -79,9 +79,12 @@ input {
 }
 
 /* Button styling */
-button[type="submit"] {
+.submit {
     align-items: center;
-    width: 100%;
+    justify-content: center;
+    text-align: center;
+    display: flex;
+    width:  100%;
     padding: 10px;
     background-color: #28a745;
     border: none;
@@ -90,9 +93,72 @@ button[type="submit"] {
     font-size: 16px;
     cursor: pointer;
     margin-top: 20px;
+    
 }
 
-button[type="submit"]:hover {
+.submit:hover,.download:hover,.image:hover {
     background-color: #218838;
     opacity: .9;
+}
+.download{
+    align-items: center;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.image{
+    align-items: center;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+#document{
+    font-family: Arial;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 210mm;
+    height: 290mm;
+    padding-top: 40px;
+    padding-left: 90px;
+    padding-right: 90px;
+    padding-bottom: 40px;
+    background-color: #ffffff;
+    border: 10px solid #000000;
+    border-width: thick;
+    border-radius: 1px;
+    color: rgb(0, 0, 0);
+    font-size: 30px;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.8) 0 100%), url(logo1.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: small;
+}
+#logo img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+.assignment{
+    text-align: center;
+    font-size: 18px;
+    text-decoration: underline;
 }

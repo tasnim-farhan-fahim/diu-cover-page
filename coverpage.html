@@ -9,12 +9,11 @@
 <body>
     <div class="container">
        
-        <form class="form">
+        <form class="form" id="coverForm">
             <div class="logo">
                 <img src="logo.png" alt="University Logo">
             </div>
             <div class="headtext">
-                <h1>ASSIGNMENT</h1>
                 <h1>COVER PAGE</h1>
             </div>
             <div class="form-group">
@@ -29,27 +28,27 @@
                 <label for="courseTitle">Course Title: </label>
                 <input type="text" id="courseTitle"   name="courseTitle" placeholder="Enter Course Title">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="underline">
                 <h2>Submitted To</h2>
                 <label for="submittedToName">Name: </label>
                 <input type="text" id="submittedToName"   name="submittedToName" placeholder="Enter Teacher Name">
             </div>
             <div class="form-group">
                 <label for="designation">Designation: </label>
-                <input type="text" id="designation"   name="designation" placeholder="Enter Teacher Designation">
+                <input type="text" id="designation"   name="submittedToDesignation" placeholder="Enter Teacher Designation">
             </div>
             <div class="form-group">
                 <label for="departmentTo">Department: </label>
-                <input type="text" id="departmentTo"   name="departmentTo" placeholder="Enter Department Name">
+                <input type="text" id="departmentTo"   name="submittedToDepartment" placeholder="Enter Department Name">
             </div>
             <div>
                 <label for="university">University</label>
                 <input type="text" id="university"   name="university" value="Daffodil International University">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="underline">
                 <h2>Submitted By</h2>
                 <label for="submittedByName">Name: </label>
-                <input type="text" id="submittedByName"   name="submittedByName" placeholder="Enter Your Name">
+                <input type="text" class="submitToBy" id="submittedByName"   name="submittedByName" placeholder="Enter Your Name">
             </div>
             <div class="form-group">
                 <label for="studentId">ID: </label>
@@ -65,20 +64,38 @@
             </div>
             <div class="form-group">
                 <label for="departmentBy">Department: </label>
-                <input type="text" id="departmentBy" name="departmentBy" placeholder="Enter Your Department Name">
+                <input type="text" id="departmentBy" name="submittedByDepartment" placeholder="Enter Your Department Name">
             </div>
             <div>
                 <label for="university">University</label>
                 <input type="text" id="university"   name="university" value="Daffodil International University">
             </div>
-            <div class="form-group">
+            <div class="form-group" id="underline">
                 <label for="submissionDate">Submission Date: </label>
-                <input type="date" id="submissionDate"  name="submissionDate" placeholder="Enter Submission Date">
-                
+                <input type="date" id="submissionDate"  name="submissionDate" placeholder="Enter Submission Date"> 
             </div>
-
-            <button type="submit">Submit</button>
+            <button type="submit" class="submit">Submit</button>
         </form>
     </div>
+
+        <div id="document" class="container" style="display:none;">
+
+        <div id="logo">
+            <img src="logo.png" alt="University Logo">
+        </div>
+
+        <div class="assignment">
+            <h2>ASSIGNMENT</h2>
+        </div>
+        
+        <div id="documentContent"></div>
+        <button id="downloadPdf" class="download">Download as PDF</button>
+        <button id="downloadImage" class="image">Download as Image</button>
+        </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

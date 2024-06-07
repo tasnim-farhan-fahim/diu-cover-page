@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Cover Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <form class="form" id="coverForm">
+            <div class="logo">
+                <img src="logo.png" alt="University Logo">
+            </div>
+            <div class="headtext">
+                <h1>ASSIGNMENT</h1>
+                <h1>COVER PAGE</h1>
+            </div>
+            <div class="form-group">
+                <label for="courseCode">Course Code:</label>
+                <input type="text" id="courseCode" name="courseCode" placeholder="Enter Course Code">
+            </div>
+            <div class="form-group">
+                <label for="courseTitle">Course Title:</label>
+                <input type="text" id="courseTitle" name="courseTitle" placeholder="Enter Course Title">
+            </div>
+            <div class="form-group">
+                <label for="submittedToName">Submitted To (Name):</label>
+                <input type="text" id="submittedToName" name="submittedToName" placeholder="Enter Teacher Name">
+            </div>
+            <div class="form-group">
+                <label for="submittedToDepartment">Department:</label>
+                <input type="text" id="submittedToDepartment" name="submittedToDepartment" placeholder="Enter Department">
+            </div>
+            <div class="form-group">
+                <label for="submittedByName">Submitted By (Name):</label>
+                <input type="text" id="submittedByName" name="submittedByName" placeholder="Enter Your Name">
+            </div>
+            <div class="form-group">
+                <label for="studentId">ID:</label>
+                <input type="text" id="studentId" name="studentId" placeholder="Enter Your ID">
+            </div>
+            <div class="form-group">
+                <label for="section">Section:</label>
+                <input type="text" id="section" name="section" placeholder="Enter Your Section">
+            </div>
+            <div class="form-group">
+                <label for="semester">Semester:</label>
+                <input type="text" id="semester" name="semester" placeholder="Enter Your Semester">
+            </div>
+            <div class="form-group">
+                <label for="submittedByDepartment">Department:</label>
+                <input type="text" id="submittedByDepartment" name="submittedByDepartment" placeholder="Enter Your Department">
+            </div>
+            <div class="form-group">
+                <label for="submissionDate">Submission Date:</label>
+                <input type="date" id="submissionDate" name="submissionDate">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div id="document" class="container" style="display:none;">
+        <div class="logo">
+            <img src="logo.png" alt="University Logo">
+        </div>
+        <h1>Daffodil International University</h1>
+        <h2>FINAL LAB REPORT</h2>
+        <div id="documentContent"></div>
+        <button id="downloadPdf">Download as PDF</button>
+        <button id="downloadImage">Download as Image</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
