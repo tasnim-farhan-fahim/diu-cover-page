@@ -1,1 +1,2 @@
-[# cover_page](https://tasnim-farhan-fahim.github.io/diu-cover-page/)
+DIU Cover Page Link
+https://tasnim-farhan-fahim.github.io/diu-cover-page/
