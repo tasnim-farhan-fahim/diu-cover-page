@@ -175,3 +175,11 @@ input {
     padding-top:200px;
     padding-bottom: 20px;
 }
+@media screen and (max-width: 800px) {
+    .form,#document {
+    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
+    padding:10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    }
+  }
