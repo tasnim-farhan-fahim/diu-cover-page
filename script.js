@@ -3,7 +3,6 @@ document.getElementById('coverForm').addEventListener('submit', function(event) 
 
 
     const formData = new FormData(event.target);
-    const entries = formData.entries();
     let documentContent = '';
 
     documentContent += `<p > Topic Name: <strong>${formData.get('topicName')}</strong></p>`;
@@ -71,7 +70,7 @@ document.getElementById('downloadPdf').addEventListener('click', function() {
         width: 575,  // Width of the content on the PDF
         windowWidth: 800,  // Window width to capture the content properly
         html2canvas: {
-            backgroundColor: 'white' // Set background color to white
+            backgroundColor: '#ffffff' // Set background color to white
         }
     });
 });
@@ -79,14 +78,21 @@ document.getElementById('downloadPdf').addEventListener('click', function() {
 
 document.getElementById('downloadImage').addEventListener('click', function() {
     hideButtons();  // Hide buttons before generating the image
+
     html2canvas(document.getElementById('document'), {
-        scale: 2,  // Increase the scale for higher quality
-        useCORS: true  // Use this option if you have cross-origin images
+        scale: 4,  // Increase the scale for higher quality
+        useCORS: true,  // Use this option if you have cross-origin images
+        backgroundColor: '#ffffff'
     }).then(canvas => {
+        // Adjust the canvas dimensions for higher quality
+        const imgWidth = canvas.width;
+        const imgHeight = canvas.height;
+
         const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/jpeg', 1.0);  // Set the quality to 1.0
+        link.href = canvas.toDataURL('image/jpeg', 0.7);  // Set the quality to 1.0
         link.download = 'cover-page.jpg';
         link.click();
+
         showButtons();  // Show buttons after generating the image
     });
 });

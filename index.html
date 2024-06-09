@@ -9,7 +9,6 @@
 <body>
     <div>
         <div class="container">
-        
             <form class="form" id="coverForm">
                 <div class="logo">
                     <img src="logo.png" alt="University Logo">
@@ -77,28 +76,24 @@
                 </div>
                 <button type="submit" class="submit">Submit</button>
             </form>
-                <div id="document" class="container" style="display:none;">
-
-                    <div id="logo">
-                        <img src="logo.png" alt="University Logo">
-                    </div>
-    
-                    <div class="assignment">
-                        <h2>ASSIGNMENT</h2>
-                    </div>
-                    
-                    <div id="documentContent"></div>
-                    <div class="editButton">
-                        <button id="downloadPdf" class="download">Download as PDF</button>
-                        <button id="downloadImage" class="image">Download as Image</button>
-                    </div>
-                </div>
-            
-        </div>
+        </div> 
+        <div id="document" class="inside" style="display:none;">
+            <div id="logo">
+                <img src="logo.png" alt="University Logo">
+            </div>
+            <div class="assignment">
+                <h2>ASSIGNMENT</h2>
+            </div>
+            <div id="documentContent"></div>
+            <div class="editButton">
+                <button id="downloadPdf" class="download">Download as PDF</button>
+                <button id="downloadImage" class="image">Download as Image</button>
+            </div>
+        </div>    
     </div>
+
     
-        
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="script.js"></script>
