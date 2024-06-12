@@ -4,22 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assignment Cover Page</title>
+    <link rel="icon" href="logo1.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div>
         <div class="container">
-            <form class="form" id="coverForm">
+            <form action="script.js" class="form" id="coverForm">
                 <div class="logo">
                     <img src="logo.png" alt="University Logo">
                 </div>
                 <div class="headtext">
                     <h1>COVER PAGE</h1>
                 </div>
-                <div class="form-group">
-                    <label for="topicName">Topic Name:</label>
-                    <input type="text" id="topicName"  name="topicName" placeholder="Enter Topic Name">
-                </div>
+                <!-- <div class="form-group">
+                    <label for="taskType">Cover Page Type:</label>
+                    <select id="pageType" name="pageType" placeholder="Select Cover Page Type">
+                      <option value="assignment">ASSIGNMENT</option>
+                      <option value="labReport">LAB REPORT</option>
+                    </select>
+                    <input type="text" id="pageType"   name="pageType" placeholder="Enter Cover Page Type">
+                  </div> -->
                 <div class="form-group">
                     <label for="courseCode">Course Code: </label>
                     <input type="text" id="courseCode"   name="courseCode" placeholder="Enter Course Code">
@@ -27,6 +32,10 @@
                 <div class="form-group">
                     <label for="courseTitle">Course Title: </label>
                     <input type="text" id="courseTitle"   name="courseTitle" placeholder="Enter Course Title">
+                </div>
+                <div class="form-group">
+                    <label for="topicName">Topic Name:</label>
+                    <input type="text" id="topicName"  name="topicName" placeholder="Enter Topic Name">
                 </div>
                 <div class="form-group" id="underline">
                     <h2>Submitted To</h2>
@@ -76,22 +85,29 @@
                 </div>
                 <button type="submit" class="submit">Submit</button>
             </form>
-        </div> 
-        <div id="document" class="inside" style="display:none;">
+        </div>
+    </div>
+    <footer>
+        <p>Webpage by
+            <h4><a href="https://github.com/tasnim-farhan-fahim" target="_blank">Tasnim Farhan Fahim</a></h4>
+            Email: <a href="mailto:fahim22205101291@diu.edu.bd">Fahim22205101291@diu.edu.bd</a>
+        </p>
+    </footer>
+    
+    <div id="document" class="document" style="display:none;">
+        <div id="inside-document" class="inside-document">
             <div id="logo">
                 <img src="logo.png" alt="University Logo">
-            </div>
-            <div class="assignment">
-                <h2>ASSIGNMENT</h2>
             </div>
             <div id="documentContent"></div>
             <div class="editButton">
                 <button id="downloadPdf" class="download">Download as PDF</button>
                 <button id="downloadImage" class="image">Download as Image</button>
             </div>
-        </div>    
+        </div>
     </div>
-
+   
+    
     
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

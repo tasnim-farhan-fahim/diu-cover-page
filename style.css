@@ -11,11 +11,10 @@ body {
     background: url(diu.jpg) no-repeat center center/cover fixed;
     display: flex;
     flex-direction: column;
-    padding: 70px;
+    padding: 50px;
     justify-content: center;
     align-items: center;
     font-family: Arial;
-
 }
 
 /* Form styling */
@@ -30,6 +29,24 @@ body {
     width: 700px;
     
 }
+footer{
+    display: flex;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 16px;
+    color: #ffffff;
+    display: block;
+    text-align:center;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+footer a{
+    color: #ffffff;
+    text-decoration: none;
+    
+}
+
 
 .logo img {
     display: block;
@@ -69,7 +86,7 @@ label {
 }
 
 /* Input styling */
-input {
+input,select {
     width: 100%;
     padding: 15px;
     border: none ;
@@ -79,6 +96,15 @@ input {
     background-color: rgba(202, 202, 202, 0.4);
     
 }
+select{
+    color: #000000;
+}
+
+input:hover {
+    transition: 0.4s;
+    background-color: rgba(170, 170, 170, 0.7);
+}
+
 
 /* Button styling */
 .submit {
@@ -109,72 +135,74 @@ input {
     opacity: .9;
     transition-duration: 0.2s;
 }
+
+.editButton{
+    padding-top:160px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
 .download,.image{
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width:  50%;
-    padding: 14px;
+    width: 30%;
+    padding: 12px;
     background-color: #28a745;
     border: none;
     border-radius: 16px;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     cursor: pointer;
-    margin-top: 20px;
-    margin-bottom: 20px;
 }
 
 /* Javascript document elements */
-#document{
-    font-family: Arial;
+.document{
+    padding-top: 20px;
+    width: 210mm;
+    height: 297mm;
+    padding: 3mm;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+.inside-document{
+    width: 200mm;
+    height: 287mm;
     font-weight: bold;
     font-size: 30px;
     align-items: center;
-    margin: auto;
+    margin: 2mm;
     display: block;
-    width: 210mm;
-    height: 297mm;
-    padding-top: 40px;
-    padding-left: 90px;
-    padding-right: 90px;
-    padding-bottom: 40px;
-    background-color: #ffffff; 
-    color: rgb(0, 0, 0);
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0 100%), url(logo1.png);
+    padding-top: 30px;
+    padding-left: 70px;
+    background: #ffffff !important;
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.75) 0% 100%),url(logo1.png);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: small;
-    border: 2px solid rgb(0, 0, 0); 
+    background-size: smaller;
+    border: 2px solid rgb(0, 0, 0);
+
 }
 #logo img{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
     width: 90%;
 }
 
 .assignment{
     text-align: center;
-    font-size: 18px;
+    font-size: 24px;
     text-decoration: underline;
 }
 .underline{
-    text-decoration: underline !important;
+    text-decoration: underline;
     color: #154394;
 }
 .space{
-    margin-left: 3.5cm;
+    margin-left: 3cm;
 }
 
-.container{
-    display: block;
-}
-.editButton{
-    padding-top:200px;
-    padding-bottom: 20px;
-}
+
 @media screen and (max-width: 800px) {
     .form,#document {
     width: 100%; /* The width is 100%, when the viewport is 800px or smaller */

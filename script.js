@@ -5,9 +5,11 @@ document.getElementById('coverForm').addEventListener('submit', function(event) 
     const formData = new FormData(event.target);
     let documentContent = '';
 
-    documentContent += `<p > Topic Name: <strong>${formData.get('topicName')}</strong></p>`;
+    //documentContent += `<p class="assignment"><strong>${formData.get('pageType').toUpperCase()}</strong></p>`;
+    documentContent += `<p class="assignment">ASSIGNMENT</p>`;
     documentContent += `<p > Course Code: <strong>${formData.get('courseCode')}</strong></p>`;
     documentContent += `<p > Course Title: <strong>${formData.get('courseTitle')}</strong></p>`;
+    documentContent += `<p > Topic Name: <strong>${formData.get('topicName')}</strong></p>`;
     documentContent += `<p>   </p>`;
     documentContent += `<p class="underline"> <strong>Submitted To:  </strong></p>`;
     documentContent += `<p class="space">Name: <strong>${formData.get('submittedToName')}</strong></p>`;
@@ -57,23 +59,23 @@ function showButtons() {
 
 document.getElementById('downloadPdf').addEventListener('click', function() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF('p', 'pt', 'a4');  // Set to 'p' for portrait, 'pt' for point units, 'a4' for size
-
-    hideButtons();  // Hide buttons before generating the PDF
+    const doc = new jsPDF('p', 'pt', 'a4');
+    hideButtons();
     doc.html(document.getElementById('document'), {
         callback: function (doc) {
             doc.save('cover-page.pdf');
-            showButtons();  // Show buttons after generating the PDF
+            showButtons();
         },
         x: 10,
         y: 10,
-        width: 575,  // Width of the content on the PDF
-        windowWidth: 800,  // Window width to capture the content properly
+        width: 575,
+        windowWidth: 800,
         html2canvas: {
-            backgroundColor: '#ffffff' // Set background color to white
+            backgroundColor: '#ffffff'  // Set background color to white
         }
     });
 });
+
 
 
 document.getElementById('downloadImage').addEventListener('click', function() {
