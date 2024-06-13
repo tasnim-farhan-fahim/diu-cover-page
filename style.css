@@ -26,11 +26,10 @@ body {
     padding-right: 60px;
     border-radius: 40px;
     background-color: rgba(0, 0, 0, 0.7);
-    width: 800px;
+    width: 700px;
     
 }
 .footer{
-    display: flex;
     height: auto;
     margin-bottom: 20px;
     padding: 10px;
@@ -40,12 +39,15 @@ body {
     text-align:center;
     border-radius: 30px;
     background-color: rgba(0, 0, 0, 0.7);
+    
+}
+.footer a{
+    color:#ffffff;
     text-decoration: none;
 }
-
 .logo img {
     display: block;
-    width: 90%;
+    width: 500px;
 }
 
 ::placeholder{
@@ -77,7 +79,7 @@ label {
 
 /* Input styling */
 input,select {
-    width: 100%;
+    width: 600px;
     padding: 15px;
     border: none ;
     border-radius: 18px;
@@ -101,7 +103,7 @@ input:hover {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    width:  50%;
+    width: 200px;
     padding: 14px;
     background-color: #28a745;
     border: none;
@@ -126,14 +128,15 @@ input:hover {
 }
 
 .editButton{
-    padding-top:120px;
+    padding-top:140px;
     padding-bottom: 20px;
+    margin-left: -70px;
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 .download,.image{
-    width: 30%;
+    width: 200;
     padding: 12px;
     justify-content: center fixed;
     background-color: #28a745;
@@ -146,11 +149,12 @@ input:hover {
 
 /* Javascript document elements */
 .document{
+    position: relative;
     padding-top: none;
     width: 210mm;
     height: 297mm;
     padding: 3mm;
-    background-color: #fff;
+    background-color: #ffffff !important;    
 }
 .inside-document{
     width: 200mm;
@@ -162,14 +166,19 @@ input:hover {
     display: block;
     padding-top: 30px;
     padding-left: 70px;
-    background-color: #ffffff !important;
-    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.75) 0% 100%),url(logo1.png);
-    background-repeat: no-repeat;
     background-position: center;
     background-size: smaller;
     border: 2px solid rgb(0, 0, 0);
-
+    position: relative;
 }
+#logo1{
+    position: absolute;
+    width: 500px;
+    height: auto;
+    top: 90mm;
+    left: 43mm;
+}
+
 img{
     display: flex;
     width: 90%;
@@ -178,13 +187,15 @@ img{
     padding-bottom: 5px;
 }
 .assignment{
+    margin-left: -70px;
     text-align: center;
     font-size: 24px;
     text-decoration: underline;
     padding-bottom: 15px;
 }
+
 .underline{
-    text-decoration: underline;
+    text-decoration: underline  !important;
     color: #154394;
 }
 .space{
@@ -192,11 +203,3 @@ img{
 }
 
 
-@media screen and (max-width: 800px) {
-    .form,#document {
-    width: 100%; /* The width is 100%, when the viewport is 800px or smaller */
-    padding:10px;
-    padding-left: 30px;
-    padding-right: 30px;
-    }
-  }
