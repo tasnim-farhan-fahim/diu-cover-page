@@ -26,6 +26,7 @@ document.getElementById('coverForm').addEventListener('submit', function(event) 
     documentContent += `<p id="text-gap" class="space"> Daffodil International University   </p>`;
     documentContent += `<p>   </p>`;
     documentContent += `<p id="text-gap" class="underline">Submission Date: ${formData.get('submissionDate')} </p>`;
+    documentContent += `<p class="tradeMark">z2f</p>`;
 
     document.getElementById('documentContent').innerHTML = documentContent;
     document.querySelector('.form').style.display = 'none';

@@ -12,6 +12,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 50px;
+    padding-bottom: 0px;
     justify-content: center;
     align-items: center;
     font-family: Arial;
@@ -186,12 +187,13 @@ img{
 #text-gap{
     padding-bottom: 5px;
 }
+
 .assignment{
     margin-left: -70px;
+    margin-bottom: 15px;
     text-align: center;
     font-size: 24px;
     text-decoration: underline;
-    padding-bottom: 15px;
 }
 
 .underline{
@@ -201,5 +203,14 @@ img{
 .space{
     margin-left: 3cm;
 }
+.tradeMark{
+    position: absolute;
+    margin-left: -65px;
+    margin-top: 60px;
+    text-align: left;
+    font-weight: normal !important;
+    font-size: 16px;
+}
+
 
 
