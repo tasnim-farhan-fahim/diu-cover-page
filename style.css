@@ -6,25 +6,50 @@
     font-family: Arial, sans-serif;
 }
 
+/* Navigation Bar design */
+nav{
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 700px;
+    padding: 20px;
+    border-radius: 2cap;
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+nav button{
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+nav img{
+    width: 40px;
+    position: relative;
+    top: 8px;
+}
+nav button:hover{
+    color: rgb(45, 185, 17);
+}
+nav button:active{
+    color: rgb(255, 255, 255);
+}
 /* Container for the form */
 body {
     background: url(diu.jpg) no-repeat center center/cover fixed;
+    padding: 20px;
+    padding-bottom: 0px;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    padding: 50px;
-    padding-bottom: 0px;
-    justify-content: center;
-    align-items: center;
-    font-family: Arial;
 }
 
 /* Form styling */
 .form {
-    color: #ffffff;
-    margin: 30px;
-    padding:20px;
+    padding-top:20px;
     padding-left: 60px;
     padding-right: 60px;
+    padding-bottom: 20px;
     border-radius: 40px;
     background-color: rgba(0, 0, 0, 0.7);
     width: 700px;
@@ -47,6 +72,7 @@ body {
     text-decoration: none;
 }
 .logo img {
+    margin-top: 4px;
     display: block;
     width: 500px;
 }
@@ -80,7 +106,7 @@ label {
 
 /* Input styling */
 input,select {
-    width: 600px;
+    width: 100%;
     padding: 15px;
     border: none ;
     border-radius: 18px;
@@ -101,8 +127,7 @@ input:hover {
 
 /* Button styling */
 .submit {
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     display: block;
     width: 200px;
     padding: 14px;
@@ -129,17 +154,17 @@ input:hover {
 }
 
 .editButton{
-    padding-top:140px;
+    padding: 160px;
     padding-bottom: 20px;
     margin-left: -70px;
     display: flex;
+    flex-direction: row;
     justify-content: center;
     gap: 20px;
 }
 .download,.image{
-    width: 200;
+    width: auto !important;
     padding: 12px;
-    justify-content: center fixed;
     background-color: #28a745;
     border: none;
     border-radius: 16px;
@@ -151,18 +176,17 @@ input:hover {
 /* Javascript document elements */
 .document{
     position: relative;
-    padding-top: none;
     width: 210mm;
     height: 297mm;
+    font-weight: bold !important;
     padding: 3mm;
     background-color: #ffffff !important;    
 }
 .inside-document{
     width: 200mm;
     height: 287mm;
-    font-weight: bold;
+    font-weight: bold !important;
     font-size: 28px;
-    align-items: center;
     margin: 2mm;
     display: block;
     padding-top: 30px;
@@ -176,24 +200,26 @@ input:hover {
     position: absolute;
     width: 500px;
     height: auto;
-    top: 90mm;
-    left: 43mm;
+    top: 350px;
+    left: 170px;
 }
 
 img{
     display: flex;
     width: 90%;
+    margin-top: -15px;
 }
 #text-gap{
     padding-bottom: 5px;
 }
 
 .assignment{
+    margin-top: -20px;
     margin-left: -70px;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     text-align: center;
     font-size: 24px;
-    text-decoration: underline;
+    text-decoration: underline !important;
 }
 
 .underline{
@@ -201,15 +227,192 @@ img{
     color: #154394;
 }
 .space{
-    margin-left: 3cm;
+    margin-left: 120px;
 }
 .tradeMark{
     position: absolute;
     margin-left: -65px;
-    margin-top: 60px;
+    margin-top: 120px;
     text-align: left;
     font-weight: normal !important;
     font-size: 16px;
+}
+
+/* Small devices (phones, 600px and below) */
+@media only screen and (max-width: 600px) {
+nav{
+    width: 500px;
+    gap: 15px;
+}  
+nav button{
+    font-size: 16px;
+}
+.form {
+    padding-left: 30px;
+    padding-right: 30px;
+    width: 500px; 
+}
+.logo img {
+    display: block;
+    width: 100%;
+}
+
+::placeholder{
+    font-size: 16px;
+}
+
+.form h1{
+    font-size:24px;
+}
+.form h2 {
+    font-size: 20px;
+}
+/* Label styling */
+label {
+    font-size: 16px;    
+}
+/* Input styling */
+input,select {
+    padding: 12px;
+    font-size: 18px;
+}
+.submit {
+    width: 120px;
+    padding: 10px;
+    font-size: 16px;
+}
+.document{
+    width: 140mm;
+    height: 197mm;
+}
+.inside-document{
+    width: 130mm;
+    height: 187mm;
+    font-size: 18px;
+    padding-left: 40px;
+    border: 1px solid rgb(0, 0, 0);
+}
+.space{
+    margin-left: 80px;
+}
+.assignment{
+    margin-left: -30px;
+    font-size: 18px;
+}
+#logo1{
+    width: 370px;
+    top: 230px;
+    left: 100px;
+}
+img{
+    width:90%;
+}
+#text-gap{
+    padding-bottom: 5px;
+}
+.editButton{
+    padding: 6%;
+    margin-left: -30px;
+}
+.download,.image{
+    font-size: 14px;
+}
+.tradeMark{
+    margin-left: -35px;
+    margin-top: 35px;
+    font-size: 10px;
+}
+.footer{
+    font-size: 14px;
+}
+}
+
+/* Medium devices (tablets, 601px to 768px) */
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+nav{
+    width: 600px;
+    gap: 20px;
+}  
+nav button{
+    font-size: 20px;
+}
+
+.form {
+    padding-left: 45px;
+    padding-right: 45px;
+    width: 600px; 
+}
+.logo img {
+    display: block;
+    width: 100%;
+}
+
+::placeholder{
+    font-size: 20px;
+}
+
+.form h1{
+    font-size:30px;
+}
+.form h2 {
+    font-size: 24px;
+}
+/* Label styling */
+label {
+    font-size: 20px;    
+}
+/* Input styling */
+input,select {
+    padding: 14px;
+    font-size: 20px;
+}
+.submit {
+    width: 160px;
+    padding: 10px;
+    font-size: 20px;
+}
+.document{
+    width: 180mm;
+    height: 254mm;
+}
+.inside-document{
+    width: 170mm;
+    height: 244mm;
+    font-size: 24px;
+    padding-left: 40px;
+    border: 1px solid rgb(0, 0, 0);
+}
+.space{
+    margin-left: 110px;
+}
+.assignment{
+    margin-left: -40px;
+    font-size: 24px;
+}
+#logo1{
+    width: 470px;
+    top: 290px;
+    left: 140px;
+}
+
+#text-gap{
+    padding-bottom: 5px;
+}
+.editButton{
+    padding: 90px;
+    margin-left: -40px;
+}
+.download,.image{
+    font-size: 18px;
+}
+.tradeMark{
+    margin-left: -35px;
+    margin-top: 60px;
+    font-size: 14px;
+}
+.footer{
+    font-size: 18px;
+}
 }
 
 
