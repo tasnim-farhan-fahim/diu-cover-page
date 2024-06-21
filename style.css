@@ -10,26 +10,45 @@
 nav{
     background-color: rgba(0, 0, 0, 0.7);
     width: 700px;
-    padding: 20px;
+    padding-left:10px;
+    padding-right: 10px;
     border-radius: 2cap;
+}
+nav ul{
+    list-style-type: none;
     display: flex;
-    flex-direction: row;
-    gap: 30px;
+    justify-content: space-evenly;
 }
 nav button{
     color: #ffffff;
     background-color: rgba(0, 0, 0, 0);
     border: none;
-    font-size: 22px;
+    padding: 10px;
+    font-size: 18px;
     cursor: pointer;
 }
+nav a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+}
+.nav-logo{
+    text-align: center;
+    font-size: 50px;
+}
 nav img{
-    width: 40px;
     position: relative;
-    top: 8px;
+    width: 70px;
+    top: 10px;
+    left: 45%;
 }
 nav button:hover{
     color: rgb(45, 185, 17);
+    border-radius: 1cap;
+    padding: 10px;
+    margin: 0;
+    background-color: rgb(0, 0, 0);
+    transition: 0.5s;
 }
 nav button:active{
     color: rgb(255, 255, 255);
@@ -74,7 +93,7 @@ body {
 .logo img {
     margin-top: 4px;
     display: block;
-    width: 500px;
+    width: 100%;
 }
 
 ::placeholder{
@@ -237,20 +256,123 @@ img{
     font-weight: normal !important;
     font-size: 16px;
 }
-
-/* Small devices (phones, 600px and below) */
-@media only screen and (max-width: 600px) {
+/* Medium devices (tablets, 601px to 800px) */
+@media only all and (min-width: 601px) and (max-width: 800px) {
 nav{
-    width: 500px;
-    gap: 15px;
+    width: 100%;
+
 }  
 nav button{
     font-size: 16px;
+    margin-bottom: 5px;
+}
+.nav-logo{
+    text-align: center;
+    font-size: 40px;
+}
+
+.form {
+    padding-left: 45px;
+    padding-right: 45px;
+    width: auto;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.logo img {
+    display: block;
+    width: 100%;
+}
+
+::placeholder{
+    font-size: 20px;
+}
+
+.form h1{
+    font-size:30px;
+}
+.form h2 {
+    font-size: 24px;
+}
+/* Label styling */
+label {
+    font-size: 20px;    
+}
+/* Input styling */
+input,select {
+    padding: 14px;
+    font-size: 20px;
+}
+.submit {
+    width: 160px;
+    padding: 10px;
+    font-size: 20px;
+}
+.document{
+    width: auto;
+    height: 254mm;
+}
+.inside-document{
+    width: 170mm;
+    height: 244mm;
+    font-size: 24px;
+    padding-left: 40px;
+    border: 1px solid rgb(0, 0, 0);
+}
+.space{
+    margin-left: 110px;
+}
+.assignment{
+    margin-left: -40px;
+    font-size: 24px;
+}
+#logo1{
+    width: 470px;
+    top: 290px;
+    left: 140px;
+}
+
+#text-gap{
+    padding-bottom: 5px;
+}
+.editButton{
+    padding: 90px;
+    margin-left: -40px;
+}
+.download,.image{
+    font-size: 18px;
+}
+.tradeMark{
+    margin-left: -35px;
+    margin-top: 60px;
+    font-size: 14px;
+}
+.footer{
+    font-size: 14px;
+}
+
+}
+    
+/* Small devices (phones, 600px and below) */
+@media only all and (max-width: 600px) {
+nav{
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+}  
+nav button{
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+.nav-logo{
+    text-align: center;
+    font-size: 30px;
 }
 .form {
     padding-left: 30px;
     padding-right: 30px;
-    width: 500px; 
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .logo img {
     display: block;
@@ -282,7 +404,7 @@ input,select {
     font-size: 16px;
 }
 .document{
-    width: 140mm;
+    width: auto;
     height: 197mm;
 }
 .inside-document{
@@ -323,97 +445,10 @@ img{
     font-size: 10px;
 }
 .footer{
-    font-size: 14px;
+    font-size: 12px;
 }
 }
 
-/* Medium devices (tablets, 601px to 768px) */
-@media only screen and (min-width: 601px) and (max-width: 768px) {
-nav{
-    width: 600px;
-    gap: 20px;
-}  
-nav button{
-    font-size: 20px;
-}
-
-.form {
-    padding-left: 45px;
-    padding-right: 45px;
-    width: 600px; 
-}
-.logo img {
-    display: block;
-    width: 100%;
-}
-
-::placeholder{
-    font-size: 20px;
-}
-
-.form h1{
-    font-size:30px;
-}
-.form h2 {
-    font-size: 24px;
-}
-/* Label styling */
-label {
-    font-size: 20px;    
-}
-/* Input styling */
-input,select {
-    padding: 14px;
-    font-size: 20px;
-}
-.submit {
-    width: 160px;
-    padding: 10px;
-    font-size: 20px;
-}
-.document{
-    width: 180mm;
-    height: 254mm;
-}
-.inside-document{
-    width: 170mm;
-    height: 244mm;
-    font-size: 24px;
-    padding-left: 40px;
-    border: 1px solid rgb(0, 0, 0);
-}
-.space{
-    margin-left: 110px;
-}
-.assignment{
-    margin-left: -40px;
-    font-size: 24px;
-}
-#logo1{
-    width: 470px;
-    top: 290px;
-    left: 140px;
-}
-
-#text-gap{
-    padding-bottom: 5px;
-}
-.editButton{
-    padding: 90px;
-    margin-left: -40px;
-}
-.download,.image{
-    font-size: 18px;
-}
-.tradeMark{
-    margin-left: -35px;
-    margin-top: 60px;
-    font-size: 14px;
-}
-.footer{
-    font-size: 18px;
-}
-}
 
 
 
