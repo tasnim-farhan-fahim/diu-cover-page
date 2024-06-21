@@ -3,34 +3,40 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 /* Navigation Bar design */
 nav{
     background-color: rgba(0, 0, 0, 0.7);
     width: 700px;
-    padding-left:10px;
+    padding-top:10px;
+    padding-left: 10px;
     padding-right: 10px;
-    border-radius: 2cap;
+    padding-bottom: 10px;
+    border-radius: 30px;
 }
 nav ul{
     list-style-type: none;
     display: flex;
     justify-content: space-evenly;
 }
-nav button{
+nav .button{
     color: #ffffff;
     background-color: rgba(0, 0, 0, 0);
     border: none;
     padding: 10px;
-    font-size: 18px;
+    font-size: 22px;
     cursor: pointer;
+    border-radius: 1cap;
 }
-nav a {
+nav h1 {
     text-decoration: none;
     color: #ffffff;
     font-weight: bold;
+}
+nav a{
+    text-decoration: none;
+    color: #ffffff;
 }
 .nav-logo{
     text-align: center;
@@ -42,7 +48,7 @@ nav img{
     top: 10px;
     left: 45%;
 }
-nav button:hover{
+nav .button:hover{
     color: rgb(45, 185, 17);
     border-radius: 1cap;
     padding: 10px;
@@ -50,17 +56,29 @@ nav button:hover{
     background-color: rgb(0, 0, 0);
     transition: 0.5s;
 }
-nav button:active{
+nav .button:active{
     color: rgb(255, 255, 255);
 }
 /* Container for the form */
 body {
+    font-family: 'Roboto', sans-serif;
     background: url(diu.jpg) no-repeat center center/cover fixed;
     padding: 20px;
     padding-bottom: 0px;
     align-items: center;
     display: flex;
     flex-direction: column;
+}
+.content {
+    display: none;
+}
+/* Show the section when its ID is targeted */
+.content:target {
+    display: block;
+}
+/* Show the home section by default when no target is specified */
+body:not(:has(:target)) #assignment-form {
+    display: block;
 }
 
 /* Form styling */
@@ -262,7 +280,7 @@ nav{
     width: 100%;
 
 }  
-nav button{
+nav .button{
     font-size: 16px;
     margin-bottom: 5px;
 }
@@ -359,7 +377,7 @@ nav{
     margin-left: 10px;
     margin-right: 10px;
 }  
-nav button{
+nav .button{
     font-size: 12px;
     margin-bottom: 5px;
 }
@@ -402,6 +420,10 @@ input,select {
     width: 120px;
     padding: 10px;
     font-size: 16px;
+}
+.doc-size{
+    width: auto;
+    height: 207mm;
 }
 .document{
     width: auto;
