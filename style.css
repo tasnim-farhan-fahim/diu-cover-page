@@ -4,156 +4,117 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    font-family: Roboto, Arial;
+    background: url(images/diu.jpg) no-repeat center center/cover fixed;
+}
+
+.project {
+    margin-left: 28%;
+    margin-right: 28%;
+    padding: 10px;
+}
 
 /* Navigation Bar design */
-nav{
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 700px;
-    padding-top:10px;
+.header {
+    background-color: rgba(0, 0, 0, 0.6);
     padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 10px;
-    border-radius: 30px;
+    border-radius: 20px;
 }
-nav ul{
-    list-style-type: none;
+
+.nav-bar {
     display: flex;
-    justify-content: space-evenly;
-}
-nav .button{
-    color: #ffffff;
-    background-color: rgba(0, 0, 0, 0);
-    border: none;
-    padding: 10px;
-    font-size: 22px;
-    cursor: pointer;
-    border-radius: 1cap;
-}
-nav h1 {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: bold;
-}
-nav a{
-    text-decoration: none;
-    color: #ffffff;
-}
-.nav-logo{
-    text-align: center;
-    font-size: 50px;
-}
-nav img{
-    position: relative;
-    width: 70px;
-    top: 10px;
-    left: 45%;
-}
-nav .button:hover{
-    color: rgb(45, 185, 17);
-    border-radius: 1cap;
-    padding: 10px;
-    margin: 0;
-    background-color: rgb(0, 0, 0);
-    transition: 0.5s;
-}
-nav .button:active{
-    color: rgb(255, 255, 255);
-}
-/* Container for the form */
-body {
-    font-family: 'Roboto', sans-serif;
-    background: url(diu.jpg) no-repeat center center/cover fixed;
-    padding: 20px;
-    padding-bottom: 0px;
+    justify-content: space-between;
     align-items: center;
+    height: 80px;
+    flex-shrink: 0;
+}
+
+.nav-icon{
+    width: 50px;
+    margin-right: 10px;
+}
+
+.nav-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+    flex-shrink: 0;
+}
+
+.nav-button {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+.nav-button li {
+    display: inline;
+    width: 0;
+}
+.nav-button li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.nav-button li a:hover{
+    color: rgb(0, 0, 0);
+    background-color: white;
+    transition: 0.4s;
+}
+.nav-button li a:active{
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 0);
+    transition: 0.4s;
+}
+/* Form Designing */
+
+.form-container {
+    margin-top: 20px;
+}
+.form {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    color: white;
+    padding: 40px;
     display: flex;
     flex-direction: column;
 }
-.content {
-    display: none;
+.form-group{
+    margin-bottom: 10px;
 }
-/* Show the section when its ID is targeted */
-.content:target {
-    display: block;
-}
-/* Show the home section by default when no target is specified */
-body:not(:has(:target)) #assignment-form {
-    display: block;
-}
-
-/* Form styling */
-.form {
-    padding-top:20px;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-bottom: 20px;
-    border-radius: 40px;
-    background-color: rgba(0, 0, 0, 0.7);
-    width: 700px;
-    
-}
-.footer{
-    height: auto;
-    margin-bottom: 20px;
-    padding: 10px;
-    font-size: 16px;
-    color: #ffffff;
-    display: block;
-    text-align:center;
-    border-radius: 30px;
-    background-color: rgba(0, 0, 0, 0.7);
-    
-}
-.footer a{
-    color:#ffffff;
-    text-decoration: none;
-}
-.logo img {
-    margin-top: 4px;
-    display: block;
+.form-logo img{
     width: 100%;
 }
-
-::placeholder{
-    color: #cecece;
+.category-head-text {
+    padding: 15px;
+    font-size: 30px;
+    font-weight: 600;
 }
-
-.form h1{
-    text-align: center;
-    color: #ffffff;
-}
-.form h2 {
-    text-align: left;
-    padding-bottom: 20px;
-    color: #ffffff;
-    text-decoration: solid;
-}
-
-/* Form group styling */
-div {
-    padding-bottom: 20px;
-}
-
-/* Label styling */
-label {
+label{
     font-size: 20px;
-    color: #ffffff;
-    
 }
-
-/* Input styling */
-input,select {
+input{
+    margin-top: 5px;
     width: 100%;
     padding: 15px;
     border: none ;
     border-radius: 18px;
     font-size: 18px;
     color: #ffffff;
-    background-color: rgba(202, 202, 202, 0.4);
-    
+    background-color: rgba(202, 202, 202, 0.4); 
 }
-select{
-    color: #000000;
+.head-text{
+    text-align: center;
+}
+::placeholder{
+    color: #cecece;
 }
 
 input:hover {
@@ -161,18 +122,17 @@ input:hover {
     background-color: rgba(170, 170, 170, 0.7);
 }
 
-
 /* Button styling */
 .submit {
     margin: auto;
     display: block;
-    width: 200px;
-    padding: 14px;
+    width: 180px;
+    padding: 10px;
     background-color: #28a745;
     border: none;
     border-radius: 16px;
     color: white;
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
     
 }
@@ -189,13 +149,69 @@ input:hover {
     opacity: .9;
     transition-duration: 0.2s;
 }
+/* Document Design */
 
-.editButton{
-    padding: 160px;
-    padding-bottom: 20px;
-    margin-left: -70px;
+.document-holder {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 100px;
+    
+}
+
+.document {
+    min-width: 780px;
+    height: 1102.92px;
+    background-color: white;
+}
+.document-logo img {
+    width: 90%;
+}
+.document-logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: -50px;
+}
+.document-watermark img {
+    width: 400px;
+}
+.document-watermark {
+    position: absolute;
+    top: 340px;
+    left: 180px;
+    z-index: -1;
+}
+.document-content {
+    position: relative;
+    height: 1042.52px;
+    margin: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 24px;
+    padding-left: 50px;
+    line-height: 35px;
+    z-index: 1;
+    
+}
+.assignment-text {
+    display: flex;
+    justify-content: center;
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+    margin-bottom: 10px;
+    margin-left: -50px;
+}
+.space {
+    padding-left: 120px;
+}
+.category-head-text-style {
+    color: rgb(24, 24, 138);
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+}
+.document-buttons{
+    margin-top: 50px;
+    display: flex;
     justify-content: center;
     gap: 20px;
 }
@@ -206,271 +222,139 @@ input:hover {
     border: none;
     border-radius: 16px;
     color: white;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
 }
-
-/* Javascript document elements */
-.document{
-    position: relative;
-    width: 210mm;
-    height: 297mm;
-    font-weight: bold !important;
-    padding: 3mm;
-    background-color: #ffffff !important;    
+/* Footer design */
+.footer {
+    background-color: rgba(0, 0, 0, 0.6);
+    margin-top: 10px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    padding: 10px;
 }
-.inside-document{
-    width: 200mm;
-    height: 287mm;
-    font-weight: bold !important;
-    font-size: 28px;
-    margin: 2mm;
-    display: block;
-    padding-top: 30px;
-    padding-left: 70px;
-    background-position: center;
-    background-size: smaller;
-    border: 2px solid rgb(0, 0, 0);
-    position: relative;
-}
-#logo1{
-    position: absolute;
-    width: 500px;
-    height: auto;
-    top: 350px;
-    left: 170px;
+.footer a {
+    color: white;
+    text-decoration: none;
 }
 
-img{
-    display: flex;
-    width: 90%;
-    margin-top: -15px;
+
+/* Larger devices (large laptops, 1201px to 1640px) */
+@media screen and (min-width: 1201px)and (max-width: 1640px) {
+.project {
+    margin-left: 25%;
+    margin-right: 25%;
 }
-#text-gap{
+.nav-bar {
+    flex-direction: column;
+    height: 110px;
     padding-bottom: 5px;
 }
 
-.assignment{
-    margin-top: -20px;
-    margin-left: -70px;
-    margin-bottom: 10px;
-    text-align: center;
-    font-size: 24px;
-    text-decoration: underline !important;
+.nav-icon{
+    width: 50px;
+    margin-top: 5px;
 }
-
-.underline{
-    text-decoration: underline  !important;
-    color: #154394;
+.nav-button li a {
+    font-size: 20px;
 }
-.space{
-    margin-left: 120px;
-}
-.tradeMark{
-    position: absolute;
-    margin-left: -65px;
-    margin-top: 120px;
-    text-align: left;
-    font-weight: normal !important;
-    font-size: 16px;
-}
-/* Medium devices (tablets, 601px to 800px) */
-@media only all and (min-width: 601px) and (max-width: 800px) {
-nav{
-    width: 100%;
-
-}  
-nav .button{
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-.nav-logo{
-    text-align: center;
+.nav-logo {
     font-size: 40px;
 }
 
-.form {
-    padding-left: 45px;
-    padding-right: 45px;
-    width: auto;
-    margin-left: 20px;
-    margin-right: 20px;
 }
-.logo img {
-    display: block;
-    width: 100%;
+/* Larger devices (large laptops, 1001px to 1470px) */
+@media screen and (min-width: 1001px)and (max-width: 1200px) {
+.project {
+    margin-left: 22%;
+    margin-right: 22%;
 }
-
-::placeholder{
-    font-size: 20px;
-}
-
-.form h1{
-    font-size:30px;
-}
-.form h2 {
-    font-size: 24px;
-}
-/* Label styling */
-label {
-    font-size: 20px;    
-}
-/* Input styling */
-input,select {
-    padding: 14px;
-    font-size: 20px;
-}
-.submit {
-    width: 160px;
-    padding: 10px;
-    font-size: 20px;
-}
-.document{
-    width: auto;
-    height: 254mm;
-}
-.inside-document{
-    width: 170mm;
-    height: 244mm;
-    font-size: 24px;
-    padding-left: 40px;
-    border: 1px solid rgb(0, 0, 0);
-}
-.space{
-    margin-left: 110px;
-}
-.assignment{
-    margin-left: -40px;
-    font-size: 24px;
-}
-#logo1{
-    width: 470px;
-    top: 290px;
-    left: 140px;
-}
-
-#text-gap{
+.nav-bar {
+    flex-direction: column;
+    height: 110px;
     padding-bottom: 5px;
 }
-.editButton{
-    padding: 90px;
-    margin-left: -40px;
+
+.nav-icon{
+    width: 50px;
+    margin-top: 5px;
 }
-.download,.image{
+.nav-button li a {
     font-size: 18px;
 }
-.tradeMark{
-    margin-left: -35px;
-    margin-top: 60px;
-    font-size: 14px;
-}
-.footer{
-    font-size: 14px;
+.nav-logo {
+    font-size: 40px;
 }
 
 }
+
+/* Large devices (laptops, 978px to 1470px) */
+@media screen and (min-width: 800px)and (max-width: 1000px) {
+.project {
+    margin-left: 18%;
+    margin-right: 18%;
+}
+.nav-bar {
+    flex-direction: column;
+    height: 110px;
+    padding-bottom: 5px;
+}
+
+.nav-icon{
+    width: 50px;
+    margin-top: 5px;
+}
+.nav-button li a {
+    font-size: 16px;
+}
+.nav-logo {
+    font-size: 40px;
+}
+
+}
+/* Medium devices (tablets, 601px to 799px) */
+@media screen and (min-width: 601px)and (max-width: 799px) {
+.project {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.nav-bar {
+    flex-direction: column;
+    height: 110px;
+    padding-bottom: 5px;
+}
+.nav-icon{
+    width: 45px;
+    margin-top: 5px;
+}
+.nav-button li a {
+    font-size: 14px;
+}
+.nav-logo {
+    font-size: 40px;
+}
+}
+@media screen and (max-width: 600px) {
+.project {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.nav-bar {
+    flex-direction: column;
+    height: 110px;
+    padding-bottom: 5px;
+}
+.nav-icon{
+    width: 45px;
+    margin-top: 5px;
+}
+
+.nav-button li a {
+    font-size: 12px;
     
-/* Small devices (phones, 600px and below) */
-@media only all and (max-width: 600px) {
-nav{
-    width: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-}  
-nav .button{
-    font-size: 12px;
-    margin-bottom: 5px;
 }
-.nav-logo{
-    text-align: center;
-    font-size: 30px;
-}
-.form {
-    padding-left: 30px;
-    padding-right: 30px;
-    width: auto;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-.logo img {
-    display: block;
-    width: 100%;
-}
-
-::placeholder{
-    font-size: 16px;
-}
-
-.form h1{
-    font-size:24px;
-}
-.form h2 {
-    font-size: 20px;
-}
-/* Label styling */
-label {
-    font-size: 16px;    
-}
-/* Input styling */
-input,select {
-    padding: 12px;
-    font-size: 18px;
-}
-.submit {
-    width: 120px;
-    padding: 10px;
-    font-size: 16px;
-}
-.doc-size{
-    width: auto;
-    height: 207mm;
-}
-.document{
-    width: auto;
-    height: 197mm;
-}
-.inside-document{
-    width: 130mm;
-    height: 187mm;
-    font-size: 18px;
-    padding-left: 40px;
-    border: 1px solid rgb(0, 0, 0);
-}
-.space{
-    margin-left: 80px;
-}
-.assignment{
-    margin-left: -30px;
-    font-size: 18px;
-}
-#logo1{
-    width: 370px;
-    top: 230px;
-    left: 100px;
-}
-img{
-    width:90%;
-}
-#text-gap{
-    padding-bottom: 5px;
-}
-.editButton{
-    padding: 6%;
-    margin-left: -30px;
-}
-.download,.image{
-    font-size: 14px;
-}
-.tradeMark{
-    margin-left: -35px;
-    margin-top: 35px;
-    font-size: 10px;
-}
-.footer{
-    font-size: 12px;
+.nav-logo {
+    font-size: 40px;
 }
 }
-
-
-
-

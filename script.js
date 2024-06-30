@@ -6,27 +6,26 @@ document.getElementById('coverForm').addEventListener('submit', function(event) 
     let documentContent = '';
 
     //documentContent += `<p class="assignment"> ${formData.get('pageType').toUpperCase()} </p>`;
-    documentContent += `<p id="text-gap" class="assignment"><strong>ASSIGNMENT</strong></p>`;
-    documentContent += `<p id="text-gap" ><strong> Course Code:  ${formData.get('courseCode')} </strong></p>`;
-    documentContent += `<p id="text-gap" ><strong> Course Title:  ${formData.get('courseTitle')} </strong></p>`;
-    documentContent += `<p id="text-gap" ><strong> Topic Name:  ${formData.get('topicName')} </strong></p>`;
+    documentContent += `<p ><strong><span class="assignment-text">ASSIGNMENT</span></strong></p>`;
+    documentContent += `<p ><strong> Course Code:  ${formData.get('courseCode')} </strong></p>`;
+    documentContent += `<p ><strong> Course Title:  ${formData.get('courseTitle')} </strong></p>`;
+    documentContent += `<p ><strong> Topic Name:  ${formData.get('topicName')} </strong></p>`;
     documentContent += `<p>   </p>`;
-    documentContent += `<p id="text-gap" class="underline"><strong>Submitted To: </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong>Name:  ${formData.get('submittedToName')} </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong>Designation:  ${formData.get('submittedToDesignation')} </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong>Department:  ${formData.get('submittedToDepartment')} </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong> Daffodil International University </strong></p>`;
+    documentContent += `<p ><strong><span class="category-head-text-style">Submitted To: </span></strong></p>`;
+    documentContent += `<p class="space"><strong>Name:  ${formData.get('submittedToName')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Designation:  ${formData.get('submittedToDesignation')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Department:  ${formData.get('submittedToDepartment')} </strong></p>`;
+    documentContent += `<p class="space"><strong> Daffodil International University </strong></p>`;
     documentContent += `<p>   </p>`;
-    documentContent += `<p id="text-gap" class="underline"><strong>Submitted By: </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong>Name:  ${formData.get('submittedByName')}  </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong>ID:  ${formData.get('studentId')} </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong>Section:  ${formData.get('section')} </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong>Semester:  ${formData.get('semester')} </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong>Department:  ${formData.get('submittedByDepartment')} </strong></p>`;
-    documentContent += `<p id="text-gap" class="space"><strong> Daffodil International University   </strong></p>`;
+    documentContent += `<p ><strong><span class="category-head-text-style">Submitted By: </span></strong></p>`;
+    documentContent += `<p class="space"><strong>Name:  ${formData.get('submittedByName')}  </strong></p>`;
+    documentContent += `<p class="space"><strong>ID:  ${formData.get('studentId')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Section:  ${formData.get('section')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Semester:  ${formData.get('semester')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Department:  ${formData.get('submittedByDepartment')} </strong></p>`;
+    documentContent += `<p class="space"><strong> Daffodil International University   </strong></p>`;
     documentContent += `<p>   </p>`;
-    documentContent += `<p id="text-gap" class="underline"><strong>Submission Date: ${formData.get('submissionDate')} </strong></p>`;
-    documentContent += `<p class="tradeMark">z2f</p>`;
+    documentContent += `<p ><strong><span class="category-head-text-style">Submission Date:</span> ${formData.get('submissionDate')} </strong></p>`;
 
     document.getElementById('documentContent').innerHTML = documentContent;
     document.querySelector('.form').style.display = 'none';
@@ -48,55 +47,63 @@ inputs.forEach((input, index) => {
     });
 });
 
+
+
 function hideButtons() {
-    document.getElementById('downloadPdf').style.display = 'none';
-    document.getElementById('downloadImage').style.display = 'none';
+    document.querySelectorAll('button').forEach(button => {
+        button.style.display = 'none';
+    });
 }
 
 function showButtons() {
-    document.getElementById('downloadPdf').style.display = 'block';
-    document.getElementById('downloadImage').style.display = 'block';
+    document.querySelectorAll('button').forEach(button => {
+        button.style.display = 'inline';
+    });
 }
 
 document.getElementById('downloadPdf').addEventListener('click', function() {
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF('p', 'pt', 'a4');
-    hideButtons();
+    const doc = new jsPDF({
+        orientation: 'portrait',
+        unit: 'px',
+        format: [793.7, 1122.52],
+    });
+
+    hideButtons();  // Assuming you have functions to hide and show buttons
+
     doc.html(document.getElementById('document'), {
         callback: function (doc) {
             doc.save('cover-page.pdf');
-            showButtons();
+            showButtons();  // Show buttons after generating the PDF
         },
-        x: 10,
-        y: 10,
-        width: 575,
-        windowWidth: 800,
         html2canvas: {
-            backgroundColor: '#ffffff'  // Set background color to white
+            scale: 0.986,  // Reduce scale to fit more content and reduce size
+            useCORS: true   // Use this option if you have cross-origin images
         }
     });
 });
 
 
 
-document.getElementById('downloadImage').addEventListener('click', function() {
-    hideButtons();  // Hide buttons before generating the image
 
+
+
+document.getElementById('downloadImage').addEventListener('click', function() {
+    
     html2canvas(document.getElementById('document'), {
+        
         scale: 4,  // Increase the scale for higher quality
         useCORS: true,  // Use this option if you have cross-origin images
         backgroundColor: '#ffffff'
     }).then(canvas => {
         // Adjust the canvas dimensions for higher quality
-        const imgWidth = canvas.width;
-        const imgHeight = canvas.height;
+        const imgWidth = 793.7;
+        const imgHeight = 1122.52;
 
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/jpeg', 0.7);  // Set the quality to 1.0
-        link.download = 'cover-page.jpg';
+        link.download = 'cover-page.jpeg';
         link.click();
-
-        showButtons();  // Show buttons after generating the image
     });
 });
 
