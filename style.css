@@ -155,6 +155,7 @@ input:hover {
     display: flex;
     justify-content: center;
     margin-bottom: 100px;
+    aspect-ratio: 9/16;
     
 }
 
@@ -164,7 +165,7 @@ input:hover {
     background-color: white;
 }
 .document-logo img {
-    width: 90%;
+    width: 85%;
 }
 .document-logo {
     display: flex;
@@ -174,12 +175,13 @@ input:hover {
     margin-left: -50px;
 }
 .document-watermark img {
-    width: 400px;
+    width: 350px;
 }
 .document-watermark {
     position: absolute;
     top: 340px;
-    left: 180px;
+    left: 185px;
+    right: 185px;
     z-index: -1;
 }
 .document-content {
@@ -198,6 +200,7 @@ input:hover {
     justify-content: center;
     text-decoration: underline !important;
     text-underline-offset: 3px;
+    font-size: 20px;
     margin-bottom: 10px;
     margin-left: -50px;
 }
