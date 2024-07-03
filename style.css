@@ -8,7 +8,17 @@ body {
     font-family: Roboto, Arial;
     background: url(images/diu.jpg) no-repeat center center/cover fixed;
 }
-
+.form-container {
+    display: none;
+}
+/* Show the section when its ID is targeted */
+.form-container:target {
+    display: block;
+}
+/* Show the home section by default when no target is specified */
+body:not(:has(:target)) #assignment-form {
+    display: block;
+}
 .project {
     margin-left: 28%;
     margin-right: 28%;
@@ -154,9 +164,7 @@ input:hover {
 .document-holder {
     display: flex;
     justify-content: center;
-    margin-bottom: 100px;
-    aspect-ratio: 9/16;
-    
+    margin-bottom: 100px;    
 }
 
 .document {

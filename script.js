@@ -1,15 +1,41 @@
-document.getElementById('coverForm').addEventListener('submit', function(event) {
+document.addEventListener("DOMContentLoaded", function() {
+    const navLinks = document.querySelectorAll(".nav-button a");
+    const forms = document.querySelectorAll(".form-container");
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", function(event) {
+            event.preventDefault();
+
+            // Hide all forms
+            forms.forEach(form => {
+                form.style.display = "none";
+            });
+
+            // Show the clicked form
+            const targetForm = document.querySelector(this.getAttribute("href"));
+            if (targetForm) {
+                targetForm.style.display = "block";
+            }
+        });
+    });
+});
+
+
+if (document.getElementById('assignment-form')){
+document.getElementById('assignment-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
 
     const formData = new FormData(event.target);
     let documentContent = '';
-
-    //documentContent += `<p class="assignment"> ${formData.get('pageType').toUpperCase()} </p>`;
+    
     documentContent += `<p ><strong><span class="assignment-text">ASSIGNMENT</span></strong></p>`;
+
     documentContent += `<p ><strong> Course Code:  ${formData.get('courseCode')} </strong></p>`;
     documentContent += `<p ><strong> Course Title:  ${formData.get('courseTitle')} </strong></p>`;
+
     documentContent += `<p ><strong> Topic Name:  ${formData.get('topicName')} </strong></p>`;
+
     documentContent += `<p>   </p>`;
     documentContent += `<p ><strong><span class="category-head-text-style">Submitted To: </span></strong></p>`;
     documentContent += `<p class="space"><strong>Name:  ${formData.get('submittedToName')} </strong></p>`;
@@ -31,6 +57,81 @@ document.getElementById('coverForm').addEventListener('submit', function(event) 
     document.querySelector('.form').style.display = 'none';
     document.getElementById('document').style.display = 'block';
 });
+}
+else if (document.getElementById('lab-report-form')){
+document.getElementById('lab-report-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+
+    const formData = new FormData(event.target);
+    let documentContent = '';
+
+    documentContent += `<p ><strong><span class="assignment-text">LAB REPORT</span></strong></p>`;
+
+    documentContent += `<p ><strong> Course Code:  ${formData.get('courseCode')} </strong></p>`;
+    documentContent += `<p ><strong> Course Title:  ${formData.get('courseTitle')} </strong></p>`;
+
+    documentContent += `<p ><strong> Experiment No:  ${formData.get('experimentNo')} </strong></p>`;
+    documentContent += `<p ><strong> Experiment Name:  ${formData.get('experimentName')} </strong></p>`;
+
+    documentContent += `<p>   </p>`;
+    documentContent += `<p ><strong><span class="category-head-text-style">Submitted To: </span></strong></p>`;
+    documentContent += `<p class="space"><strong>Name:  ${formData.get('submittedToName')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Designation:  ${formData.get('submittedToDesignation')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Department:  ${formData.get('submittedToDepartment')} </strong></p>`;
+    documentContent += `<p class="space"><strong> Daffodil International University </strong></p>`;
+    documentContent += `<p>   </p>`;
+    documentContent += `<p ><strong><span class="category-head-text-style">Submitted By: </span></strong></p>`;
+    documentContent += `<p class="space"><strong>Name:  ${formData.get('submittedByName')}  </strong></p>`;
+    documentContent += `<p class="space"><strong>ID:  ${formData.get('studentId')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Section:  ${formData.get('section')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Semester:  ${formData.get('semester')} </strong></p>`;
+    documentContent += `<p class="space"><strong>Department:  ${formData.get('submittedByDepartment')} </strong></p>`;
+    documentContent += `<p class="space"><strong> Daffodil International University   </strong></p>`;
+    documentContent += `<p>   </p>`;
+    documentContent += `<p ><strong><span class="category-head-text-style">Submission Date:</span> ${formData.get('submissionDate')} </strong></p>`;
+
+    document.getElementById('documentContent').innerHTML = documentContent;
+    document.querySelector('.form').style.display = 'none';
+    document.getElementById('document').style.display = 'block';
+});
+}
+
+else if (document.getElementById('final-lab-report-form')){
+    document.getElementById('final-lab-report-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+    
+    
+        const formData = new FormData(event.target);
+        let documentContent = '';
+        
+        documentContent += `<p ><strong><span class="assignment-text">FINAL LAB REPORT</span></strong></p>`;
+
+        documentContent += `<p ><strong> Course Code:  ${formData.get('courseCode')} </strong></p>`;
+        documentContent += `<p ><strong> Course Title:  ${formData.get('courseTitle')} </strong></p>`;
+    
+        documentContent += `<p>   </p>`;
+        documentContent += `<p ><strong><span class="category-head-text-style">Submitted To: </span></strong></p>`;
+        documentContent += `<p class="space"><strong>Name:  ${formData.get('submittedToName')} </strong></p>`;
+        documentContent += `<p class="space"><strong>Designation:  ${formData.get('submittedToDesignation')} </strong></p>`;
+        documentContent += `<p class="space"><strong>Department:  ${formData.get('submittedToDepartment')} </strong></p>`;
+        documentContent += `<p class="space"><strong> Daffodil International University </strong></p>`;
+        documentContent += `<p>   </p>`;
+        documentContent += `<p ><strong><span class="category-head-text-style">Submitted By: </span></strong></p>`;
+        documentContent += `<p class="space"><strong>Name:  ${formData.get('submittedByName')}  </strong></p>`;
+        documentContent += `<p class="space"><strong>ID:  ${formData.get('studentId')} </strong></p>`;
+        documentContent += `<p class="space"><strong>Section:  ${formData.get('section')} </strong></p>`;
+        documentContent += `<p class="space"><strong>Semester:  ${formData.get('semester')} </strong></p>`;
+        documentContent += `<p class="space"><strong>Department:  ${formData.get('submittedByDepartment')} </strong></p>`;
+        documentContent += `<p class="space"><strong> Daffodil International University   </strong></p>`;
+        documentContent += `<p>   </p>`;
+        documentContent += `<p ><strong><span class="category-head-text-style">Submission Date:</span> ${formData.get('submissionDate')} </strong></p>`;
+    
+        document.getElementById('documentContent').innerHTML = documentContent;
+        document.querySelector('.form').style.display = 'none';
+        document.getElementById('document').style.display = 'block';
+    });
+    }
 
 const inputs = document.querySelectorAll('input');
 inputs.forEach((input, index) => {
