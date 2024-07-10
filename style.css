@@ -7,21 +7,12 @@
 body {
     font-family: Roboto, Arial;
     background: url(images/diu.jpg) no-repeat center center/cover fixed;
+    
 }
-.form-container {
-    display: none;
-}
-/* Show the section when its ID is targeted */
-.form-container:target {
-    display: block;
-}
-/* Show the home section by default when no target is specified */
-body:not(:has(:target)) #assignment-form {
-    display: block;
-}
+
 .project {
-    margin-left: 28%;
-    margin-right: 28%;
+    margin-left: 25%;
+    margin-right: 25%;
     padding: 10px;
 }
 
@@ -96,6 +87,10 @@ body:not(:has(:target)) #assignment-form {
     display: flex;
     flex-direction: column;
 }
+.form h1 {
+margin-bottom: 15px;
+font-size: 30px;
+}
 .form-group{
     margin-bottom: 10px;
 }
@@ -108,10 +103,11 @@ body:not(:has(:target)) #assignment-form {
     font-weight: 600;
 }
 label{
-    font-size: 20px;
+    font-size: 18px;
 }
 input{
     margin-top: 5px;
+    margin-bottom: 5px;
     width: 100%;
     padding: 15px;
     border: none ;
@@ -159,12 +155,7 @@ input:hover {
     opacity: .9;
     transition-duration: 0.2s;
 }
-.index-form-group {
-    border: 2px solid rgb(255, 255, 255);
-    border-radius: 10px;
-    margin-bottom: 10px;
-    padding: 5px;
-}
+
 /* Document Design */
 
 .document-holder {
@@ -206,6 +197,7 @@ input:hover {
     border: 1px solid rgb(0, 0, 0);
     font-size: 24px;
     padding-left: 50px;
+    padding-right: 50px;
     line-height: 35px;
     z-index: 1;
     
@@ -217,7 +209,6 @@ input:hover {
     text-underline-offset: 3px;
     font-size: 20px;
     margin-bottom: 10px;
-    margin-left: -50px;
 }
 .space {
     padding-left: 120px;
@@ -227,6 +218,109 @@ input:hover {
     text-decoration: underline !important;
     text-underline-offset: 3px;
 }
+
+/* Index Design */
+
+.experiment-tag { 
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+ .index-text {
+    color: rgb(39, 39, 158);
+    font-size: 50px;
+    font-weight: 600;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    text-align: center;
+ }
+.document-holder {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;    
+}
+.index-document {
+    max-width: 780px;
+    min-width: 780px;
+    height: 1102.92px;
+    background-color: white;
+}
+.index-document-content {
+    position: relative;
+    height: 1042.52px;
+    margin: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 20px;
+    z-index: 1;
+}
+.index-border {
+    padding: 5px;
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+.index-left-bottom {
+    padding: 5px;
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+.index-right-bottom {
+    padding: 5px;
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+.index-border-header {
+    padding: 5px;
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+.index-border-footer {
+    padding: 5px;
+    border-left: 2px solid rgb(0, 0, 0);
+}
+.index-right-footer {
+    padding: 5px;
+    border-left: 2px solid rgb(0, 0, 0);
+}
+
+.index-left-footer {
+    padding: 5px;
+}
+.index-border,
+.index-left-bottom,
+.index-right-bottom,
+.index-border-header,
+.index-border-footer, 
+.index-right-footer, 
+.index-left-footer {
+    height: 80px;
+}
+#index-header {
+    padding-top: 20px;
+    font-size: 22px;
+    color: #1e1870;
+}
+#index-experiment-no,
+#dateSubmission,
+#pageLimit {
+    padding-top: 30px;
+}
+#documentContentIndex {
+    display: grid;
+    grid-template-columns: 1fr 2fr 6fr 1fr 1fr;
+    border: 2px solid rgb(0, 0, 0);
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: center;
+    font-size: 18px;
+}
+
+/* Index Design End */
+
+
 .document-buttons{
     margin-top: 50px;
     display: flex;
@@ -244,12 +338,7 @@ input:hover {
     cursor: pointer;
 }
 
-/* Index design */
-/* .index-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr 7fr 2fr;
-    border: 1px solid rgb(0, 0, 0);
-} */
+
 
 /* Footer design */
 .footer {

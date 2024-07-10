@@ -9,33 +9,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="project">
-<header class="header">
-    <nav class="nav-bar">
-        <div class="nav-logo">
-            <img class="nav-icon" src="images/logo1.png" alt="">
-            <a>Cover Page</a>
-        </div>
-        <div class="nav-button">
-            <ul>
-                <li><a href="#">Assignment</a></li> 
-                <li><a href="lab.html">Lab Report</a></li> 
-                <li><a href="labFinal.html">Lab Final</a></li> 
-                <li><a href="labIndex.html">Lab Index</a></li>
-            </ul> 
-        </div>
-    </nav>
-</header>
+    <div class="project">
+        <header class="header">
+            <nav class="nav-bar">
+                <div class="nav-logo">
+                    <img class="nav-icon" src="images/logo1.png" alt="">
+                    <a>Cover Page</a>
+                </div>
+                <div class="nav-button">
+                    <ul>
+                        <li><a href="index.html">Assignment</a></li> 
+                        <li><a href="#">Lab Report</a></li> 
+                        <li><a href="labFinal.html">Lab Final</a></li> 
+                        <li><a href="labIndex.html">Lab Index</a></li>
+                    </ul> 
+                </div>            </nav>
+        </header>
 <main>
-    <section class="form-container" id="assignment-form" >
-        <form action="script.js" class="form" id="assignment-form">
+    <section class="form-container" id="lab-report-form">
+        <form action="script.js" class="form" id="lab-report-form">
             <div class="form-top">
                 <div class="form-logo">
                     <img src="images/logo.png" alt="University Logo">
                 </div>
                 <div class="head-text">
-                    <h1>ASSIGNMENT</h1>
+                    <h1>LAB REPORT</h1>
                 </div>
             </div>
 
@@ -48,8 +46,12 @@
                 <input type="text" id="courseTitle"   name="courseTitle" placeholder="Enter Course Title">
             </div>
             <div class="form-group">
-                <label for="topicName">Topic Name:</label>
-                <input type="text" id="topicName"  name="topicName" placeholder="Enter Topic Name">
+                <label for="topicName">Experiment No:</label>
+                <input type="text" id="experimentNo"  name="experimentNo" placeholder="Enter Experiment No">
+            </div>
+            <div class="form-group">
+                <label for="topicName">Experiment Name:</label>
+                <input type="text" id="experimentName"  name="experimentName" placeholder="Enter Experiment Name">
             </div>
             <div class="form-group" id="underline">
                 <div class="category-head-text">Submitted To</div>
@@ -117,18 +119,7 @@
                 </div>
             </div>
     </section>
-
-
-
 </main>
-
-
-<!-- <footer class="footer">
-    <p>Webpage Created by <br>
-        <a href="https://github.com/tasnim-farhan-fahim" target="_blank">Tasnim Farhan Fahim</a><br>
-        Email: <a href="mailto:fahim22205101291@diu.edu.bd">Fahim22205101291@diu.edu.bd</a>
-    </p>
-</footer> -->
 </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

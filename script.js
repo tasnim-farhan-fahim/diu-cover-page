@@ -1,27 +1,3 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const navLinks = document.querySelectorAll(".nav-button a");
-    const forms = document.querySelectorAll(".form-container");
-
-    navLinks.forEach(link => {
-        link.addEventListener("click", function(event) {
-            event.preventDefault();
-
-            // Hide all forms
-            forms.forEach(form => {
-                form.style.display = "none";
-            });
-
-            // Show the clicked form
-            const targetForm = document.querySelector(this.getAttribute("href"));
-            if (targetForm) {
-                targetForm.style.display = "block";
-            }
-        });
-    });
-});
-
-
-
 document.querySelectorAll('.form').forEach(form => {
     form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -121,19 +97,78 @@ document.querySelectorAll('.form').forEach(form => {
     }
     else if (formId==='lab-index-form'){
 
-        documentContent += `<p ><strong><span class="assignment-text">INDEX</span></strong></p>`;
-        let i = 1;
-            do {
-                documentContent += `<p class="index-grid" ><strong>  ${i} </strong></p>`;
-                documentContent += `<p class="index-grid" ><strong> date  ${formData.get('submissionDate')} </strong></p>`;
-                documentContent += `<p class="index-grid" ><strong> name  ${formData.get('experimentName')} </strong></p>`;
-                i++;
-            } while (i < 11);
+
+        documentContent += `<div class="index-left-bottom" id="index-header"><strong> Expt. No. </strong></div>`;
+        documentContent += `<div class="index-border-header" id="index-header"><strong> Date </strong></div>`;
+        documentContent += `<div class="index-border-header" id="index-header"><strong> Name of the Experiment </strong></div>`;
+        documentContent += `<div class="index-border-header" id="index-header"><strong> Page No. </strong></div>`;
+        documentContent += `<div class="index-right-bottom" id="index-header"><strong> Remarks </strong></div>`;
+
+        documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  1 </strong></div>`;
+        documentContent += `<div class="index-border" id="dateSubmission"><strong>    ${formData.get('submissionDate1')} </strong></div>`;
+        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName1')} </strong></div>`;
+        documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage1')} </strong></div>`;
+        documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
+
+        documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  2 </strong></div>`;
+        documentContent += `<div class="index-border" id="dateSubmission"><strong>    ${formData.get('submissionDate2')} </strong></div>`;
+        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName2')} </strong></div>`;
+        documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage2')} </strong></div>`;
+        documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
+
+        documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  3 </strong></div>`;
+        documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate3')} </strong></div>`;
+        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName3')} </strong></div>`;
+        documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage3')} </strong></div>`;
+        documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
+
+        documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  4 </strong></div>`;
+        documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate4')} </strong></div>`;
+        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName4')} </strong></div>`;
+        documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage4')} </strong></div>`;
+        documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
+
+        documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  5 </strong></div>`;
+        documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate5')} </strong></div>`;
+        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName5')} </strong></div>`;
+        documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage5')} </strong></div>`;
+        documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
+
+        documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  6 </strong></div>`;
+        documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate6')} </strong></div>`;
+        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName6')} </strong></div>`;
+        documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage6')} </strong></div>`;
+        documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
+
+        documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  7 </strong></div>`;
+        documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate7')} </strong></div>`;
+        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName7')} </strong></div>`;
+        documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage7')} </strong></div>`;
+        documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
+
+        documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  8 </strong></div>`;
+        documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate8')} </strong></div>`;
+        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName8')} </strong></div>`;
+        documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage8')} </strong></div>`;
+        documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
+
+        documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  9 </strong></div>`;
+        documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate9')} </strong></div>`;
+        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName9')} </strong></div>`;
+        documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage9')} </strong></div>`;
+        documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
+
+        documentContent += `<div class="index-left-footer" id="index-experiment-no"><strong>  10 </strong></div>`;
+        documentContent += `<div class="index-border-footer" id="dateSubmission"><strong>   ${formData.get('submissionDate10')} </strong></div>`;
+        documentContent += `<div class="index-border-footer" ><strong>   ${formData.get('experimentName10')} </strong></div>`;
+        documentContent += `<div class="index-border-footer" id="pageLimit"><strong>   ${formData.get('pageToPage10')} </strong></div>`;
+        documentContent += `<div class="index-right-footer" ><strong>  </strong></div>`;
 
 
-        document.getElementById('documentContent').innerHTML = documentContent;
+
+        document.getElementById('documentContentIndex').innerHTML = documentContent;
         document.querySelector('.form').style.display = 'none';
-        document.getElementById('document').style.display = 'block';
+        document.getElementById('index-document').style.display = 'block';
     }
 
 });
@@ -174,12 +209,12 @@ document.getElementById('downloadPdf').addEventListener('click', function() {
     const doc = new jsPDF({
         orientation: 'portrait',
         unit: 'px',
-        format: [793.7, 1122.52],
+        format: [780, 1102.52],
     });
 
-    hideButtons();  // Assuming you have functions to hide and show buttons
+    hideButtons();  
 
-    doc.html(document.getElementById('document'), {
+    doc.html(document.getElementById('document') || document.getElementById('index-document'), {
         callback: function (doc) {
             doc.save('cover-page.pdf');
             showButtons();  // Show buttons after generating the PDF
@@ -192,7 +227,7 @@ document.getElementById('downloadPdf').addEventListener('click', function() {
 });
 document.getElementById('downloadImage').addEventListener('click', function() {
     
-    html2canvas(document.getElementById('document'), {
+    html2canvas(document.getElementById('document') || document.getElementById('index-document'), {
         
         scale: 4,  // Increase the scale for higher quality
         useCORS: true,  // Use this option if you have cross-origin images

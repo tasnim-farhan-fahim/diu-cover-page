@@ -9,33 +9,32 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="project">
-<header class="header">
-    <nav class="nav-bar">
-        <div class="nav-logo">
-            <img class="nav-icon" src="images/logo1.png" alt="">
-            <a>Cover Page</a>
-        </div>
-        <div class="nav-button">
-            <ul>
-                <li><a href="#">Assignment</a></li> 
-                <li><a href="lab.html">Lab Report</a></li> 
-                <li><a href="labFinal.html">Lab Final</a></li> 
-                <li><a href="labIndex.html">Lab Index</a></li>
-            </ul> 
-        </div>
-    </nav>
-</header>
+    <div class="project">
+        <header class="header">
+            <nav class="nav-bar">
+                <div class="nav-logo">
+                    <img class="nav-icon" src="images/logo1.png" alt="">
+                    <a>Cover Page</a>
+                </div>
+                <div class="nav-button">
+                    <ul>
+                        <li><a href="index.html">Assignment</a></li> 
+                        <li><a href="lab.html">Lab Report</a></li> 
+                        <li><a href="#">Lab Final</a></li> 
+                        <li><a href="labIndex.html">Lab Index</a></li>
+                    </ul> 
+                </div>
+            </nav>
+        </header>
 <main>
-    <section class="form-container" id="assignment-form" >
-        <form action="script.js" class="form" id="assignment-form">
+    <section class="form-container" id="final-lab-report-form">
+        <form action="script.js" class="form" id="final-lab-report-form">
             <div class="form-top">
                 <div class="form-logo">
                     <img src="images/logo.png" alt="University Logo">
                 </div>
                 <div class="head-text">
-                    <h1>ASSIGNMENT</h1>
+                    <h1>FINAL LAB REPORT</h1>
                 </div>
             </div>
 
@@ -47,11 +46,8 @@
                 <label for="courseTitle">Course Title: </label>
                 <input type="text" id="courseTitle"   name="courseTitle" placeholder="Enter Course Title">
             </div>
+            
             <div class="form-group">
-                <label for="topicName">Topic Name:</label>
-                <input type="text" id="topicName"  name="topicName" placeholder="Enter Topic Name">
-            </div>
-            <div class="form-group" id="underline">
                 <div class="category-head-text">Submitted To</div>
                 <label for="submittedToName">Name: </label>
                 <input type="text" id="submittedToName"   name="submittedToName" placeholder="Enter Teacher Name">
@@ -68,7 +64,7 @@
                 <label for="university">University:</label>
                 <input type="text" id="university"   name="university" value="Daffodil International University">
             </div>
-            <div class="form-group" id="underline">
+            <div class="form-group">
                 <div class="category-head-text">Submitted By</div>
                 <label for="submittedByName">Name: </label>
                 <input type="text" class="submitToBy" id="submittedByName"   name="submittedByName" placeholder="Enter Your Name">
@@ -93,7 +89,7 @@
                 <label for="university">University:</label>
                 <input type="text" id="university"   name="university" value="Daffodil International University">
             </div>
-            <div class="form-group" id="underline">
+            <div class="form-group">
                 <label for="submissionDate">Submission Date: </label>
                 <input type="date" id="submissionDate"  name="submissionDate" placeholder="Enter Submission Date"> 
             </div>
@@ -117,18 +113,7 @@
                 </div>
             </div>
     </section>
-
-
-
 </main>
-
-
-<!-- <footer class="footer">
-    <p>Webpage Created by <br>
-        <a href="https://github.com/tasnim-farhan-fahim" target="_blank">Tasnim Farhan Fahim</a><br>
-        Email: <a href="mailto:fahim22205101291@diu.edu.bd">Fahim22205101291@diu.edu.bd</a>
-    </p>
-</footer> -->
 </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

@@ -469,3 +469,22 @@ img{
     font-size: 16px;
     cursor: pointer;
 }
+
+
+
+
+
+
+
+
+.form-container {
+    display: none;
+}
+/* Show the section when its ID is targeted */
+.form-container:target {
+    display: block;
+}
+/* Show the home section by default when no target is specified */
+body:not(:has(:target)) #assignment-form {
+    display: block;
+}
