@@ -19,60 +19,70 @@ body {
 /* Navigation Bar design */
 .header {
     background-color: rgba(0, 0, 0, 0.6);
-    padding-left: 10px;
-    padding-right: 10px;
-    border-radius: 20px;
-}
+    padding: 1rem;
+    border-radius: 12px;
 
+}
 .nav-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
-    flex-shrink: 0;
 }
-
-.nav-icon{
-    width: 50px;
-    margin-right: 10px;
-}
-
 .nav-logo {
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 25px;
-    font-weight: 600;
-    color: white;
-    flex-shrink: 0;
 }
-
+.nav-logo a {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 30px;
+}
+.nav-icon {
+    height: 50px;
+    margin-right: 10px;
+}
 .nav-button {
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    flex-shrink: 0;
+    position: relative;
 }
-.nav-button li {
-    display: inline;
-    width: 0;
+.dropdown {
+    display: inline-block;
+    position: relative;
 }
-.nav-button li a {
-    text-decoration: none;
+.dropdown button {
+    background-color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
     color: white;
-    font-size: 18px;
-    padding: 10px;
-    border-radius: 5px;
+    padding: 12px 22px 12px 22px ;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
 }
-.nav-button li a:hover{
-    color: rgb(0, 0, 0);
-    background-color: white;
-    transition: 0.4s;
+.dropdown-content {
+    margin: auto;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 150;
 }
-.nav-button li a:active{
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0);
-    transition: 0.4s;
+.dropdown-content a {
+    color: black;
+    padding: 12px;
+    padding-left: 18px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown button:hover {
+    background-color: rgba(0, 0, 0);
+}
+.dropdown-content a:hover {
+    background-color: #ddd;
+    border-radius: 10px;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
 }
 /* Form Designing */
 
@@ -263,15 +273,18 @@ input:hover {
     border-bottom: 2px solid rgb(0, 0, 0);
 }
 .index-left-bottom {
+    text-align: center;
     padding: 5px;
     border-bottom: 2px solid rgb(0, 0, 0);
 }
 .index-right-bottom {
+    text-align: center;
     padding: 5px;
     border-left: 2px solid rgb(0, 0, 0);
     border-bottom: 2px solid rgb(0, 0, 0);
 }
 .index-border-header {
+    text-align: center;
     padding: 5px;
     border-left: 2px solid rgb(0, 0, 0);
     border-bottom: 2px solid rgb(0, 0, 0);
@@ -314,7 +327,7 @@ input:hover {
     justify-content: center;
     margin-left: 10px;
     margin-right: 10px;
-    text-align: center;
+    text-align: left;
     font-size: 18px;
 }
 
@@ -356,7 +369,7 @@ input:hover {
 
 
 /* Larger devices (large laptops, 1201px to 1640px) */
-@media screen and (min-width: 1201px)and (max-width: 1640px) {
+/* @media screen and (min-width: 1201px)and (max-width: 1640px) {
 .project {
     margin-left: 25%;
     margin-right: 25%;
@@ -378,9 +391,9 @@ input:hover {
     font-size: 40px;
 }
 
-}
+} */
 /* Larger devices (large laptops, 1001px to 1470px) */
-@media screen and (min-width: 1001px)and (max-width: 1200px) {
+/* @media screen and (min-width: 1001px)and (max-width: 1200px) {
 .project {
     margin-left: 22%;
     margin-right: 22%;
@@ -402,10 +415,10 @@ input:hover {
     font-size: 40px;
 }
 
-}
+} */
 
 /* Large devices (laptops, 978px to 1470px) */
-@media screen and (min-width: 800px)and (max-width: 1000px) {
+/* @media screen and (min-width: 800px)and (max-width: 1000px) {
 .project {
     margin-left: 18%;
     margin-right: 18%;
@@ -427,9 +440,9 @@ input:hover {
     font-size: 40px;
 }
 
-}
+} */
 /* Medium devices (tablets, 601px to 799px) */
-@media screen and (min-width: 601px)and (max-width: 799px) {
+/* @media screen and (min-width: 601px)and (max-width: 799px) {
 .project {
     margin-left: 10%;
     margin-right: 10%;
@@ -472,4 +485,4 @@ input:hover {
 .nav-logo {
     font-size: 40px;
 }
-}
+} */

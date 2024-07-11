@@ -106,61 +106,61 @@ document.querySelectorAll('.form').forEach(form => {
 
         documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  1 </strong></div>`;
         documentContent += `<div class="index-border" id="dateSubmission"><strong>    ${formData.get('submissionDate1')} </strong></div>`;
-        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName1')} </strong></div>`;
+        documentContent += `<div class="index-border" >  ${formData.get('experimentName1')} </div>`;
         documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage1')} </strong></div>`;
         documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
 
         documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  2 </strong></div>`;
         documentContent += `<div class="index-border" id="dateSubmission"><strong>    ${formData.get('submissionDate2')} </strong></div>`;
-        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName2')} </strong></div>`;
+        documentContent += `<div class="index-border" >   ${formData.get('experimentName2')} </div>`;
         documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage2')} </strong></div>`;
         documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
 
         documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  3 </strong></div>`;
         documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate3')} </strong></div>`;
-        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName3')} </strong></div>`;
+        documentContent += `<div class="index-border" >   ${formData.get('experimentName3')} </div>`;
         documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage3')} </strong></div>`;
         documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
 
         documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  4 </strong></div>`;
         documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate4')} </strong></div>`;
-        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName4')} </strong></div>`;
+        documentContent += `<div class="index-border" >   ${formData.get('experimentName4')} </div>`;
         documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage4')} </strong></div>`;
         documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
 
         documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  5 </strong></div>`;
         documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate5')} </strong></div>`;
-        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName5')} </strong></div>`;
+        documentContent += `<div class="index-border" >   ${formData.get('experimentName5')} </div>`;
         documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage5')} </strong></div>`;
         documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
 
         documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  6 </strong></div>`;
         documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate6')} </strong></div>`;
-        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName6')} </strong></div>`;
+        documentContent += `<div class="index-border" >   ${formData.get('experimentName6')} </div>`;
         documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage6')} </strong></div>`;
         documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
 
         documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  7 </strong></div>`;
         documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate7')} </strong></div>`;
-        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName7')} </strong></div>`;
+        documentContent += `<div class="index-border" >   ${formData.get('experimentName7')} </div>`;
         documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage7')} </strong></div>`;
         documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
 
         documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  8 </strong></div>`;
         documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate8')} </strong></div>`;
-        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName8')} </strong></div>`;
+        documentContent += `<div class="index-border" >   ${formData.get('experimentName8')} </div>`;
         documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage8')} </strong></div>`;
         documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
 
         documentContent += `<div class="index-left-bottom" id="index-experiment-no"><strong>  9 </strong></div>`;
         documentContent += `<div class="index-border" id="dateSubmission"><strong>   ${formData.get('submissionDate9')} </strong></div>`;
-        documentContent += `<div class="index-border" ><strong>   ${formData.get('experimentName9')} </strong></div>`;
+        documentContent += `<div class="index-border" >   ${formData.get('experimentName9')} </div>`;
         documentContent += `<div class="index-border" id="pageLimit"><strong>   ${formData.get('pageToPage9')} </strong></div>`;
         documentContent += `<div class="index-right-bottom" ><strong>  </strong></div>`;
 
         documentContent += `<div class="index-left-footer" id="index-experiment-no"><strong>  10 </strong></div>`;
         documentContent += `<div class="index-border-footer" id="dateSubmission"><strong>   ${formData.get('submissionDate10')} </strong></div>`;
-        documentContent += `<div class="index-border-footer" ><strong>   ${formData.get('experimentName10')} </strong></div>`;
+        documentContent += `<div class="index-border-footer" >   ${formData.get('experimentName10')} </div>`;
         documentContent += `<div class="index-border-footer" id="pageLimit"><strong>   ${formData.get('pageToPage10')} </strong></div>`;
         documentContent += `<div class="index-right-footer" ><strong>  </strong></div>`;
 

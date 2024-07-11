@@ -3,30 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment Cover Page</title>
+    <title>DIU Cover Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="images/logo1.png">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="project">
-<header class="header">
-    <nav class="nav-bar">
-        <div class="nav-logo">
-            <img class="nav-icon" src="images/logo1.png" alt="">
-            <a>Cover Page</a>
-        </div>
-        <div class="nav-button">
-            <ul>
-                <li><a href="#">Assignment</a></li> 
-                <li><a href="lab.html">Lab Report</a></li> 
-                <li><a href="labFinal.html">Lab Final</a></li> 
-                <li><a href="labIndex.html">Lab Index</a></li>
-            </ul> 
-        </div>
-    </nav>
-</header>
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="nav-logo">
+                <img class="nav-icon" src="images/logo1.png" alt="">
+                <a>Cover Page</a>
+            </div>
+            <div class="nav-button">
+                <div class="dropdown">
+                    <button>Assignment <i class="fa fa-caret-down"></i></button>
+                    
+                    <div class="dropdown-content">
+                        <a href="#">Assignment</a>
+                        <a href="lab.html">Lab Report</a>
+                        <a href="labFinal.html">Lab Final</a>
+                        <a href="labIndex.html">Lab Index</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
 <main>
     <section class="form-container" id="assignment-form" >
         <form action="script.js" class="form" id="assignment-form">
