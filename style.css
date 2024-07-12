@@ -14,6 +14,7 @@ body {
     margin-left: 25%;
     margin-right: 25%;
     padding: 10px;
+    padding-bottom: 0px;
 }
 
 /* Navigation Bar design */
@@ -84,8 +85,10 @@ body {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-/* Form Designing */
+/* Nav design end */
 
+
+/* Form Designing */
 .form-container {
     margin-top: 20px;
 }
@@ -98,8 +101,8 @@ body {
     flex-direction: column;
 }
 .form h1 {
-margin-bottom: 15px;
-font-size: 30px;
+    margin-bottom: 15px;
+    font-size: 30px;
 }
 .form-group{
     margin-bottom: 10px;
@@ -134,9 +137,9 @@ input{
 }
 
 input:hover {
-    transition: 0.4s;
     background-color: rgba(170, 170, 170, 0.7);
 }
+
 
 /* Button styling */
 .submit {
@@ -364,7 +367,7 @@ input:hover {
 .footer {
     background-color: rgba(0, 0, 0, 0.6);
     margin-top: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     color: white;
     text-align: center;
     padding: 10px;
@@ -374,122 +377,58 @@ input:hover {
     text-decoration: none;
 }
 
-
-/* Larger devices (large laptops, 1201px to 1640px) */
-/* @media screen and (min-width: 1201px)and (max-width: 1640px) {
-.project {
-    margin-left: 25%;
-    margin-right: 25%;
-}
-.nav-bar {
-    flex-direction: column;
-    height: 110px;
-    padding-bottom: 5px;
-}
-
-.nav-icon{
-    width: 50px;
-    margin-top: 5px;
-}
-.nav-button li a {
-    font-size: 20px;
-}
-.nav-logo {
-    font-size: 40px;
-}
-
-} */
-/* Larger devices (large laptops, 1001px to 1470px) */
-/* @media screen and (min-width: 1001px)and (max-width: 1200px) {
-.project {
-    margin-left: 22%;
-    margin-right: 22%;
-}
-.nav-bar {
-    flex-direction: column;
-    height: 110px;
-    padding-bottom: 5px;
-}
-
-.nav-icon{
-    width: 50px;
-    margin-top: 5px;
-}
-.nav-button li a {
-    font-size: 18px;
-}
-.nav-logo {
-    font-size: 40px;
-}
-
-} */
-
-/* Large devices (laptops, 978px to 1470px) */
-/* @media screen and (min-width: 800px)and (max-width: 1000px) {
-.project {
-    margin-left: 18%;
-    margin-right: 18%;
-}
-.nav-bar {
-    flex-direction: column;
-    height: 110px;
-    padding-bottom: 5px;
-}
-
-.nav-icon{
-    width: 50px;
-    margin-top: 5px;
-}
-.nav-button li a {
-    font-size: 16px;
-}
-.nav-logo {
-    font-size: 40px;
-}
-
-} */
-/* Medium devices (tablets, 601px to 799px) */
-/* @media screen and (min-width: 601px)and (max-width: 799px) {
-.project {
-    margin-left: 10%;
-    margin-right: 10%;
-}
-.nav-bar {
-    flex-direction: column;
-    height: 110px;
-    padding-bottom: 5px;
-}
-.nav-icon{
-    width: 45px;
-    margin-top: 5px;
-}
-.nav-button li a {
-    font-size: 14px;
-}
-.nav-logo {
-    font-size: 40px;
-}
-}
-@media screen and (max-width: 600px) {
+/* Small devices (phones, 600px and below) */
+@media only screen and (max-width: 600px) {
+    
 .project {
     margin-left: 5%;
     margin-right: 5%;
 }
-.nav-bar {
-    flex-direction: column;
-    height: 110px;
-    padding-bottom: 5px;
-}
-.nav-icon{
-    width: 45px;
-    margin-top: 5px;
+
+.form h1 {
+font-size: 25px;
 }
 
-.nav-button li a {
-    font-size: 12px;
-    
+.form-logo img{
+    width: 100%;
 }
-.nav-logo {
-    font-size: 40px;
+.category-head-text {
+    font-size: 25px;
+    font-weight: 600;
 }
-} */
+label{
+    font-size: 16px;
+}
+input{
+    border: none ;
+    font-size: 16px;
+}
+.experiment-tag { 
+    font-size: 20px;
+}
+
+
+}
+
+/* Medium devices (tablets,laptops, 601px to 1000px) */
+@media only screen and (min-width: 601px) and (max-width: 1000px) {
+.project {
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+.form h1 {
+font-size: 28px;
+}
+
+.category-head-text {
+    font-size: 25px;
+}
+
+input{
+    font-size: 16px;
+}
+.experiment-tag { 
+    font-size: 24px;
+}
+}
