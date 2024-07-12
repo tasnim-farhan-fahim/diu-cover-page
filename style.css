@@ -6,8 +6,7 @@
 }
 body {
     font-family: Roboto, Arial;
-    background: url(images/diu.jpg) no-repeat center center/cover fixed;
-    
+    background: url(images/diu.jpg) no-repeat center/cover fixed;
 }
 
 .project {
@@ -379,7 +378,10 @@ input:hover {
 
 /* Small devices (phones, 600px and below) */
 @media only screen and (max-width: 600px) {
-    
+
+body {
+    background: url(images/diu.jpg) no-repeat left/cover fixed;
+}
 .project {
     margin-left: 5%;
     margin-right: 5%;
@@ -412,6 +414,9 @@ input{
 
 /* Medium devices (tablets,laptops, 601px to 1000px) */
 @media only screen and (min-width: 601px) and (max-width: 1000px) {
+body {
+    background: url(images/diu.jpg) no-repeat left/cover fixed;
+}
 .project {
     margin-left: 15%;
     margin-right: 15%;
