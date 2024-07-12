@@ -188,7 +188,6 @@ input:hover {
     justify-content: center;
     margin-top: 20px;
     margin-bottom: 10px;
-    margin-left: -50px;
 }
 .document-watermark img {
     width: 100%;
@@ -205,28 +204,34 @@ input:hover {
     height: 1042.52px;
     margin: 30px;
     border: 1px solid rgb(0, 0, 0);
-    font-size: 24px;
-    padding-left: 50px;
-    padding-right: 50px;
+    font-size: 25px;
+    font-weight: 500;
+    padding-left: 30px;
+    padding-right: 30px;
     line-height: 35px;
     z-index: 1;
+
+    letter-spacing: 0.05em;
     
 }
-.assignment-text {
+.page-header-text {
     display: flex;
     justify-content: center;
-    text-decoration: underline !important;
-    text-underline-offset: 3px;
     font-size: 20px;
     margin-bottom: 10px;
+
+}
+.page-header-text-underline {
+    border-bottom: 2px solid black;
 }
 .space {
     padding-left: 120px;
 }
 .category-head-text-style {
     color: rgb(24, 24, 138);
-    text-decoration: underline !important;
-    text-underline-offset: 3px;
+}
+.category-head-text-style-underline {
+    border-bottom: 2px solid rgb(24, 24, 138);
 }
 
 /* Index Design */
@@ -329,6 +334,8 @@ input:hover {
     margin-right: 10px;
     text-align: left;
     font-size: 18px;
+
+    letter-spacing: 0.05em;
 }
 
 /* Index Design End */
