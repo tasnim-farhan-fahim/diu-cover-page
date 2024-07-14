@@ -2,10 +2,7 @@ function documentResize(){
     const resize = document.getElementById('document');
     resize.style.width = "780px";
 }
-function indexDocumentResize(){
-    const indexResize = document.getElementById('index-document');
-    indexResize.style.width = "780px";
-}
+
 
 
 document.querySelectorAll('.form').forEach(form => {
@@ -204,8 +201,7 @@ inputs.forEach((input, index) => {
 
 
 document.getElementById('downloadPdf').addEventListener('click', function() {
-    
-    indexDocumentResize();
+
     documentResize();
     const { jsPDF } = window.jspdf;
     
