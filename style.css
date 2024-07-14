@@ -12,8 +12,6 @@ body {
 .project {
     margin-left: 25%;
     margin-right: 25%;
-    padding: 10px;
-    padding-bottom: 0px;
 }
 
 /* Navigation Bar design */
@@ -177,8 +175,7 @@ input:hover {
 }
 
 .document {
-    max-width: 780px;
-    min-width: 780px;
+    width: 780px;
     height: 1102.92px;
     background-color: white;
 }
@@ -216,6 +213,7 @@ input:hover {
     letter-spacing: 0.05em;
     
 }
+
 .page-header-text {
     display: flex;
     justify-content: center;
@@ -358,6 +356,7 @@ input:hover {
     color: white;
     font-size: 18px;
     cursor: pointer;
+    z-index: 50;
 }
 
 
@@ -365,7 +364,6 @@ input:hover {
 /* Footer design */
 .footer {
     background-color: rgba(0, 0, 0, 0.6);
-    margin-top: 10px;
     border-radius: 10px;
     color: white;
     text-align: center;
@@ -376,15 +374,26 @@ input:hover {
     text-decoration: none;
 }
 
+
 /* Small devices (phones, 600px and below) */
 @media only screen and (max-width: 600px) {
 
 body {
     background: url(images/diu.jpg) no-repeat left/cover fixed;
 }
+.nav-logo a {
+    font-size: 22px;
+}
+.nav-icon {
+    height: 30px;
+}
+.dropdown button {
+    font-size: 14px;
+    padding: 9px 14px 9px 14px;
+}
 .project {
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .form h1 {
@@ -408,12 +417,63 @@ input{
 .experiment-tag { 
     font-size: 20px;
 }
+.document {
+    width: 780px;
+    height: 560px;
+    background-color: white;
+}
+
+.document-watermark {
+    position: absolute;
+    top: 150px;
+    left: 70px;
+    right: 70px;
+}
+.document-content {
+    height: 535px;
+    margin: 12px;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    line-height: 18px;
+}
+.page-header-text {
+    font-size: 10px;
+}
+.page-header-text-underline {
+    border-bottom: 1px solid black;
+}
+.space {
+    padding-left: 70px;
+}
+.category-head-text-style-underline {
+    border-bottom: 1px solid rgb(24, 24, 138);
+}
 
 
+
+.download, .image {
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 13px;
+    cursor: pointer;
+    z-index: 50;
+}
+.footer a {
+    font-size: 10px;
+    color: white;
+    text-decoration: none;
+}
+footer p {
+    font-size: 10px;
+}
 }
 
 /* Medium devices (tablets,laptops, 601px to 1000px) */
-@media only screen and (min-width: 601px) and (max-width: 1000px) {
+/* @media only screen and (min-width: 601px) and (max-width: 1000px) {
 body {
     background: url(images/diu.jpg) no-repeat left/cover fixed;
 }
@@ -436,4 +496,4 @@ input{
 .experiment-tag { 
     font-size: 24px;
 }
-}
+} */

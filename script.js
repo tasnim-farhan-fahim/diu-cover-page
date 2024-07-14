@@ -1,3 +1,13 @@
+function documentResize(){
+    const resize = document.getElementById('document');
+    resize.style.width = "780px";
+}
+function indexDocumentResize(){
+    const indexResize = document.getElementById('index-document');
+    indexResize.style.width = "780px";
+}
+
+
 document.querySelectorAll('.form').forEach(form => {
     form.addEventListener('submit', function(event) {
     event.preventDefault();
@@ -194,15 +204,18 @@ inputs.forEach((input, index) => {
 
 
 document.getElementById('downloadPdf').addEventListener('click', function() {
+    
+    indexDocumentResize();
+    documentResize();
     const { jsPDF } = window.jspdf;
-
+    
     html2canvas(document.getElementById('document') || document.getElementById('index-document'), {
         scale: 2,  // Higher scale for better quality before compression
         useCORS: true,
         
         backgroundColor: '#ffffff'
     }).then(canvas => {
-        const imgData = canvas.toDataURL('image/jpeg', 0.75);  // Adjust quality parameter
+        const imgData = canvas.toDataURL('image/jpeg', 3);  // Adjust quality parameter
 
         const doc = new jsPDF({
             orientation: 'portrait',
