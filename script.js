@@ -1,9 +1,55 @@
-function documentResize(){
-    const resize = document.getElementById('document');
-    resize.style.width = "780px";
+document.addEventListener("DOMContentLoaded", function() {
+    if (isMobileDevice() && !isDesktopSiteEnabled()) {
+        showPopup();
+    }
+});
+
+function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
+function isDesktopSiteEnabled() {
+    // Desktop site mode on mobile typically results in a larger viewport width
+    return window.innerWidth > 800 || /Tablet|iPad/i.test(navigator.userAgent);
+}
 
+function showPopup() {
+    document.getElementById("popup").style.display = "flex";
+    document.body.style.overflow = "hidden"; // Disable scrolling when popup is displayed
+}
+
+function handlePopupOk() {
+    switchToDesktopSite();
+    closePopup();
+}
+
+function switchToDesktopSite() {
+    // This is a naive way to switch to desktop site by reloading the page
+    // In real scenarios, you may need a more sophisticated approach
+    // Depending on your mobile browser, you might need to instruct the user manually
+    alert("Please manually switch to Desktop Site mode in your browser settings.");
+    // Reload the page to apply desktop site settings
+    location.reload();
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.body.style.overflow = "auto"; // Enable scrolling when popup is closed
+}
+
+window.addEventListener('resize', function() {
+    if (isMobileDevice() && isDesktopSiteEnabled()) {
+        closePopup();
+    }
+});
+
+
+
+// 
+function documentResize(){
+    const resize = (document.getElementById('document')||document.getElementById('index-document'));
+    resize.style.width = "780px";
+}
 
 document.querySelectorAll('.form').forEach(form => {
     form.addEventListener('submit', function(event) {
@@ -37,7 +83,7 @@ document.querySelectorAll('.form').forEach(form => {
         documentContent += `<p class="space"><strong>Department:  </strong> ${formData.get('submittedByDepartment')} </p>`;
         documentContent += `<p class="space"><strong> Daffodil International University </strong></p>`;
         documentContent += `<p>   </p>`;
-        documentContent += `<p class="category-head-text-style"><strong><span class="category-head-text-style-underline">Submission Date:</strong></span> ${formData.get('submissionDate')} </p>`;
+        documentContent += `<p class="category-head-text-style"><strong><span class="category-head-text-style-underline">Submission Date:</strong></span> <span class="dateColor">${formData.get('submissionDate')}</span> </p>`;
 
         document.getElementById('documentContent').innerHTML = documentContent;
         document.querySelector('.form').style.display = 'none';
@@ -69,7 +115,7 @@ document.querySelectorAll('.form').forEach(form => {
         documentContent += `<p class="space"><strong>Department:  </strong> ${formData.get('submittedByDepartment')} </p>`;
         documentContent += `<p class="space"><strong> Daffodil International University </strong></p>`;
         documentContent += `<p>   </p>`;
-        documentContent += `<p class="category-head-text-style"><strong><span class="category-head-text-style-underline">Submission Date:</strong></span> ${formData.get('submissionDate')} </p>`;
+        documentContent += `<p class="category-head-text-style"><strong><span class="category-head-text-style-underline">Submission Date:</strong></span> <span class="dateColor">${formData.get('submissionDate')}</span></p>`;
 
         document.getElementById('documentContent').innerHTML = documentContent;
         document.querySelector('.form').style.display = 'none';
@@ -97,7 +143,7 @@ document.querySelectorAll('.form').forEach(form => {
         documentContent += `<p class="space"><strong>Department:  </strong> ${formData.get('submittedByDepartment')} </p>`;
         documentContent += `<p class="space"><strong> Daffodil International University </strong></p>`;
         documentContent += `<p>   </p>`;
-        documentContent += `<p class="category-head-text-style"><strong><span class="category-head-text-style-underline">Submission Date:</strong></span> ${formData.get('submissionDate')} </p>`;
+        documentContent += `<p class="category-head-text-style"><strong><span class="category-head-text-style-underline">Submission Date:</strong></span> <span class="dateColor">${formData.get('submissionDate')}</span> </p>`;
 
         document.getElementById('documentContent').innerHTML = documentContent;
         document.querySelector('.form').style.display = 'none';

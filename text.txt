@@ -488,3 +488,31 @@ img{
 body:not(:has(:target)) #assignment-form {
     display: block;
 }
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (isMobileDevice() && !isDesktopSiteEnabled()) {
+        showPopup();
+    }
+});
+
+function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+function isDesktopSiteEnabled() {
+    // You can improve this check depending on how you want to verify the desktop site mode on mobile
+    return window.innerWidth > 800; // Assuming desktop mode has a larger viewport
+}
+
+function showPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+
+
+    <button onclick="closePopup()">OK</button>

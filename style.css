@@ -6,9 +6,52 @@
 }
 body {
     font-family: Roboto, Arial;
-    background: url(images/diu.jpg) no-repeat center/cover fixed;
+    background: url(images/diu.jpg) no-repeat left/cover fixed;
+}
+/*  */
+.popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
 }
 
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    border-radius: 1cap;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.popup-content p {
+    font-size: 24px;
+    margin: 0 0 20px 0;
+}
+
+.popup-content button {
+    font-size: 24px;
+    padding: 10px 30px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.popup-content button:hover {
+    background-color: #28a745;
+}
+/*  */
 .project {
     margin-left: 25%;
     margin-right: 25%;
@@ -176,6 +219,7 @@ input:hover {
 
 .document {
     width: 780px;
+    min-width: 780px ;
     height: 1102.92px;
     background-color: white;
 }
@@ -194,8 +238,8 @@ input:hover {
 .document-watermark {
     position: absolute;
     top: 340px;
-    left: 170px;
-    right: 170px;
+    left: 150px;
+    right: 150px;
     z-index: -1;
 }
 .document-content {
@@ -205,8 +249,8 @@ input:hover {
     border: 1px solid rgb(0, 0, 0);
     font-size: 25px;
     font-weight: 500;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
     line-height: 35px;
     z-index: 1;
 
@@ -218,7 +262,7 @@ input:hover {
     display: flex;
     justify-content: center;
     font-size: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
 }
 .page-header-text-underline {
@@ -233,7 +277,9 @@ input:hover {
 .category-head-text-style-underline {
     border-bottom: 2px solid rgb(24, 24, 138);
 }
-
+.dateColor {
+    color: #000000;
+}
 /* Index Design */
 
 .experiment-tag { 
@@ -320,6 +366,12 @@ input:hover {
     font-size: 22px;
     color: #1e1870;
 }
+#dateSubmission {
+    font-size: 16px;
+}
+#index-experiment-no {
+    text-align: center;
+}
 #index-experiment-no,
 #dateSubmission,
 #pageLimit {
@@ -368,6 +420,7 @@ input:hover {
     color: white;
     text-align: center;
     padding: 10px;
+    bottom: 0;
 }
 .footer a {
     color: white;
@@ -417,63 +470,19 @@ input{
 .experiment-tag { 
     font-size: 20px;
 }
-.document {
-    width: 780px;
-    height: 560px;
-    background-color: white;
-}
 
-.document-watermark {
-    position: absolute;
-    top: 150px;
-    left: 70px;
-    right: 70px;
-}
-.document-content {
-    height: 535px;
-    margin: 12px;
-    font-size: 14px;
-    padding-left: 20px;
-    padding-right: 20px;
-    line-height: 18px;
-}
-.page-header-text {
-    font-size: 10px;
-}
-.page-header-text-underline {
-    border-bottom: 1px solid black;
-}
-.space {
-    padding-left: 70px;
-}
-.category-head-text-style-underline {
-    border-bottom: 1px solid rgb(24, 24, 138);
-}
-
-
-
-.download, .image {
-    padding: 10px;
-    background-color: #28a745;
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 13px;
-    cursor: pointer;
-    z-index: 50;
-}
 .footer a {
     font-size: 10px;
     color: white;
     text-decoration: none;
 }
 footer p {
-    font-size: 10px;
+    font-size: 12px;
 }
 }
 
 /* Medium devices (tablets,laptops, 601px to 1000px) */
-/* @media only screen and (min-width: 601px) and (max-width: 1000px) {
+@media only screen and (min-width: 601px) and (max-width: 1000px) {
 body {
     background: url(images/diu.jpg) no-repeat left/cover fixed;
 }
@@ -496,4 +505,4 @@ input{
 .experiment-tag { 
     font-size: 24px;
 }
-} */
+}
