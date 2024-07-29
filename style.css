@@ -38,12 +38,13 @@ body {
 }
 .desktopSite {
     border: 1px solid #000000;
-    padding: 6px 10px;
+    padding: 8px 10px 8px 6px;
     border-radius: 3px;
+    background-color: #f0f0f0;
 }
-.popup-content p i,
-.desktopSite i {
-    margin-left: 20px;
+.popup-content p #i,
+.desktopSite #i {
+    margin-left: 30px;
 }
 .popup-content p {
     margin: 10px 0 10px 0;
@@ -51,7 +52,7 @@ body {
 
 .popup-content button {
     margin-top: 10px;
-    padding: 10px 20px;
+    padding: 10px 30px;
     background-color: #28a745;
     color: #fff;
     border: none;

@@ -6,6 +6,7 @@
     <title>DIU Cover Page</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="images/logo1.png">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,11 +18,11 @@
             <p>Please switch to the <span style="color: rgb(255, 0, 0);">Desktop site</span> on your phone for an accurate document view.</p>
             <br>
             <p>
-                <span >Click on <i class="fas fa-ellipsis-v"></i></span>
+                <span >Click on <i class="fas fa-ellipsis-v" id="i"></i></span>
                 <p class="arrow">↓</p>
-                <span class="desktopSite"> Desktop site <i class="far fa-square"></i></span>
+                <span class="desktopSite"><i class='fas fa-desktop'></i> Desktop site <i class="far fa-square" id="i"></i></span>
                 <p class="arrow">↓</p>
-                <span class="desktopSite"> Desktop site <i class="fas fa-check-square"> </i></span>
+                <span class="desktopSite"><i class='fas fa-desktop'></i> Desktop site <i class="fas fa-check-square" id="i"> </i></span>
             </p>
             <button onclick="handlePopupOk()">OK</button>
         </div>
@@ -151,7 +152,6 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="script.js"></script>
 </body>
 </html>
