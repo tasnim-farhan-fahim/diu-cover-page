@@ -469,12 +469,7 @@ img{
     font-size: 16px;
     cursor: pointer;
 }
-
-
-
-
-
-
+----------------------------------------------------------------------------------------------------------------------
 
 
 .form-container {
@@ -489,6 +484,7 @@ body:not(:has(:target)) #assignment-form {
     display: block;
 }
 
+----------------------------------------------------------------------------------------------------------------------
 
 document.addEventListener("DOMContentLoaded", function() {
     if (isMobileDevice() && !isDesktopSiteEnabled()) {
@@ -514,5 +510,68 @@ function closePopup() {
 }
 
 
+----------------------------------------------------------------------------------------------------------------------
 
     <button onclick="closePopup()">OK</button>
+----------------------------------------------------------------------------------------------------------------------
+
+<div id="popup" class="popup">
+        <div class="popup-content">
+            <p>Please switch to the <span style="color: rgb(255, 0, 0);">Desktop site</span> on your phone for an accurate document view.</p>
+            <br>
+            <p>
+                <span >Click on <i class="fas fa-ellipsis-v" id="i"></i></span>
+                <p class="arrow">↓</p>
+                <span class="desktopSite"><i class='fas fa-desktop'></i> Desktop site <i class="far fa-square" id="i"></i></span>
+                <p class="arrow">↓</p>
+                <span class="desktopSite"><i class='fas fa-desktop'></i> Desktop site <i class="fas fa-check-square" id="i"> </i></span>
+            </p>
+            <button onclick="handlePopupOk()">OK</button>
+        </div>
+    </div>
+----------------------------------------------------------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", function() {
+    if (isMobileDevice() && !isDesktopSiteEnabled()) {
+        showPopup();
+    }
+});
+
+function isMobileDevice() {
+    return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+function isDesktopSiteEnabled() {
+    // Desktop site mode on mobile typically results in a larger viewport width
+    return window.innerWidth > 800 || /Tablet|iPad/i.test(navigator.userAgent);
+}
+
+function showPopup() {
+    document.getElementById("popup").style.display = "flex";
+    document.body.style.overflow = "hidden"; // Disable scrolling when popup is displayed
+}
+
+function handlePopupOk() {
+    switchToDesktopSite();
+    closePopup();
+}
+
+function switchToDesktopSite() {
+    // This is a naive way to switch to desktop site by reloading the page
+    // In real scenarios, you may need a more sophisticated approach
+    // Depending on your mobile browser, you might need to instruct the user manually
+    alert("Please manually switch to Desktop Site mode in your browser settings.");
+    // Reload the page to apply desktop site settings
+    location.reload();
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.body.style.overflow = "auto"; // Enable scrolling when popup is closed
+}
+
+window.addEventListener('resize', function() {
+    if (isMobileDevice() && isDesktopSiteEnabled()) {
+        closePopup();
+    }
+});
+----------------------------------------------------------------------------------------------------------------------
