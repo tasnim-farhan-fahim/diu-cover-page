@@ -588,7 +588,7 @@ input{
 @media only screen and (max-width: 600px) {
 
 body {
-    background: url(images/diu.jpg) no-repeat left/cover fixed;
+    background: url(images/diu-mobile.jpg) no-repeat left/cover fixed;
 }
 .nav-logo a {
     font-size: 20px;
