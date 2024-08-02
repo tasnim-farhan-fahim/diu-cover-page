@@ -434,14 +434,14 @@ input:hover {
 /* --------------------------------------- */
 @media only screen and (min-width: 1001px) and (max-width: 1200px) {
 .project {
-    margin-left: 20%;
-    margin-right: 20%; 
+    margin-left: 23%;
+    margin-right: 23%; 
 }
 }
 @media only screen and (min-width: 801px) and (max-width: 1000px) {
 .project {
-    margin-left: 17%;
-    margin-right: 17%; 
+    margin-left: 20%;
+    margin-right: 20%; 
 }
 }
 /* --------------------------------------- */
@@ -585,7 +585,7 @@ input{
 }
 }
 /* Small devices (phones, 600px and below) */
-@media only screen and (max-width: 600px) {
+@media only screen and (min-width: 450px) and (max-width: 600px) {
 
 body {
     background: url(images/diu-mobile.jpg) no-repeat left/cover fixed;
@@ -743,4 +743,172 @@ footer p {
 }
 }
 
+@media only screen and (max-width: 449px) {
 
+body {
+    background: url(images/diu-mobile.jpg) no-repeat left/cover fixed;
+}
+.nav-logo a {
+    font-size: 20px;
+}
+.nav-icon {
+    height: 30px;
+}
+.dropdown button {
+    font-size: 10px;
+    padding: 9px 14px 9px 14px;
+}
+.dropdown-content {
+    margin-left: 5px;
+    border-radius: 10px;
+    min-width: 80px;
+}
+.dropdown-content a {
+    font-size: 10px;
+    padding: 8px;
+    padding-left: 8px;
+}
+
+.project {
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.form h1 {
+font-size: 20px;
+}
+
+.form-logo img{
+    width: 100%;
+}
+.category-head-text {
+    font-size: 20px;
+    font-weight: 600;
+}
+label{
+    font-size: 16px;
+}
+input{
+    border: none ;
+    font-size: 16px;
+}
+.experiment-tag { 
+    font-size: 20px;
+}
+.document {
+    width: 350px;
+    min-width: 350px;
+    height: 494.9px;
+}
+.document-watermark {
+    top: 160px;
+    left: 70px;
+    right: 70px;
+}
+.document-content {
+    height: 474.9px;
+    margin: 10px;
+    border: 1px solid rgb(0, 0, 0, 0.5);
+    font-size: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
+    line-height: 15px;
+}
+.space {
+    padding-left: 60px;
+}
+.page-header-text {
+    font-size: 8px;
+    margin-bottom: 8px;
+}
+.page-header-text-underline,
+.category-head-text-style-underline {
+    border-bottom: 1px solid;
+}
+/* Lab Index */
+.index-text {
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    }
+
+.index-document {
+    width: 350px;
+    min-width: 350px;
+    height: 494.9px;
+}
+.index-document-content {
+    height: 474.9px;
+    margin: 10px;
+    font-size: 14px;
+    border: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-border {
+    font-size: 8px;
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-left-bottom {
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-right-bottom {
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-border-header {
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-border-footer {
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-right-footer {
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+}
+
+.index-border,
+.index-left-bottom,
+.index-right-bottom,
+.index-border-header,
+.index-border-footer, 
+.index-right-footer, 
+.index-left-footer {
+    padding: 1px;
+    height: 36.4px;
+}
+#index-header {
+    font-size: 9px;
+    padding-top: 10px;
+}
+#dateSubmission {
+    font-size: 10px;
+}
+
+#index-experiment-no,
+#dateSubmission,
+#pageLimit {
+    text-align: center;
+    padding-top: 12px;
+    font-size: 8px;
+}
+#documentContentIndex {
+
+    border: 1px solid rgb(0, 0, 0, 0.5);
+    margin-left: 1px;
+    margin-right: 1px;
+    font-size: 9px;
+}
+/* --------------------------- */
+.download,.image{
+    font-size: 10px;
+    padding: 8px 12px;
+}
+.footer a {
+    font-size: 10px;
+    color: white;
+    text-decoration: none;
+}
+footer p {
+    font-size: 10px;
+}
+}

@@ -204,7 +204,7 @@ document.getElementById('downloadPdf').addEventListener('click', function() {
     const { jsPDF } = window.jspdf;
     
     html2canvas(document.getElementById('document') || document.getElementById('index-document'), {
-        scale: 2,  // Higher scale for better quality before compression
+        scale: 4,  // Higher scale for better quality before compression
         useCORS: true,
         
         backgroundColor: '#ffffff'
