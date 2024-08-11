@@ -214,11 +214,11 @@ document.getElementById('downloadPdf').addEventListener('click', function() {
         const doc = new jsPDF({
             orientation: 'portrait',
             unit: 'px',
-            format: [793, 1122.52],
+            format: [780, 1102.92],
             compress: true  // Enable compression
         });
 
-        const imgWidth = 793.7;
+        const imgWidth = 780;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
         
         doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
@@ -234,7 +234,7 @@ document.getElementById('downloadImage').addEventListener('click', function() {
         backgroundColor: '#ffffff'
     }).then(canvas => {
         // Adjust the canvas dimensions for higher quality
-        const imgWidth = 793.7;
+        const imgWidth = 780;
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
         const link = document.createElement('a');
