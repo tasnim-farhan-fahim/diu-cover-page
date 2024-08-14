@@ -391,14 +391,15 @@ input:hover {
 
 /* Website reference text */
 .page-reference-text-index {
-    font-size: 14px;
-    margin-top: -25px;
+    font-size: 12px;
+    margin-top: -20px;
 }
 .page-reference-text {
     text-align: center;
-    font-size: 14px;
-    margin-top: -25px;
+    font-size: 12px;
+    margin-top: -20px;
 }
+/* ------------------------ */
 .document-buttons{
     margin-top: 50px;
     display: flex;
@@ -590,11 +591,11 @@ input{
 }
 .page-reference-text-index {
     font-size: 10px;
-    margin-top: -18px;
+    margin-top: -16px;
 }
 .page-reference-text {
     font-size: 10px;
-    margin-top: -18px;
+    margin-top: -16px;
 }
 /* --------------------------- */
 .download,.image{
@@ -748,11 +749,11 @@ input{
 /* --------------------------- */
 .page-reference-text-index {
     font-size: 8px;
-    margin-top: -14px;
+    margin-top: -12px;
 }
 .page-reference-text {
     font-size: 8px;
-    margin-top: -14px;
+    margin-top: -12px;
 }
 .download,.image{
     font-size: 10px;
@@ -924,6 +925,16 @@ input{
     font-size: 9px;
 }
 /* --------------------------- */
+.page-reference-text-index {
+    font-size: 5px;
+    margin-top: -9px;
+}
+.page-reference-text {
+    font-size: 5px;
+    margin-top: -9px;
+}
+
+
 .download,.image{
     font-size: 10px;
     padding: 8px 12px;
