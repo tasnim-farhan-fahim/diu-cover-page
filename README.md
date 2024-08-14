@@ -1,2 +1,2 @@
 DIU Cover Page Link: 
-https://tasnim-farhan-fahim.github.io/diu-cover-page/
+https://tasnim-farhan-fahim.github.io/diucoverpage.github.io
