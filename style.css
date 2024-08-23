@@ -428,6 +428,7 @@ input:hover {
     border-bottom-right-radius: 0px;
     color: white;
     text-align: center;
+    font-size: 14px;
     padding: 10px;
     bottom: 0;
 }
