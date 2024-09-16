@@ -3,9 +3,9 @@ function documentResize(){
     resize.style.width = "780px";
 }
 // Prevent inspect with the code below           
-// document.addEventListener('contextmenu', function(e) {
-//     e.preventDefault();
-//   });
+document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
 //-------------------------->
 
 document.querySelectorAll('.form').forEach(form => {

@@ -137,6 +137,19 @@ body {
 }
 /* Nav design end */
 
+/* Suggestion design */
+.suggestion-text {
+    background: rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    border-radius: 1cap;
+    margin-top: 20px;
+    padding: 10px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* ------------------------ */
 
 /* Form Designing */
 .form-container {
@@ -432,6 +445,10 @@ input:hover {
     padding: 10px;
     bottom: 0;
 }
+.footer .feedback {
+    margin-bottom: 14px;
+    font-size: 16px;
+}
 .footer a {
     color: white;
     text-decoration: none;
@@ -478,7 +495,9 @@ body {
 .form h1 {
 font-size: 28px;
 }
-
+.suggestion-text {
+    font-size: 12px;
+}
 .category-head-text {
     font-size: 25px;
 }
@@ -616,14 +635,16 @@ body {
     height: 30px;
 }
 .dropdown button {
-    font-size: 12px;
+    font-size: 14px;
     padding: 9px 14px 9px 14px;
 }
 .project {
     margin-left: 8%;
     margin-right: 8%;
 }
-
+.suggestion-text {
+    font-size: 11px;
+}
 .form h1 {
 font-size: 25px;
 }
@@ -761,12 +782,13 @@ input{
     padding: 8px 12px;
 }
 .footer a {
-    font-size: 10px;
-    color: white;
-    text-decoration: none;
+    font-size: 12px;
 }
 footer p {
     font-size: 12px;
+}
+.footer .feedback {
+    font-size: 16px;
 }
 }
 
@@ -782,7 +804,7 @@ body {
     height: 30px;
 }
 .dropdown button {
-    font-size: 10px;
+    font-size: 14px;
     padding: 9px 14px 9px 14px;
 }
 .dropdown-content {
@@ -800,7 +822,9 @@ body {
     margin-left: 4%;
     margin-right: 4%;
 }
-
+.suggestion-text {
+    font-size: 10px;
+}
 .form h1 {
 font-size: 20px;
 }
@@ -941,11 +965,12 @@ input{
     padding: 8px 12px;
 }
 .footer a {
-    font-size: 10px;
-    color: white;
-    text-decoration: none;
+    font-size: 12px;
 }
 footer p {
-    font-size: 10px;
+    font-size: 12px;
+}
+.footer .feedback {
+    font-size: 16px;
 }
 }
