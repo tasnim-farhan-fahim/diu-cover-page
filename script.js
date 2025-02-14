@@ -2,7 +2,8 @@ function documentResize(){
     const resize = (document.getElementById('document')||document.getElementById('index-document'));
     resize.style.width = "780px";
 }
-// Prevent inspect with the code below           
+// Prevent inspect with the code below   
+
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
   });
@@ -11,14 +12,14 @@ document.addEventListener('contextmenu', function(e) {
 document.querySelectorAll('.form').forEach(form => {
     form.addEventListener('submit', function(event) {
     event.preventDefault();
-
+    form.target = '_parent';
 
     const formData = new FormData(event.target);
     let documentContent = '';
     const formId = event.target.id;
 
     if (formId==='assignment-form'){
-        documentContent += `<p class="page-header-text"><strong><span class="page-header-text-underline">ASSIGNMENT</span></strong></p>`;
+        documentContent += `<p class="page-header-text"><strong><span class="page-header-text-underline"> ASSIGNMENT </span></strong></p>`;
 
         documentContent += `<p ><strong> Course Code: </strong> ${formData.get('courseCode')} </p>`;
         documentContent += `<p ><strong> Course Title: </strong> ${formData.get('courseTitle')} </p>`;
@@ -231,7 +232,22 @@ document.getElementById('downloadPdf').addEventListener('click', function() {
 
     });
 });
+// -------------------------------------------------------->
+// document.getElementById('downloadDocx').addEventListener('click', function() {
+//     const contentElement = document.getElementById('document') || document.getElementById('index-document');
+//     if (!contentElement) {
+//         console.error('Content element not found');
+//         return;
+//     }
+//     const content = contentElement.innerHTML;
+//     const converted = htmlDocx.asBlob(content);
+//     const link = document.createElement('a');
+//     link.href = URL.createObjectURL(converted);
+//     link.download = 'cover-page.docx';
+//     link.click();
+// });
 
+// -------------------------------------------------------->
 document.getElementById('downloadImage').addEventListener('click', function() {
     html2canvas(document.getElementById('document') || document.getElementById('index-document'), {
         scale: 4,  // Reduce the scale for better file size management

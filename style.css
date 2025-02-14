@@ -8,10 +8,7 @@ body {
     font-family: Roboto, Arial;
     background: url(images/diu.jpg) no-repeat left/cover fixed;
 }
-.project {
-    margin-left: 25%;
-    margin-right: 25%;
-}
+
 /* Popup for mobile users */
 .popup {
     display: none;
@@ -36,20 +33,28 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
-.desktopSite {
-    border: 1px solid #000000;
-    padding: 8px 10px 8px 6px;
-    border-radius: 3px;
-    background-color: #f0f0f0;
-}
-.popup-content p #i,
-.desktopSite #i {
+.popup-content p #i {
     margin-left: 30px;
 }
 .popup-content p {
     margin: 10px 0 10px 0;
 }
+/* --------------------------- */
+.main, .docs {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr; 
+}
 
+.docs-mid {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 1cap;
+    margin-bottom: 20px;
+}
+/* --------------------------- */
 .popup-content button {
     margin-top: 10px;
     padding: 10px 30px;
@@ -68,6 +73,11 @@ body {
 
 /* Navigation Bar design */
 .header {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+}
+
+.header-mid {
     background-color: rgba(0, 0, 0, 0.6);
     padding: 1rem;
     border-radius: 1.5cap;
@@ -81,6 +91,7 @@ body {
 }
 .nav-logo {
     display: flex;
+    justify-self: start;
     align-items: center;
 }
 .nav-logo a {
@@ -102,8 +113,9 @@ body {
 .dropdown button {
     background-color: rgba(0, 0, 0, 0.6);
     font-size: 16px;
+    width: 160px;
     color: white;
-    padding: 12px 22px 12px 22px ;
+    padding: 16px 26px 16px 26px ;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -137,9 +149,9 @@ body {
 }
 /* Nav design end */
 
-/* Suggestion design */
+/* Suggestion Text Styling */
 .suggestion-text {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.8);
     color: #ffffff;
     border-radius: 1cap;
     margin-top: 20px;
@@ -147,6 +159,15 @@ body {
     line-height: 25px;
     text-align: center;
     font-size: 14px;
+}
+/* Green Highlight */
+.highlight-green {
+    color: rgb(61, 204, 61);
+}
+
+/* Red Highlight */
+.highlight-red {
+    color: rgb(252, 38, 38);
 }
 
 /* ------------------------ */
@@ -219,13 +240,13 @@ input:hover {
     
 }
 
-.submit:hover,.download:hover,.image:hover {
+.submit:hover,.download:hover,.image:hover, .docx:hover {
     background-color: #ffffff;
     color: #000000;
     opacity: .9;
     transition-duration: 0.4s;
 }
-.submit:hover:active,.download:hover:active,.image:hover:active {
+.submit:hover:active,.download:hover:active,.image:hover:active, .docx:hover:active {
     background-color: #28a745;
     color: #ffffff;
     opacity: .9;
@@ -272,8 +293,8 @@ input:hover {
     border: 1px solid rgb(0, 0, 0);
     font-size: 25px;
     font-weight: 500;
-    padding-left: 55px;
-    padding-right: 55px;
+    padding-left: 45px;
+    padding-right: 45px;
     line-height: 35px;
     z-index: 1;
 
@@ -292,7 +313,7 @@ input:hover {
     border-bottom: 2px solid black;
 }
 .space {
-    padding-left: 120px;
+    padding-left: 110px;
 }
 .category-head-text-style {
     color: rgb(24, 24, 138);
@@ -419,7 +440,7 @@ input:hover {
     justify-content: center;
     gap: 20px;
 }
-.download,.image{
+.download,.image, .docx{
     width: auto !important;
     padding: 12px;
     background-color: #28a745;
@@ -435,6 +456,11 @@ input:hover {
 
 /* Footer design */
 .footer {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+}
+
+.footer-mid {
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 1.5cap;
     border-bottom-left-radius: 0px;
@@ -444,33 +470,36 @@ input:hover {
     font-size: 14px;
     padding: 10px;
     bottom: 0;
+    gap: 20px;
 }
 .footer .feedback {
     margin-bottom: 14px;
     font-size: 16px;
 }
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a i {
+    font-size: 40px; /* Set icon size to 20x20 */
+}
+
 .footer a {
     color: white;
     text-decoration: none;
 }
-.footer:hover {
+/* .footer:hover {
     background-color: rgba(0, 0, 0, 0.8);
     transition: .6s;
-}
+} */
 
 /* Footer design end */
 /* --------------------------------------- */
 @media only screen and (min-width: 1001px) and (max-width: 1200px) {
-.project {
-    margin-left: 23%;
-    margin-right: 23%; 
-}
 }
 @media only screen and (min-width: 801px) and (max-width: 1000px) {
-.project {
-    margin-left: 20%;
-    margin-right: 20%; 
-}
 }
 /* --------------------------------------- */
 
@@ -478,10 +507,6 @@ input:hover {
 @media only screen and (min-width: 601px) and (max-width: 800px) {
 body {
     background: url(images/diu.jpg) no-repeat left/cover fixed;
-}
-.project {
-    margin-left: 17%;
-    margin-right: 17%;
 }
 .nav-logo a {
     font-size: 20px;
@@ -622,6 +647,19 @@ input{
     font-size: 16px;
 }
 }
+
+@media only screen and (max-width: 800px) {
+/* ------------------------------------------------------------------------ */
+
+.footer, .header, .main {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+/* ------------------------------------------------------------------------ */
+}
 /* Small devices (phones, 600px and below) */
 @media only screen and (min-width: 450px) and (max-width: 600px) {
 
@@ -637,10 +675,6 @@ body {
 .dropdown button {
     font-size: 14px;
     padding: 9px 14px 9px 14px;
-}
-.project {
-    margin-left: 8%;
-    margin-right: 8%;
 }
 .suggestion-text {
     font-size: 11px;
@@ -818,10 +852,6 @@ body {
     padding-left: 8px;
 }
 
-.project {
-    margin-left: 4%;
-    margin-right: 4%;
-}
 .suggestion-text {
     font-size: 10px;
 }
