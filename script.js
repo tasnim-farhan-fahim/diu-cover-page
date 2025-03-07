@@ -7,6 +7,17 @@ function documentResize(){
 document.addEventListener('contextmenu', function(e) {
     e.preventDefault();
   });
+
+// ------------------------->
+// let page = document.getElementById('document-holder');
+
+// edit.addEventListener('click', function() {
+//     display()
+// });
+// function display() {
+//     section.style.display = "block";
+//     page.style.display = "none";
+// }
 //-------------------------->
 
 document.querySelectorAll('.form').forEach(form => {
