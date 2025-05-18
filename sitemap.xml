@@ -2,37 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://diucoverpage.com/</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-05-18</lastmod>
     <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://diucoverpage.com/assignment.html</loc>
+    <lastmod>2025-05-18</lastmod>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://diucoverpage.com/index.html</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-05-18</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://diucoverpage.com/lab.html</loc>
-    <lastmod>2025-03-07</lastmod>
+    <loc>https://diucoverpage.com/lab-report.html</loc>
+    <lastmod>2025-05-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://diucoverpage.com/labFinal.html</loc>
-    <lastmod>2025-03-07</lastmod>
+    <loc>https://diucoverpage.com/final-lab-report.html</loc>
+    <lastmod>2025-05-18</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://diucoverpage.com/labIndex.html</loc>
-    <lastmod>2025-03-07</lastmod>
-    <priority>0.7</priority>
+    <loc>https://diucoverpage.com/lab-report-index.html</loc>
+    <lastmod>2025-05-18</lastmod>
+    <priority>0.8</priority>
   </url>
     <url>
     <loc>https://diucoverpage.com/privacyandpolicy.html</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-05-18</lastmod>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://diucoverpage.com/termsandcondition.html</loc>
-    <lastmod>2025-03-07</lastmod>
+    <lastmod>2025-05-18</lastmod>
     <priority>0.7</priority>
   </url>
 </urlset>

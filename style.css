@@ -10,7 +10,7 @@ body {
 }
 
 /* Popup for mobile users */
-.popup {
+/* .popup {
     display: none;
     position: fixed;
     left: 0;
@@ -55,7 +55,7 @@ body {
     margin-bottom: 20px;
 }
 /* --------------------------- */
-.popup-content button {
+/* .popup-content button {
     margin-top: 10px;
     padding: 10px 30px;
     background-color: #28a745;
@@ -67,22 +67,30 @@ body {
 
 .popup-content button:hover {
     background-color: #28a745;
-}
+}  */
 /* popup design end */
 
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
 
 /* Navigation Bar design */
 .header {
     display: grid;
     grid-template-columns: 2fr 3fr 2fr;
+    position: fixed;
+    left: 0;
+    right: 0;
 }
 
 .header-mid {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 1rem;
     border-radius: 1.5cap;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
+    z-index: 10;
 }
 .nav-bar {
     display: flex;
@@ -120,7 +128,7 @@ body {
     border-radius: 10px;
     cursor: pointer;
 }
-.dropdown-content {
+/* .dropdown-content {
     margin: auto;
     display: none;
     position: absolute;
@@ -136,18 +144,58 @@ body {
     padding-left: 18px;
     text-decoration: none;
     display: block;
-}
+} */
 .dropdown button:hover {
     background-color: rgba(0, 0, 0);
 }
-.dropdown-content a:hover {
+/* .dropdown-content a:hover {
     background-color: #ddd;
     border-radius: 10px;
-}
+} */
 .dropdown:hover .dropdown-content {
     display: block;
 }
 /* Nav design end */
+
+/*----------------------------- */
+.icon-section {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 30px 0px;
+    padding: 40px;
+    gap: 40px;
+    border-radius: 20px;
+    margin-top: 100px;
+}
+.icon-section h1 {
+    text-align: center;
+    border-bottom: #ffffff 3px solid;
+    font-size: 40px;
+    font-weight: 600;
+    color: #ffffff;
+}
+.icon-box {
+    background-color: #28a745;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    padding: 80px;
+    height: 200px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.4s;
+} 
+.icon-section a {
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+}
+.icon-section a span {
+    padding-left: 10px;
+}
+/*----------------------------- */
 
 /* Suggestion Text Styling */
 .suggestion-text {
@@ -159,6 +207,7 @@ body {
     line-height: 25px;
     text-align: center;
     font-size: 14px;
+    margin-top: 100px;
 }
 /* Green Highlight */
 .highlight-green {
@@ -240,13 +289,13 @@ input:hover {
     
 }
 
-.submit:hover,.download:hover,.image:hover, .docx:hover , .edit:hover {
+.submit:hover,.download:hover,.image:hover, .docx:hover , .edit:hover ,.icon-box:hover {
     background-color: #ffffff;
     color: #000000;
     opacity: .9;
     transition-duration: 0.4s;
 }
-.submit:hover:active,.download:hover:active,.image:hover:active, .docx:hover:active , .edit:hover:active {
+.submit:hover:active,.download:hover:active,.image:hover:active, .docx:hover:active , .edit:hover:active, .icon-box:hover:active {
     background-color: #28a745;
     color: #ffffff;
     opacity: .9;
@@ -461,7 +510,7 @@ input:hover {
 }
 
 .footer-mid {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 1.5cap;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -502,7 +551,14 @@ input:hover {
 @media only screen and (min-width: 801px) and (max-width: 1000px) {
 }
 /* --------------------------------------- */
-
+@media only screen and (max-width: 800px) {
+    .icon-section a {
+        font-size: 20px;
+    }
+    .icon-section a span {
+        padding-left: 5px;
+    }
+}
 /* Medium devices (tablets,laptops, 601px to 1000px) */
 @media only screen and (min-width: 601px) and (max-width: 800px) {
 body {
