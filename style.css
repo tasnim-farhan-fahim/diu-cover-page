@@ -551,7 +551,7 @@ input:hover {
 @media only screen and (min-width: 801px) and (max-width: 1000px) {
 }
 /* --------------------------------------- */
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 969px) {
     .icon-section a {
         font-size: 20px;
     }
