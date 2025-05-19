@@ -82,6 +82,7 @@ html {
     position: fixed;
     left: 0;
     right: 0;
+    z-index: 9999!important;
 }
 
 .header-mid {
@@ -315,7 +316,7 @@ input:hover {
     min-width: 780px ;
     height: 1102.92px;
     background-color: white;
-    z-index: -50 !important;
+    /* z-index: -50 !important; */
 }
 .document-logo img {
     width: 85%;
