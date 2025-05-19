@@ -1,0 +1,1064 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Roboto, Arial;
+    background: url(../images/diu.jpg) no-repeat left/cover fixed;
+}
+
+/* Popup for mobile users */
+/* .popup {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+}
+
+.popup-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    border-radius: 1cap;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.popup-content p #i {
+    margin-left: 30px;
+}
+.popup-content p {
+    margin: 10px 0 10px 0;
+}
+/* --------------------------- */
+.main, .docs {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr; 
+}
+
+.docs-mid {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    font-size: 30px;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 1cap;
+    margin-bottom: 20px;
+}
+/* --------------------------- */
+/* .popup-content button {
+    margin-top: 10px;
+    padding: 10px 30px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.popup-content button:hover {
+    background-color: #28a745;
+}  */
+/* popup design end */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* Navigation Bar design */
+.header {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+.header-mid {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 1rem;
+    border-radius: 1.5cap;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    z-index: 100;
+}
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-logo {
+    display: flex;
+    justify-self: start;
+    align-items: center;
+}
+.nav-logo a {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 30px;
+}
+.nav-icon {
+    height: 50px;
+    margin-right: 10px;
+}
+.nav-button {
+    position: relative;
+}
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+.dropdown button {
+    background-color: rgba(0, 0, 0, 0.6);
+    font-size: 16px;
+    width: 160px;
+    color: white;
+    padding: 16px 26px 16px 26px ;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+/* .dropdown-content {
+    margin: auto;
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 150;
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px;
+    padding-left: 18px;
+    text-decoration: none;
+    display: block;
+} */
+.dropdown button:hover {
+    background-color: rgba(0, 0, 0);
+}
+/* .dropdown-content a:hover {
+    background-color: #ddd;
+    border-radius: 10px;
+} */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+/* Nav design end */
+
+/*----------------------------- */
+.icon-section {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 30px 0px;
+    padding: 40px;
+    gap: 40px;
+    border-radius: 20px;
+    margin-top: 100px;
+}
+.icon-section h1 {
+    text-align: center;
+    border-bottom: #ffffff 3px solid;
+    font-size: 40px;
+    font-weight: 600;
+    color: #ffffff;
+}
+.icon-box {
+    background-color: #28a745;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+    padding: 80px 0px;
+    height: 200px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.4s;
+} 
+.icon-section a {
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #ffffff;
+}
+.icon-section a span {
+    padding-left: 10px;
+}
+/*----------------------------- */
+
+/* Suggestion Text Styling */
+.suggestion-text {
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    border-radius: 1cap;
+    margin-top: 20px;
+    padding: 10px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 100px;
+}
+/* Green Highlight */
+.highlight-green {
+    color: rgb(61, 204, 61);
+}
+
+/* Red Highlight */
+.highlight-red {
+    color: rgb(252, 38, 38);
+}
+
+/* ------------------------ */
+
+/* Form Designing */
+.form-container {
+    margin-top: 20px;
+}
+.form {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    color: white;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.form h1 {
+    margin-bottom: 15px;
+    font-size: 30px;
+}
+.form-group{
+    margin-bottom: 10px;
+}
+.form-logo img{
+    width: 100%;
+}
+.category-head-text {
+    padding: 15px;
+    font-size: 30px;
+    font-weight: 600;
+}
+label{
+    font-size: 18px;
+}
+input{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    padding: 15px;
+    border: none ;
+    border-radius: 18px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: rgba(202, 202, 202, 0.4); 
+}
+.head-text{
+    text-align: center;
+}
+::placeholder{
+    color: #cecece;
+}
+
+input:hover {
+    background-color: rgba(170, 170, 170, 0.7);
+}
+
+
+/* Button styling */
+.submit {
+    margin: auto;
+    display: block;
+    width: 180px;
+    padding: 10px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    
+}
+
+.submit:hover,.download:hover,.image:hover, .docx:hover , .edit:hover ,.icon-box:hover {
+    background-color: #ffffff;
+    color: #000000;
+    opacity: .9;
+    transition-duration: 0.4s;
+}
+.submit:hover:active,.download:hover:active,.image:hover:active, .docx:hover:active , .edit:hover:active, .icon-box:hover:active {
+    background-color: #28a745;
+    color: #ffffff;
+    opacity: .9;
+    transition-duration: 0.2s;
+}
+/* Form design ends  */
+/* Document Design */
+
+.document-holder {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;    
+}
+
+.document {
+    width: 780px;
+    min-width: 780px ;
+    height: 1102.92px;
+    background-color: white;
+    z-index: -50 !important;
+}
+.document-logo img {
+    width: 85%;
+}
+.document-logo {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.document-watermark img {
+    width: 100%;
+}
+.document-watermark {
+    position: absolute;
+    top: 340px;
+    left: 150px;
+    right: 150px;
+    z-index: -1;
+}
+.document-content {
+    position: relative;
+    height: 1042.52px;
+    margin: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: 500;
+    padding-left: 45px;
+    padding-right: 45px;
+    line-height: 35px;
+    z-index: 1;
+
+    letter-spacing: 0.05em;
+    
+}
+
+.page-header-text {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+
+}
+.page-header-text-underline {
+    border-bottom: 2px solid black;
+}
+.space {
+    padding-left: 110px;
+}
+.category-head-text-style {
+    color: rgb(24, 24, 138);
+}
+.category-head-text-style-underline {
+    border-bottom: 2px solid rgb(24, 24, 138);
+}
+.dateColor {
+    color: #000000;
+}
+/* Index Document Design */
+
+.experiment-tag { 
+    text-align: center;
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border: 2px solid rgb(255, 255, 255);
+}
+
+.index-text {
+    color: rgb(39, 39, 158);
+    font-size: 50px;
+    font-weight: 600;
+    margin-top: 60px;
+    margin-bottom: 20px;
+ }
+
+.index-document {
+    max-width: 780px;
+    min-width: 780px;
+    height: 1102.92px;
+    background-color: white;
+    text-align: center;
+    z-index: -50 !important;
+}
+.index-document-content {
+    position: relative;
+    height: 1042.52px;
+    margin: 30px;
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 20px;
+    z-index: 1;
+}
+.index-border {
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+.index-left-bottom {
+    text-align: center;
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+.index-right-bottom {
+    text-align: center;
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+.index-border-header {
+    text-align: center;
+    border-left: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+}
+.index-border-footer {
+    border-left: 2px solid rgb(0, 0, 0);
+}
+.index-right-footer {
+    border-left: 2px solid rgb(0, 0, 0);
+}
+
+.index-border,
+.index-left-bottom,
+.index-right-bottom,
+.index-border-header,
+.index-border-footer, 
+.index-right-footer, 
+.index-left-footer {
+    padding: 5px;
+    height: 80.6px;
+}
+#index-header {
+    padding-top: 20px;
+    font-size: 22px;
+}
+#dateSubmission {
+    font-size: 16px;
+}
+#index-experiment-no {
+    text-align: center;
+}
+#index-experiment-no,
+#dateSubmission,
+#pageLimit {
+    text-align: center;
+    padding-top: 30px;
+}
+#documentContentIndex {
+    display: grid;
+    grid-template-columns: 1fr 2fr 6fr 1fr 1fr;
+    border: 2px solid rgb(0, 0, 0);
+    justify-content: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: left;
+    font-size: 18px;
+    letter-spacing: 0.05em;
+}
+
+/* Index Design End */
+
+/* Website reference text */
+.page-reference-text-index {
+    font-size: 12px;
+    margin-top: -25px;
+}
+.page-reference-text {
+    text-align: center;
+    font-size: 12px;
+    margin-top: -25px;
+}
+/* ------------------------ */
+.document-buttons{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+.download,.image, .docx, .edit{
+    width: auto !important;
+    padding: 12px;
+    background-color: #28a745;
+    border: none;
+    border-radius: 1cap;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 50;
+}
+/* Document design end */
+
+
+/* Footer design */
+.footer {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr;
+}
+
+.footer-mid {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 1.5cap;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    bottom: 0;
+    gap: 20px;
+}
+.footer .feedback {
+    margin-bottom: 14px;
+    font-size: 16px;
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-links a i {
+    font-size: 40px; /* Set icon size to 20x20 */
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+/* .footer:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: .6s;
+} */
+
+/* Footer design end */
+/* --------------------------------------- */
+@media only screen and (min-width: 1001px) and (max-width: 1200px) {
+}
+@media only screen and (min-width: 801px) and (max-width: 1000px) {
+}
+/* --------------------------------------- */
+@media only screen and (max-width: 800px) {
+    .icon-section a {
+        font-size: 20px;
+    }
+    .icon-section a span {
+        padding-left: 5px;
+    }
+}
+/* Medium devices (tablets,laptops, 601px to 1000px) */
+@media only screen and (min-width: 601px) and (max-width: 800px) {
+body {
+    background: url(images/diu.jpg) no-repeat left/cover fixed;
+}
+.nav-logo a {
+    font-size: 20px;
+}
+.nav-icon {
+    height: 40px;
+}
+.dropdown button {
+    font-size: 16px;
+}
+.form h1 {
+font-size: 28px;
+}
+.suggestion-text {
+    font-size: 12px;
+}
+.category-head-text {
+    font-size: 25px;
+}
+
+input{
+    font-size: 16px;
+}
+.experiment-tag { 
+    font-size: 24px;
+}
+
+.document {
+    width: 600px;
+    min-width: 600px;
+    height: 848.4px;
+}
+.document-watermark {
+    top: 260px;
+    left: 110px;
+    right: 110px;
+}
+.document-content {
+    height: 808.4px;
+    margin: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 20px;
+    padding-left: 35px;
+    padding-right: 35px;
+    line-height: 26px;
+    
+}
+.space {
+    padding-left: 100px;
+}
+.page-header-text {
+    font-size: 16px;
+    margin-bottom: 15px;
+
+}
+/* Lab Index */
+.index-text {
+    font-size: 40px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    }
+
+.index-document {
+    width: 600px;
+    min-width: 600px;
+    height: 848.4px;
+}
+.index-document-content {
+    height: 808.4px;
+    margin: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    font-size: 18px;
+}
+.index-border {
+    font-size: 15px;
+    border-left: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.index-left-bottom {
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.index-right-bottom {
+    border-left: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.index-border-header {
+    border-left: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.index-border-footer {
+    border-left: 1px solid rgb(0, 0, 0);
+}
+.index-right-footer {
+    border-left: 1px solid rgb(0, 0, 0);
+}
+
+.index-border,
+.index-left-bottom,
+.index-right-bottom,
+.index-border-header,
+.index-border-footer, 
+.index-right-footer, 
+.index-left-footer {
+    padding: 3px;
+    height: 62px;
+}
+#index-header {
+    font-size: 16px;
+}
+#dateSubmission {
+    font-size: 12px;
+}
+
+#index-experiment-no,
+#dateSubmission,
+#pageLimit {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+}
+#documentContentIndex {
+
+    border: 1px solid rgb(0, 0, 0);
+    margin-left: 5px;
+    margin-right: 5px;
+    font-size: 18px;
+}
+.page-reference-text-index {
+    font-size: 10px;
+    margin-top: -16px;
+}
+.page-reference-text {
+    font-size: 10px;
+    margin-top: -16px;
+}
+/* --------------------------- */
+.download,.image, .edit{
+    font-size: 16px;
+}
+}
+
+@media only screen and (max-width: 800px) {
+/* ------------------------------------------------------------------------ */
+
+.footer, .header, .main {
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+/* ------------------------------------------------------------------------ */
+}
+/* Small devices (phones, 600px and below) */
+@media only screen and (min-width: 450px) and (max-width: 600px) {
+
+body {
+    background: url(images/diu-mobile.jpg) no-repeat left/cover fixed;
+}
+.nav-logo a {
+    font-size: 20px;
+}
+.nav-icon {
+    height: 30px;
+}
+.dropdown button {
+    font-size: 14px;
+    padding: 9px 14px 9px 14px;
+}
+.suggestion-text {
+    font-size: 11px;
+}
+.form h1 {
+font-size: 25px;
+}
+
+.form-logo img{
+    width: 100%;
+}
+.category-head-text {
+    font-size: 25px;
+    font-weight: 600;
+}
+label{
+    font-size: 16px;
+}
+input{
+    border: none ;
+    font-size: 16px;
+}
+.experiment-tag { 
+    font-size: 20px;
+}
+.document {
+    width: 420px;
+    min-width: 420px;
+    height: 593.88px;
+}
+.document-watermark {
+    top: 200px;
+    left: 80px;
+    right: 80px;
+}
+.document-content {
+    height: 565.88px;
+    margin: 14px;
+    border: 1px solid;
+    font-size: 14px;
+    padding-left: 25px;
+    padding-right: 25px;
+    line-height: 18px;
+}
+.space {
+    padding-left: 70px;
+}
+.page-header-text {
+    font-size: 10px;
+    margin-bottom: 15px;
+}
+.page-header-text-underline,
+.category-head-text-style-underline {
+    border-bottom: 1px solid;
+}
+/* Lab Index */
+.index-text {
+    font-size: 30px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+ }
+
+.index-document {
+    width: 420px;
+    min-width: 420px;
+    height: 593.88px;
+}
+.index-document-content {
+    height: 565.88px;
+    margin: 14px;
+    font-size: 14px;
+}
+.index-border {
+    font-size: 12px;
+    border-left: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.index-left-bottom {
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.index-right-bottom {
+    border-left: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.index-border-header {
+    border-left: 1px solid rgb(0, 0, 0);
+    border-bottom: 1px solid rgb(0, 0, 0);
+}
+.index-border-footer {
+    border-left: 1px solid rgb(0, 0, 0);
+}
+.index-right-footer {
+    border-left: 1px solid rgb(0, 0, 0);
+}
+
+.index-border,
+.index-left-bottom,
+.index-right-bottom,
+.index-border-header,
+.index-border-footer, 
+.index-right-footer, 
+.index-left-footer {
+    padding: 1px;
+    height: 43.9px;
+}
+#index-header {
+    font-size: 12px;
+    padding-top: 10px;
+}
+#dateSubmission {
+    font-size: 12px;
+}
+
+#index-experiment-no,
+#dateSubmission,
+#pageLimit {
+    text-align: center;
+    padding-top: 12px;
+    font-size: 10px;
+}
+#documentContentIndex {
+
+    border: 1px solid rgb(0, 0, 0);
+    margin-left: 2px;
+    margin-right: 2px;
+    font-size: 12px;
+}
+/* --------------------------- */
+.page-reference-text-index {
+    font-size: 8px;
+    margin-top: -12px;
+}
+.page-reference-text {
+    font-size: 8px;
+    margin-top: -12px;
+}
+.download,.image, .edit{
+    font-size: 10px;
+    padding: 8px 12px;
+}
+.footer a {
+    font-size: 12px;
+}
+footer p {
+    font-size: 12px;
+}
+.footer .feedback {
+    font-size: 16px;
+}
+}
+
+@media only screen and (max-width: 449px) {
+
+body {
+    background: url(images/diu-mobile.jpg) no-repeat left/cover fixed;
+}
+.nav-logo a {
+    font-size: 20px;
+}
+.nav-icon {
+    height: 30px;
+}
+.dropdown button {
+    font-size: 14px;
+    padding: 9px 14px 9px 14px;
+}
+.dropdown-content {
+    margin-left: 5px;
+    border-radius: 10px;
+    min-width: 80px;
+}
+.dropdown-content a {
+    font-size: 10px;
+    padding: 8px;
+    padding-left: 8px;
+}
+
+.suggestion-text {
+    font-size: 10px;
+}
+.form h1 {
+font-size: 20px;
+}
+
+.form-logo img{
+    width: 100%;
+}
+.category-head-text {
+    font-size: 20px;
+    font-weight: 600;
+}
+label{
+    font-size: 16px;
+}
+input{
+    border: none ;
+    font-size: 16px;
+}
+.experiment-tag { 
+    font-size: 20px;
+}
+.document {
+    width: 350px;
+    min-width: 350px;
+    height: 494.9px;
+}
+.document-watermark {
+    top: 160px;
+    left: 70px;
+    right: 70px;
+}
+.document-content {
+    height: 474.9px;
+    margin: 10px;
+    border: 1px solid rgb(0, 0, 0, 0.5);
+    font-size: 12px;
+    padding-left: 25px;
+    padding-right: 25px;
+    line-height: 15px;
+}
+.space {
+    padding-left: 60px;
+}
+.page-header-text {
+    font-size: 8px;
+    margin-bottom: 8px;
+}
+.page-header-text-underline,
+.category-head-text-style-underline {
+    border-bottom: 1px solid;
+}
+/* Lab Index */
+.index-text {
+    font-size: 25px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    }
+
+.index-document {
+    width: 350px;
+    min-width: 350px;
+    height: 494.9px;
+}
+.index-document-content {
+    height: 474.9px;
+    margin: 10px;
+    font-size: 14px;
+    border: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-border {
+    font-size: 8px;
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-left-bottom {
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-right-bottom {
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-border-header {
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-border-footer {
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+}
+.index-right-footer {
+    border-left: 1px solid rgb(0, 0, 0, 0.5);
+}
+
+.index-border,
+.index-left-bottom,
+.index-right-bottom,
+.index-border-header,
+.index-border-footer, 
+.index-right-footer, 
+.index-left-footer {
+    padding: 1px;
+    height: 36.4px;
+}
+#index-header {
+    font-size: 9px;
+    padding-top: 10px;
+}
+#dateSubmission {
+    font-size: 10px;
+}
+
+#index-experiment-no,
+#dateSubmission,
+#pageLimit {
+    text-align: center;
+    padding-top: 12px;
+    font-size: 8px;
+}
+#documentContentIndex {
+
+    border: 1px solid rgb(0, 0, 0, 0.5);
+    margin-left: 1px;
+    margin-right: 1px;
+    font-size: 9px;
+}
+/* --------------------------- */
+.page-reference-text-index {
+    font-size: 5px;
+    margin-top: -9px;
+}
+.page-reference-text {
+    font-size: 5px;
+    margin-top: -9px;
+}
+
+
+.download,.image, .edit{
+    font-size: 10px;
+    padding: 8px 12px;
+}
+.footer a {
+    font-size: 12px;
+}
+footer p {
+    font-size: 12px;
+}
+.footer .feedback {
+    font-size: 16px;
+}
+}
