@@ -82,6 +82,7 @@ html {
     position: fixed;
     left: 0;
     right: 0;
+    z-index: 2;
 }
 
 .header-mid {
@@ -90,7 +91,6 @@ html {
     border-radius: 1.5cap;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    z-index: 100;
 }
 .nav-bar {
     display: flex;
@@ -315,7 +315,6 @@ input:hover {
     min-width: 780px ;
     height: 1102.92px;
     background-color: white;
-    z-index: -50 !important;
 }
 .document-logo img {
     width: 85%;
@@ -347,9 +346,7 @@ input:hover {
     padding-right: 45px;
     line-height: 35px;
     z-index: 1;
-
     letter-spacing: 0.05em;
-    
 }
 
 .page-header-text {
@@ -399,7 +396,6 @@ input:hover {
     height: 1102.92px;
     background-color: white;
     text-align: center;
-    z-index: -50 !important;
 }
 .index-document-content {
     position: relative;
@@ -491,6 +487,9 @@ input:hover {
     justify-content: center;
     gap: 20px;
 }
+/* .document-buttons button {
+    z-index: 100 !important;
+} */
 .download,.image, .docx, .edit{
     width: auto !important;
     padding: 12px;
@@ -500,7 +499,6 @@ input:hover {
     color: white;
     font-size: 18px;
     cursor: pointer;
-    z-index: 50;
 }
 /* Document design end */
 
