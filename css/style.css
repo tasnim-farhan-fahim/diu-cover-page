@@ -614,7 +614,9 @@ input{
 
 @media only screen and (max-width: 800px) {
 /* ------------------------------------------------------------------------ */
-
+.icon-box p {
+    font-size: 12px;
+}
 .footer, .header, .main {
     display: flex;
     flex-direction: column;
