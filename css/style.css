@@ -9,66 +9,10 @@ body {
     background: url(../images/diu.jpg) no-repeat left/cover fixed;
 }
 
-/* Popup for mobile users */
-/* .popup {
-    display: none;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.8);
-    z-index: 1000;
-}
-
-.popup-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 90%;
-    border-radius: 1cap;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-.popup-content p #i {
-    margin-left: 30px;
-}
-.popup-content p {
-    margin: 10px 0 10px 0;
-}
-/* --------------------------- */
-.main, .docs {
+.main{
     display: grid;
     grid-template-columns: 2fr 3fr 2fr; 
 }
-
-.docs-mid {
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    font-size: 30px;
-    text-align: center;
-    padding: 1rem;
-    border-radius: 1cap;
-    margin-bottom: 20px;
-}
-/* --------------------------- */
-/* .popup-content button {
-    margin-top: 10px;
-    padding: 10px 30px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.popup-content button:hover {
-    background-color: #28a745;
-}  */
-/* popup design end */
 
 html {
     scroll-behavior: smooth;
@@ -97,16 +41,7 @@ html {
     justify-content: space-between;
     align-items: center;
 }
-.nav-logo {
-    display: flex;
-    justify-self: start;
-    align-items: center;
-}
-.nav-logo a {
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 30px;
-}
+
 .nav-icon {
     height: 50px;
     margin-right: 10px;
@@ -114,11 +49,8 @@ html {
 .nav-button {
     position: relative;
 }
-.dropdown {
-    display: inline-block;
-    position: relative;
-}
-.dropdown button {
+
+.nav-button button {
     background-color: rgba(0, 0, 0, 0.6);
     font-size: 16px;
     width: 160px;
@@ -128,36 +60,12 @@ html {
     border-radius: 10px;
     cursor: pointer;
 }
-/* .dropdown-content {
-    margin: auto;
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    border-radius: 10px;
-    min-width: 150px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 150;
-}
-.dropdown-content a {
-    color: black;
-    padding: 12px;
-    padding-left: 18px;
-    text-decoration: none;
-    display: block;
-} */
-.dropdown button:hover {
+
+.nav-button button:hover {
     background-color: rgba(0, 0, 0);
 }
-/* .dropdown-content a:hover {
-    background-color: #ddd;
-    border-radius: 10px;
-} */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-/* Nav design end */
 
-/*----------------------------- */
+/*--------------Index.html--------------- */
 .icon-section {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -186,6 +94,12 @@ html {
     cursor: pointer;
     transition: 0.4s;
 } 
+.icon-box p {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 300;
+    color: #ffffff;
+}
 .icon-section a {
     font-size: 30px;
     font-weight: bold;
@@ -195,7 +109,7 @@ html {
 .icon-section a span {
     padding-left: 10px;
 }
-/*----------------------------- */
+/*--------------END--------------- */
 
 /* Suggestion Text Styling */
 .suggestion-text {
@@ -487,10 +401,8 @@ input:hover {
     justify-content: center;
     gap: 20px;
 }
-/* .document-buttons button {
-    z-index: 100 !important;
-} */
-.download,.image, .docx, .edit{
+
+.download,.image, .docx {
     width: auto !important;
     padding: 12px;
     background-color: #28a745;
@@ -539,10 +451,6 @@ input:hover {
     color: white;
     text-decoration: none;
 }
-/* .footer:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    transition: .6s;
-} */
 
 /* Footer design end */
 /* --------------------------------------- */
