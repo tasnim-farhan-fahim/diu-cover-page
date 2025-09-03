@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Generated Cover Page - DIU Cover Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tasnim Farhan Fahim">
+    <meta name="description" content="Create DIU Cover Page | Are you a student of DIU? You can now create your Assignment, Lab Report, Lab Index Cover Page by easily filling the form, download and print out the cover page in case of emergency like BLC submission. It's Free and Easy to use.">
+    <meta name="keywords" content="DIU Cover Page, Create DIU Cover Page, Create Assignment Cover Page, Create Lab Report Cover Page, Create Lab Index Cover Page">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://diucoverpage.com/output.html">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DIU Cover Page",
+        "url": "https://diucoverpage.com",
+        "author": {
+            "@type": "Person",
+            "name": "Tasnim Farhan Fahim"
+        }
+        }
+    </script>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9557711562563778"
+        crossorigin="anonymous"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../img/logo1.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="../img/header-diu.png" alt="DIU Cover Page Logo">
+        <button onclick="window.history.back()">
+            <i class="fas fa-angle-double-left"></i> Back
+        </button>
+    </header>
+    <!-- Main Section -->
+    <section class="main">
+        <div id="outputContainer">
+            <div class="innerOutputContainer">
+                <div class="page-top-logo">
+                    <img src="../img/top-logo.png" alt="University Logo">
+                </div>
+                <div class="page-middle-logo">
+                    <img src="../img/logo1.png" alt="University Logo">
+                </div>
+                <div id="output"></div>
+            </div>
+            <div>
+                <p class="watermark">www.diucoverpage.com</p>
+            </div>
+        </div>
+        <div class="buttonContainer">
+            <button id="downloadImg" class="downloadImg">Download Image</button>
+            <button id="downloadPdf" class="downloadPdf">Download PDF</button>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-feedback">
+                <p>For any feedback or suggestion, click the links bellow:</p>
+                <ul class="footer-social-links">
+                    <li><a href="https://t.me/zero2fahim" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a></li>
+                    <li><a href="https://www.facebook.com/zero2fahim" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/zero2fahim" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://github.com/tasnim-farhan-fahim" target="_blank" title="GitHub"><i class="fab fa-github"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/tasnim-farhan-fahim" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-info">
+                <p>Created by <span>Tasnim Farhan Fahim</span></p>
+                <p class="footer-email"><a href="mailto:fahim22205101291@diu.edu.bd"><i class="fas fa-envelope"></i> Fahim22205101291@diu.edu.bd</a></p>
+                <div class="footer-links">
+                    <a href="../src/terms.html">Terms and Conditions</a> | 
+                    <a href="../src/policy.html">Privacy and Policy</a>
+                </div>
+                <p> All rights reserved &copy;DIU Cover Page 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Output Script for Local Storage -->
+    <script>
+        document.getElementById('output').innerHTML = localStorage.getItem('formOutput') || '<em>No output found.</em>';
+    </script>
+    <!-- JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-docx-js/0.4.0/html-docx.min.js" defer></script>
+    <script src="../scripts/script.js"></script>
+</body>
+</html>

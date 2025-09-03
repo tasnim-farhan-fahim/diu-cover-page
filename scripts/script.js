@@ -1,193 +1,211 @@
-function documentResize(){
-    const resize = (document.getElementById('document')||document.getElementById('index-document'));
-    resize.style.width = "780px";
+
+// Prevent right-click context menu
+// document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Resize document for export
+function documentResize() {
+    const doc = document.getElementById('outputContainer');
+    if (doc) doc.style.width = '210mm';
 }
-// Prevent inspect with the code below   
 
-document.addEventListener('contextmenu', function(e) {
-    e.preventDefault();
-  });
-
-// ------------------------->
-// let page = document.getElementById('document-holder');
-
-// edit.addEventListener('click', function() {
-//     display()
-// });
-// function display() {
-//     section.style.display = "block";
-//     page.style.display = "none";
-// }
-//-------------------------->
-
-document.querySelectorAll('.form').forEach(form => {
-    form.addEventListener('submit', function(event) {
+// Handle form submission for all forms
+function handleFormSubmit(event) {
     event.preventDefault();
-    form.target = '_parent';
+    const form = event.target;
+    const formId = form.id;
+    const formData = new FormData(form);
+    let html = '';
 
-    const formData = new FormData(event.target);
-    let documentContent = '';
-    const formId = event.target.id;
-
-    if(formId==='assignment-form' || formId==='lab-report-form' || formId==='final-lab-report-form'){
-        if (formId==='assignment-form'){
-        documentContent += `<p class="page-header-text"><strong><span class="page-header-text-underline"> ASSIGNMENT </span></strong></p>`;
-
-        documentContent += `<p ><strong> Course Code: </strong> ${formData.get('courseCode')} </p>`;
-        documentContent += `<p ><strong> Course Title: </strong> ${formData.get('courseTitle')} </p>`;
-
-        documentContent += `<p ><strong> Topic Name: </strong> ${formData.get('topicName')} </p>`;
-
-        }
-        else if (formId==='lab-report-form' || formId==='final-lab-report-form'){
-            if(formId==='lab-report-form'){
-                documentContent += `<p class="page-header-text"><strong><span class="page-header-text-underline">LAB REPORT</span></strong></p>`;
-                documentContent += `<p ><strong> Experiment No:  </strong>${formData.get('experimentNo')} </p>`;
-                documentContent += `<p ><strong> Experiment Name: </strong> ${formData.get('experimentName')} </p>`;
+    if (formId === 'assignmentForm') {
+        html += `<h2><span>Assignment Submission</span></h2>`;
+        html += renderCourseDetails(formData);
+        html += `<p><strong>Topic Name:</strong> ${formData.get('topicName')}</p>`;
+        html += renderCommonDetails(formData);
+        showOutput(html);
+    } else if (formId === 'labReportForm') {
+        html += `<h2><span>Lab Report Submission</span></h2>`;
+        html += renderCourseDetails(formData);
+        html += `<p><strong>Experiment No:</strong> ${formData.get('experimentNo')}</p>`;
+        html += `<p><strong>Experiment Name:</strong> ${formData.get('experimentName')}</p>`;
+        html += renderCommonDetails(formData);
+        showOutput(html);
+    } else if (formId === 'finalLabReportForm') {
+        html += `<h2><span>Final Lab Report Submission</span></h2>`;
+        html += renderCourseDetails(formData);
+        html += renderCommonDetails(formData);
+        showOutput(html);
+    } else if (formId === 'labReportIndexForm') {
+            html += `<h2><span>Lab Report Index</span></h2>`;
+            html += `<table style="width:100%;border-collapse:collapse;margin-top:24px;">`;
+            html += `<thead><tr style="background:#f4f6fb;">`;
+            html += `<th style="border:1px solid #bfc7d1;padding:8px;">Expt No</th>`;
+            html += `<th style="border:1px solid #bfc7d1;padding:8px;">Date</th>`;
+            html += `<th style="border:1px solid #bfc7d1;padding:8px;">Name of the Experiment</th>`;
+            html += `<th style="border:1px solid #bfc7d1;padding:8px;">Page No</th>`;
+            html += `<th style="border:1px solid #bfc7d1;padding:8px;">Remarks</th>`;
+            html += `</tr></thead><tbody>`;
+            for (let i = 1; i <= 10; i++) {
+                html += `<tr>`;
+                html += `<td style="border:1px solid #bfc7d1;padding:8px;text-align:center;">${formData.get('experimentNo' + i) || ''}</td>`;
+                html += `<td style="border:1px solid #bfc7d1;padding:4px;text-align:center;">${formatDateDDMMYY(formData.get('submissionDate' + i)) || ''}</td>`;
+                html += `<td style="border:1px solid #bfc7d1;padding:8px;">${formData.get('experimentName' + i) || ''}</td>`;
+                html += `<td style="border:1px solid #bfc7d1;padding:8px;text-align:center;">${formData.get('page' + i) || ''}</td>`;
+                html += `<td style="border:1px solid #bfc7d1;padding:8px;text-align:center;"></td>`;
+                html += `</tr>`;
             }
-            else if (formId==='final-lab-report-form'){
-                documentContent += `<p class="page-header-text"><strong><span class="page-header-text-underline">FINAL LAB REPORT</span></strong></p>`;
-            }
-            documentContent += `<p ><strong> Course Code:  </strong>${formData.get('courseCode')} </p>`;
-            documentContent += `<p ><strong> Course Title: </strong> ${formData.get('courseTitle')} </p>`;
-        }
-
-        documentContent += `<p>   </p>`;
-        documentContent += `<p class="category-head-text-style"><strong><span class="category-head-text-style-underline">Submitted To: </span></strong></p>`;
-        documentContent += `<p class="space"><strong>Name:  </strong>${formData.get('submittedToName')} </p>`;
-        documentContent += `<p class="space"><strong>Designation:  </strong>${formData.get('submittedToDesignation')} </p>`;
-        documentContent += `<p class="space"><strong>Department:  </strong>${formData.get('submittedToDepartment')} </p>`;
-        documentContent += `<p class="space"><strong> Daffodil International University </strong></p>`;
-        documentContent += `<p>   </p>`;
-        documentContent += `<p class="category-head-text-style"><strong><span class="category-head-text-style-underline">Submitted By: </strong></span></p>`;
-        documentContent += `<p class="space"><strong>Name:  </strong> ${formData.get('submittedByName')}  </p>`;
-        documentContent += `<p class="space"><strong>ID:  </strong> ${formData.get('studentId')} </p>`;
-        documentContent += `<p class="space"><strong>Section:  </strong> ${formData.get('section')} </p>`;
-        documentContent += `<p class="space"><strong>Semester:  </strong> ${formData.get('semester')} </p>`;
-        documentContent += `<p class="space"><strong>Department:  </strong> ${formData.get('submittedByDepartment')} </p>`;
-        documentContent += `<p class="space"><strong> Daffodil International University </strong></p>`;
-        documentContent += `<p>   </p>`;
-        documentContent += `<p class="category-head-text-style"><strong><span class="category-head-text-style-underline">Submission Date:</strong></span> <span class="dateColor">${formData.get('submissionDate')}</span> </p>`;
-
-        document.getElementById('documentContent').innerHTML = documentContent;
-        document.querySelector('.form').style.display = 'none';
-        document.getElementById('document').style.display = 'block';
-    
+            html += `</tbody></table>`;
+        showOutput(html);
     }
-    
-    else if (formId==='lab-index-form'){
+}
+
+// Render Course Details
+function renderCourseDetails(formData) {
+    let html = '';
+    html += `<p><strong>Course Code:</strong> ${formData.get('courseCode')}</p>`;
+    html += `<p><strong>Course Name:</strong> ${formData.get('courseName')}</p>`;
+    return html;
+}
+// add double line space
+function addDoubleLineSpace() {
+    return `<br>`;
+}
+
+// Render Common Details
+function renderCommonDetails(formData) {
+    let html = '';
+    html += addDoubleLineSpace();
+    html += `<h2><span>Submitted To</span></h2>`;
+    html += `<p><strong>Name:</strong> ${formData.get('teacherName')}</p>`;
+    html += `<p><strong>Designation:</strong> ${formData.get('TeacherDesignation')}</p>`;
+    html += `<p><strong>Department:</strong> ${formData.get('teacherDepartment')}</p>`;
+    html += `<p><strong> ${formData.get('university')}</strong></p>`;
+    html += addDoubleLineSpace();
+    html += `<h2><span>Submitted By</span></h2>`;
+    html += `<p><strong>Name:</strong> ${formData.get('studentName')}</p>`;
+    html += `<p><strong>ID:</strong> ${formData.get('studentId')}</p>`;
+    html += `<p><strong>Section:</strong> ${formData.get('section')}</p>`;
+    html += `<p><strong>Semester:</strong> ${formData.get('semester')}</p>`;
+    html += `<p><strong>Department:</strong> ${formData.get('studentDepartment')}</p>`;
+    html += `<p><strong> ${formData.get('studentUniversity')}</strong></p>`;
+    html += addDoubleLineSpace();
+    html += `<p style="text-align: center; color: #2a3a5e;">
+    <strong><span style="border: 2px solid #2a3a5e; border-radius: 1cap; padding: 4px;">Submission Date: ${formatDateDDMMYY(formData.get('submissionDate'))}</span></strong></p>`;
+    return html;
+}
 
 
-        // Add table headers
-        documentContent += `
-        <div class="index-left-bottom" id="index-header"><strong> Expt. No. </strong></div>
-        <div class="index-border-header" id="index-header"><strong> Date </strong></div>
-        <div class="index-border-header" id="index-header"><strong> Name of the Experiment </strong></div>
-        <div class="index-border-header" id="index-header"><strong> Page No. </strong></div>
-        <div class="index-right-bottom" id="index-header"><strong> Remarks </strong></div>
-        `;
+function showOutput(html) {
+    localStorage.setItem('formOutput', html);
+    window.location.href = '../src/output.html';
+}
 
-        // Add experiment rows
-        for (let i = 1; i <= 10; i++) {
-        const isFooter = i === 10;
-        const leftClass = isFooter ? 'index-left-footer' : 'index-left-bottom';
-        const borderClass = isFooter ? 'index-border-footer' : 'index-border';
-        const rightClass = isFooter ? 'index-right-footer' : 'index-right-bottom';
-
-        documentContent += `
-            <div class="${leftClass}" id="index-experiment-no"><strong> ${i} </strong></div>
-            <div class="${borderClass}" id="dateSubmission"><strong> ${formData.get('submissionDate' + i)} </strong></div>
-            <div class="${borderClass}"> ${formData.get('experimentName' + i)} </div>
-            <div class="${borderClass}" id="pageLimit"><strong> ${formData.get('pageToPage' + i)} </strong></div>
-            <div class="${rightClass}"><strong> </strong></div>`;
-        }
-
-        // Final rendering
-        document.getElementById('documentContentIndex').innerHTML = documentContent;
-        document.querySelector('.form').style.display = 'none';
-        document.getElementById('index-document').style.display = 'block';
-
-    }
-
-});
-});
-
-
-const inputs = document.querySelectorAll('input');
-inputs.forEach((input, index) => {
-    input.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            const nextInput = inputs[index + 1];
-            if (nextInput) {
-                nextInput.focus();
-            } else {
-                document.querySelector('.submit').focus();
-            }
-        }
+// date input handling
+document.addEventListener('DOMContentLoaded', () => {
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', handleFormSubmit);
     });
-});
-
-
-
-document.getElementById('downloadPdf').addEventListener('click', function() {
-
-    documentResize();
-    const { jsPDF } = window.jspdf;
-    
-    html2canvas(document.getElementById('document') || document.getElementById('index-document'), {
-        scale: 4,  // Higher scale for better quality before compression
-        useCORS: true,
-        
-        backgroundColor: '#ffffff'
-    }).then(canvas => {
-        const imgData = canvas.toDataURL('image/jpeg', 3);  // Adjust quality parameter
-
-        const doc = new jsPDF({
-            orientation: 'portrait',
-            unit: 'px',
-            format: [780, 1102.92],
-            compress: true  // Enable compression
+        // Show calendar popup when clicking on input[type=date]
+        document.querySelectorAll('input[type="date"]').forEach(input => {
+            input.addEventListener('click', function(e) {
+                this.showPicker && this.showPicker();
+                // For browsers that don't support showPicker, focus will still work
+                this.focus();
+            });
+            // input.addEventListener('keydown', function(e) {
+            //     if (e.key === 'Enter') {
+            //         this.showPicker && this.showPicker();
+            //         this.focus();
+            //     }
+            // });
         });
-
-        const imgWidth = 780;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        
-        doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
-        doc.save('cover-page.pdf');
-
-    });
 });
-// -------------------------------------------------------->
-// document.getElementById('downloadDocx').addEventListener('click', function() {
-//     const contentElement = document.getElementById('document') || document.getElementById('index-document');
-//     if (!contentElement) {
-//         console.error('Content element not found');
-//         return;
-//     }
-//     const content = contentElement.innerHTML;
-//     const converted = htmlDocx.asBlob(content);
-//     const link = document.createElement('a');
-//     link.href = URL.createObjectURL(converted);
-//     link.download = 'cover-page.docx';
-//     link.click();
-// });
 
-// -------------------------------------------------------->
-document.getElementById('downloadImage').addEventListener('click', function() {
-    html2canvas(document.getElementById('document') || document.getElementById('index-document'), {
-        scale: 4,  // Reduce the scale for better file size management
-        useCORS: true,  // Use this option if you have cross-origin images
-        backgroundColor: '#ffffff'
-    }).then(canvas => {
-        // Adjust the canvas dimensions for higher quality
-        const imgWidth = 780;
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+// Format date to DD/MM/YY
+function formatDateDDMMYY(dateStr) {
+    const date = new Date(dateStr);
+    if (isNaN(date)) return '';
+    const dd = String(date.getDate()).padStart(2, '0');
+    const mm = String(date.getMonth() + 1).padStart(2, '0');
+    const yy = String(date.getFullYear());
+    return `${dd}/${mm}/${yy}`;
+}
 
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/jpeg', 0.75);  // Set the quality to 0.75 for compression
-        link.download = 'cover-page.jpeg';
-        link.click();
+// Enter key navigation for inputs
+document.querySelectorAll('input').forEach((input, idx, arr) => {
+    input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const next = arr[idx + 1];
+            if (next) next.focus();
+            else input.form.querySelector('button[type="submit"]')?.focus();
+        }
     });
 });
 
+
+// Event binding for single downloadPdf button
+const pdfBtn = document.getElementById('downloadPdf');
+if (pdfBtn) {
+    pdfBtn.addEventListener('click', function() {
+        // documentResize();
+        const el = document.getElementById('outputContainer');
+        if (!el) {
+            alert('No output found to download');
+            return;
+        }
+        const { jsPDF } = window.jspdf;
+        html2canvas(el, {
+            scale: 4, // Higher scale for better quality before compression
+            useCORS: true,
+            backgroundColor: '#ffffff'
+        }).then(canvas => {
+            const imgData = canvas.toDataURL('image/jpeg', 0.95); // High quality
+            // PDF page size in mm for A4
+            const pageWidth = 210; // mm
+            const pageHeight = 297; // mm
+            const doc = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: [pageWidth, pageHeight],
+                compress: true
+            });
+            // Calculate image dimensions in mm to fit page width
+            const imgWidth = pageWidth;
+            const imgHeight = (canvas.height * imgWidth) / canvas.width;
+            doc.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+            doc.save('cover-page.pdf');
+        }).catch(err => {
+            console.error('html2canvas/jsPDF error:', err);
+            alert('Failed to generate PDF');
+        });
+    });
+}
+
+// Event binding for single downloadImg button
+const imgBtn = document.getElementById('downloadImg');
+if (imgBtn) {
+    imgBtn.addEventListener('click', function() {
+        // documentResize();
+        const el = document.getElementById('outputContainer');
+        if (!el) {
+            alert('No output found to download');
+            return;
+        }
+        html2canvas(el, {
+            scale: 4, // High scale for quality
+            useCORS: true,
+            backgroundColor: '#ffffff'
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL('image/jpeg', 0.85); // Good quality, reasonable size
+            link.download = 'cover-page.jpg';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => link.remove(), 1000);
+        }).catch(err => {
+            console.error('html2canvas error:', err);
+            alert('Failed to generate image');
+        });
+    });
+}

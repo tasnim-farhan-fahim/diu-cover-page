@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Assignment Form - DIU Cover Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Tasnim Farhan Fahim">
+    <meta name="description" content="Easily create your DIU assignment cover page online by filling the form. Download in PDF or Image format instantly for free.">
+    <meta name="keywords" content="DIU Assignment Cover Page, Create Assignment Cover Page, DIU Cover Page Generator">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://diucoverpage.com/assignment_form.html">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DIU Cover Page",
+        "url": "https://diucoverpage.com",
+        "author": {
+            "@type": "Person",
+            "name": "Tasnim Farhan Fahim"
+        }
+        }
+    </script>
+
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9557711562563778"
+        crossorigin="anonymous"></script>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../img/logo1.png" type="image/png">
+    <link rel="stylesheet" href="../css/style.css">
+</head> 
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="../img/header-diu.png" alt="DIU Cover Page Logo">
+        <button onclick="window.location.href='../'">
+            <i class="fas fa-angle-left"></i> Back
+        </button>
+    </header>
+    <!-- Main Section -->
+    <section class="main">
+        <form id="assignmentForm">
+            <h2><i class="fas fa-file-alt"></i> Assignment Submission</h2>
+            <fieldset>
+                <legend>Assignment Details</legend>
+                <label>Topic Name: <input type="text" id="topicName" name="topicName" placeholder="Enter topic name" required></label>
+            </fieldset>
+            <fieldset>
+                <legend>Course Details</legend>
+                <label>Course Code: <input type="text" id="courseCode" name="courseCode" placeholder="Enter course code" required></label>
+                <label>Course Name: <input type="text" id="courseName" name="courseName" placeholder="Enter course name" required></label>
+            </fieldset>
+            <fieldset>
+                <legend>Teacher Details</legend>
+                <label>Teacher Name: <input type="text" id="teacherName" name="teacherName" placeholder="Enter teacher name" required></label>
+                <label>Designation: <input type="text" id="TeacherDesignation" name="TeacherDesignation" placeholder="Enter teacher's designation" required></label>
+                <label>Department: <input type="text" id="teacherDepartment" name="teacherDepartment" placeholder="Enter teacher's department" required></label>
+                <label>University: <input type="text" id="university" name="university" value="Daffodil International University" required></label>
+            </fieldset>
+            <fieldset>
+                <legend>Student Details</legend>
+                <label>Student Name: <input type="text" id="studentName" name="studentName" placeholder="Enter your name" required></label>
+                <label>Student ID: <input type="text" id="studentId" name="studentId" placeholder="Enter your student ID" required></label>
+                <label>Section: <input type="text" id="section" name="section" placeholder="Enter your section" required></label>
+                <label>Semester: <input type="text" id="semester" name="semester" placeholder="Enter your semester" required></label>
+                <label>Department: <input type="text" id="studentDepartment" name="studentDepartment" placeholder="Enter your department" required></label>
+                <label>University: <input type="text" id="studentUniversity" name="studentUniversity" value="Daffodil International University" required></label>
+            </fieldset>
+            <fieldset>
+                <legend>Submission Date</legend>
+                <label>Submission Date: <input type="date" id="submissionDate" name="submissionDate" required></label>
+            </fieldset>
+            <div class="submissionButton">
+                <button type="submit">Generate Page</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-feedback">
+                <p>For any feedback or suggestion, click the links bellow:</p>
+                <ul class="footer-social-links">
+                    <li><a href="https://t.me/zero2fahim" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a></li>
+                    <li><a href="https://www.facebook.com/zero2fahim" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/zero2fahim" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="https://github.com/tasnim-farhan-fahim" target="_blank" title="GitHub"><i class="fab fa-github"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/tasnim-farhan-fahim" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-info">
+                <p>Created by <span>Tasnim Farhan Fahim</span></p>
+                <p class="footer-email"><a href="mailto:fahim22205101291@diu.edu.bd"><i class="fas fa-envelope"></i> Fahim22205101291@diu.edu.bd</a></p>
+                <div class="footer-links">
+                    <a href="../src/terms.html">Terms and Conditions</a> | 
+                    <a href="../src/policy.html">Privacy and Policy</a>
+                </div>
+                <p> All rights reserved &copy;DIU Cover Page 2025</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-docx-js/0.4.0/html-docx.min.js" defer></script>
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
