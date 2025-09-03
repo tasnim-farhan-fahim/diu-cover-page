@@ -323,6 +323,9 @@ button[type="submit"]:hover, .downloadImg:hover, .downloadPdf:hover {
         padding: 8px 16px;
         font-size: 16px;
     }
+    .main-container ,form {
+        padding: 30px 40px;
+    }
     .footer-feedback, .footer-info {
         font-size: 14px !important;
     }
@@ -390,6 +393,9 @@ button[type="submit"]:hover, .downloadImg:hover, .downloadPdf:hover {
         padding: 8px 16px;
         font-size: 12px;
     }
+    .main-container, form {
+        padding: 20px 30px;
+    }
     .footer-feedback, .footer-info {
         font-size: 12px !important;
     }
@@ -442,5 +448,40 @@ button[type="submit"]:hover, .downloadImg:hover, .downloadPdf:hover {
         width: 140px !important;
         bottom: 50%;
         transform: translate(-50%, -35%);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    body {
+        padding: 0px 10px;
+    }
+    header {
+        padding: 8px 10px;
+    }
+    .main-container, form {
+        padding: 10px 20px;
+    }
+    #outputContainer {
+        width: 85mm;
+        min-height: 120.24mm;
+        max-height: 120.24mm;
+        padding: 4mm;
+    }
+     #output p{
+        font-size: 9px;
+    }
+    #output h2 {
+        font-size: 9px;
+    }
+    #outputContainer .watermark {
+        font-size: 7px;
+    }
+    .innerOutputContainer th, .innerOutputContainer td {
+        font-size: 7px;
+        padding: 3px !important;
+    }
+    .innerOutputContainer {
+        min-height: 112.24mm;
+        max-height: 112.24mm;
     }
 }
