@@ -209,3 +209,77 @@ if (imgBtn) {
         });
     });
 }
+// Set active navigation link based on current page
+function setActiveNav() {
+  const links = document.querySelectorAll(".nav-link");
+  const currentFile = window.location.pathname.split("/").pop() || "index.html";
+  links.forEach(link => {
+    const href = link.getAttribute("href");
+    if (!href) return;
+    const linkFile = href.split("/").pop();
+    if (linkFile === currentFile) {
+      link.classList.add("active");
+    }
+  });
+}
+setActiveNav();
+
+
+ // Calculates scrolling progress and updates the vertical progress bar (height).
+
+function updateVerticalProgressBar() {
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollPercent = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+  const progressBars = document.querySelectorAll('#progress-bar-left, #progress-bar-right');
+  progressBars.forEach(progressBar => {
+    progressBar.style.height = `${scrollPercent}%`;
+  });
+}
+window.addEventListener('scroll', updateVerticalProgressBar);
+updateVerticalProgressBar();
+
+
+// Function to save data to localStorage
+const silentSave = () => {
+    const data = {
+        teacherDepartment: document.getElementById('teacherDepartment')?.value || '',
+        studentName: document.getElementById('studentName')?.value || '',
+        studentId: document.getElementById('studentId')?.value || '',
+        section: document.getElementById('section')?.value || '',
+        semester: document.getElementById('semester')?.value || '',
+        studentDepartment: document.getElementById('studentDepartment')?.value || ''
+    };
+    localStorage.setItem('diu_cover_autofill', JSON.stringify(data));
+};
+
+// Function to load data on refresh/return
+const silentLoad = () => {
+    const savedData = localStorage.getItem('diu_autofill_data'); // Ensure consistency in key name
+    const data = JSON.parse(localStorage.getItem('diu_cover_autofill'));
+    
+    if (data) {
+        const fields = ['teacherDepartment', 'studentName', 'studentId', 'section', 'semester', 'studentDepartment'];
+        fields.forEach(id => {
+            const element = document.getElementById(id);
+            if (element && data[id]) {
+                element.value = data[id];
+            }
+        });
+    }
+};
+
+// Initialize listeners
+document.addEventListener('DOMContentLoaded', () => {
+    silentLoad();
+
+    // Attach the saver to your specific IDs
+    const fieldIds = ['teacherDepartment', 'studentName', 'studentId', 'section', 'semester', 'studentDepartment'];
+    fieldIds.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            // "input" event triggers for every keystroke or paste
+            element.addEventListener('input', silentSave);
+        }
+    });
+});

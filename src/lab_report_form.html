@@ -41,75 +41,68 @@
 <body>
     <!-- Header Section -->
     <header>
-        <img src="../img/header-diu.png" alt="DIU Cover Page Logo">
-        <button onclick="window.location.href='../'">
-            <i class="fas fa-angle-left"></i> Back
-        </button>
+        <nav class="top-nav-bar">
+        <div class="logo">
+            <a href="../index.html">
+            <img src="../img/header-diu.png" alt="DIU Cover Page Logo">
+            </a>
+        </div>
+        </nav>
+        <button class="back-button" onclick="window.history.back()"> <i class="fa fa-arrow-circle-left"></i></button>
     </header>
     <!-- Main Section -->
-    <section class="main">
-        <form id="labReportForm">
-            <h2><i class="fas fa-flask"></i> Lab Report Submission</h2>
-            <fieldset>
-                <legend>Lab Details</legend>
-                <label>Experiment No: <input type="text" id="experimentNo" name="experimentNo" placeholder="Enter experiment number" required></label>
-                <label>Experiment Name: <input type="text" id="experimentName" name="experimentName" placeholder="Enter experiment name" required></label>
-            </fieldset>
-            <fieldset>
-                <legend>Course Details</legend>
-                <label>Course Code: <input type="text" id="courseCode" name="courseCode" placeholder="Enter course code" required></label>
-                <label>Course Name: <input type="text" id="courseName" name="courseName" placeholder="Enter course name" required></label>
-            </fieldset>
-            <fieldset>
-                <legend>Teacher Details</legend>
-                <label>Teacher Name: <input type="text" id="teacherName" name="teacherName" placeholder="Enter teacher name" required></label>
-                <label>Designation: <input type="text" id="TeacherDesignation" name="TeacherDesignation" placeholder="Enter teacher's designation" required></label>
-                <label>Department: <input type="text" id="teacherDepartment" name="teacherDepartment" placeholder="Enter teacher's department" required></label>
-                <label>University: <input type="text" id="university" name="university" value="Daffodil International University" required></label>
-            </fieldset>
-            <fieldset>
-                <legend>Student Details</legend>
-                <label>Student Name: <input type="text" id="studentName" name="studentName" placeholder="Enter your name" required></label>
-                <label>Student ID: <input type="text" id="studentId" name="studentId" placeholder="Enter your student ID" required></label>
-                <label>Section: <input type="text" id="section" name="section" placeholder="Enter your section" required></label>
-                <label>Semester: <input type="text" id="semester" name="semester" placeholder="Enter your semester" required></label>
-                <label>Department: <input type="text" id="studentDepartment" name="studentDepartment" placeholder="Enter your department" required></label>
-                <label>University: <input type="text" id="studentUniversity" name="studentUniversity" value="Daffodil International University" required></label>
-            </fieldset>
-            <fieldset>
-                <legend>Submission Date</legend>
-                <label>Submission Date: <input type="date" id="submissionDate" name="submissionDate" required></label>
-            </fieldset>
-            <div class="submissionButton">
-                <button type="submit">Generate Page</button>
-            </div>
-        </form>
-    </section>
-
+    <main>
+        <div id="progress-bar-right"></div>
+        <div id="progress-bar-left"></div>
+        <section>
+            <form id="labReportForm">
+                <h2><i class="fas fa-flask"></i> Lab Report Submission</h2>
+                <fieldset>
+                    <legend>Lab Details</legend>
+                    <label>Experiment No: <input type="text" id="experimentNo" name="experimentNo" placeholder="Enter experiment number" required></label>
+                    <label>Experiment Name: <input type="text" id="experimentName" name="experimentName" placeholder="Enter experiment name" required></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Course Details</legend>
+                    <label>Course Code: <input type="text" id="courseCode" name="courseCode" placeholder="Enter course code" required></label>
+                    <label>Course Name: <input type="text" id="courseName" name="courseName" placeholder="Enter course name" required></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Teacher Details</legend>
+                    <label>Teacher Name: <input type="text" id="teacherName" name="teacherName" placeholder="Enter teacher name" required></label>
+                    <label>Designation: <input type="text" id="TeacherDesignation" name="TeacherDesignation" placeholder="Enter teacher's designation" required></label>
+                    <label>Department: <input type="text" id="teacherDepartment" name="teacherDepartment" placeholder="Enter teacher's department" required></label>
+                    <label>University: <input type="text" id="university" name="university" value="Daffodil International University" required></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Student Details</legend>
+                    <label>Student Name: <input type="text" id="studentName" name="studentName" placeholder="Enter your name" required></label>
+                    <label>Student ID: <input type="text" id="studentId" name="studentId" placeholder="Enter your student ID" required></label>
+                    <label>Section: <input type="text" id="section" name="section" placeholder="Enter your section" required></label>
+                    <label>Semester: <input type="text" id="semester" name="semester" placeholder="Enter your semester" required></label>
+                    <label>Department: <input type="text" id="studentDepartment" name="studentDepartment" placeholder="Enter your department" required></label>
+                    <label>University: <input type="text" id="studentUniversity" name="studentUniversity" value="Daffodil International University" required></label>
+                </fieldset>
+                <fieldset>
+                    <legend>Submission Date</legend>
+                    <label>Submission Date: <input type="date" id="submissionDate" name="submissionDate" required></label>
+                </fieldset>
+                <div class="submissionButton">
+                    <button type="submit">Generate Page</button>
+                </div>
+            </form>
+        </section>
+    </main>
     <!-- Footer Section -->
     <footer>
-        <div class="footer-container">
-            <div class="footer-feedback">
-                <p>For any feedback or suggestion, click the links bellow:</p>
-                <ul class="footer-social-links">
-                    <li><a href="https://t.me/zero2fahim" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a></li>
-                    <li><a href="https://www.facebook.com/zero2fahim" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/zero2fahim" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="https://github.com/tasnim-farhan-fahim" target="_blank" title="GitHub"><i class="fab fa-github"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/tasnim-farhan-fahim" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer-info">
-                <p>Created by <span>Tasnim Farhan Fahim</span></p>
-                <p class="footer-email"><a href="mailto:fahim22205101291@diu.edu.bd"><i class="fas fa-envelope"></i> Fahim22205101291@diu.edu.bd</a></p>
-                <div class="footer-links">
-                    <a href="../src/terms.html">Terms and Conditions</a> | 
-                    <a href="../src/policy.html">Privacy and Policy</a>
-                </div>
-                <p> All rights reserved &copy;DIU Cover Page 2025</p>
-            </div>
-        </div>
+        <nav class="bottom-nav-bar">
+        <ul class="nav-links">
+            <li><a class="nav-link" href="../index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+            <li><a class="nav-link" href="create.html"><i class="fa fa-plus"></i><span>Create</span></a></li>
+            <li><a class="nav-link" href="guidelines.html"><i class="fa fa-file"></i><span>Guidelines</span></a></li>
+            <li><a class="nav-link" href="about.html"><i class="fa fa-info-circle"></i><span>About</span></a></li>
+        </ul>
+        </nav>
     </footer>
 
     <!-- JS Libraries -->

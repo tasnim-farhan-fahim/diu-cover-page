@@ -40,84 +40,123 @@
 </head>
 <body>
     <!-- Header Section -->
-    <header>
-        <img src="../img/header-diu.png" alt="DIU Cover Page Logo">
-        <button onclick="window.history.back()">
-            <i class="fas fa-angle-left"></i> Back
-        </button>
-    </header>
+      <header>
+        <nav class="top-nav-bar">
+          <div class="logo">
+            <a href="../index.html">
+              <img src="../img/header-diu.png" alt="DIU Cover Page Logo">
+            </a>
+          </div>
+        </nav>
+        <button class="back-button" onclick="window.history.back()"> <i class="fa fa-arrow-circle-left"></i></button>   
+      </header>
     <!-- Main Section -->
-    <section class="main">
-      <div class="terms-container">
-        <h1>Terms and Conditions for <a href="https://diucoverpage.com">DIU Cover Page</a></h1>
-        <p>Welcome to <strong><a href="https://diucoverpage.com">DIU Cover Page(diucoverpage.com)</a></strong>, student-created academic cover page creation tool for students of Daffodil International University (DIU). By accessing or using this website, you agree to comply with and be bound by the following terms and conditions:</p>
-        <h2>1. Purpose of the Site</h2>
-        <p>This website is designed exclusively for DIU students to create academic cover pages for assignments, lab reports, and submissions. The site is operated by a sole owner and is not affiliated with any commercial entity.</p>
-        <h2>2. Acceptance of Terms</h2>
-        <ul>
-          <li>By using this website, you acknowledge that you have read, understood, and agree to these Terms and Conditions.</li>
-        </ul>
-        <h2>3. Academic Use Only</h2>
-        <ul>
-          <li>This website is intended solely for academic purposes for DIU students.</li>
-          <li>You agree not to misuse the forms or submit false information.</li>
-          <li>All submissions must be your own work or properly attributed.</li>
-        </ul>
-        <h2>4. Intellectual Property</h2>
-        <ul>
-          <li>All content, including forms, designs, and scripts, are the property of the website administrator.</li>
-          <li>You may not copy, reproduce, or distribute any part of this site without permission.</li>
-        </ul>
-        <h2>5. Limitation of Liability</h2>
-        <ul>
-          <li>The website administrator is not liable for any loss or damage resulting from the use of this site.</li>
-        </ul>
-        <h2>6. Advertising Policy</h2>
-        <ul>
-          <li>This site may display advertisements provided by Google or other reputable ad networks.</li>
-          <li>We do not allow ads containing sensitive, inappropriate, or offensive content. If you encounter any such ads, please contact the site administrator immediately.</li>
-          <li>Ads help support the maintenance and development of this free academic tool.</li>
-        </ul>
-        <h2>7. Changes to Terms</h2>
-        <ul>
-          <li>We reserve the right to update these Terms and Conditions at any time. Changes will be posted on this page with the effective date.</li>
-        </ul>
-        <h2>8. Contact Information</h2>
-        <ul>
-          <li>If you have any questions about these Terms, please contact the sole owner and administrator at the links below.</li>
-        </ul>
-        <h2>9. Additional Information</h2>
-        <ul>
-          <li>By using this site, you agree to these Terms and Conditions and our Privacy Policy.</li>
-        </ul>
-        <p><em>Last updated: September 1, 2025</em></p>
-      </div>
-    </section>
-    <!-- Footer Section -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-feedback">
-                <p>For any feedback or suggestion, click the links bellow:</p>
-                <ul class="footer-social-links">
-                    <li><a href="https://t.me/zero2fahim" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a></li>
-                    <li><a href="https://www.facebook.com/zero2fahim" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/zero2fahim" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="https://github.com/tasnim-farhan-fahim" target="_blank" title="GitHub"><i class="fab fa-github"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/tasnim-farhan-fahim" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer-info">
-                <p>Created by <span>Tasnim Farhan Fahim</span></p>
-                <p class="footer-email"><a href="mailto:fahim22205101291@diu.edu.bd"><i class="fas fa-envelope"></i> Fahim22205101291@diu.edu.bd</a></p>
-                <div class="footer-links">
-                    <a href="../src/terms.html">Terms and Conditions</a> | 
-                    <a href="../src/policy.html">Privacy and Policy</a>
-                </div>
-                <p> All rights reserved &copy;DIU Cover Page 2025</p>
-            </div>
+    <main>
+      <div id="progress-bar-right"></div>
+      <div id="progress-bar-left"></div>
+      <section>
+        <div class="terms-container">
+          <h1>Terms and Conditions for <a href="https://diucoverpage.com">DIU Cover Page</a></h1><hr><br>
+
+          <p>
+        Welcome to <strong><a href="https://diucoverpage.com">DIU Cover Page (diucoverpage.com)</a></strong>, a student-created tool designed to help students of Daffodil International University (DIU) generate academic cover pages. 
+        By accessing or using this website, you agree to be bound by these Terms and Conditions.
+          </p>
+
+          <h2>1. Purpose of the Site</h2>
+          <p>
+        This website is intended exclusively for DIU students to create academic cover pages for assignments, lab reports,
+        lab indices, and similar submissions. The site is operated by an individual owner and is not affiliated with any
+        commercial organization or officially endorsed by DIU.
+          </p>
+
+          <h2>2. Acceptance of Terms</h2>
+          <ul>
+        <li>By using this website, you confirm that you have read, understood, and agree to these Terms and Conditions.</li>
+        <li>If you do not agree with any part of these Terms, you should discontinue use of the website immediately.</li>
+          </ul>
+
+          <h2>3. Academic Use Only</h2>
+          <ul>
+        <li>This website is provided solely for academic and non‑commercial use by DIU students.</li>
+        <li>You agree not to submit false, misleading, or inappropriate information through any form on this site.</li>
+        <li>All content you generate or submit must be your own work or properly attributed according to academic standards.</li>
+          </ul>
+
+          <h2>4. Intellectual Property</h2>
+          <ul>
+        <li>
+          All content on this website, including but not limited to layout, design, text, scripts, and graphics, is the
+          intellectual property of the website administrator, unless otherwise stated.
+        </li>
+        <li>
+          You may not copy, modify, reproduce, distribute, or publicly display any part of this site without prior written
+          permission from the owner, except as necessary for your own academic use.
+        </li>
+          </ul>
+
+          <h2>5. Limitation of Liability</h2>
+          <ul>
+        <li>
+          The website is provided on an “as‑is” and “as‑available” basis. No guarantee is given that the site will be 
+          error‑free, uninterrupted, or suitable for any specific purpose.
+        </li>
+        <li>
+          The website administrator is not liable for any direct, indirect, incidental, or consequential loss or damage
+          arising from the use of, or inability to use, this site.
+        </li>
+          </ul>
+
+          <h2>6. Advertising Policy</h2>
+          <ul>
+        <li>This site may display advertisements served by Google or other reputable advertising networks.</li>
+        <li>
+          We strive to prevent ads containing sensitive, inappropriate, or offensive content. If you encounter such an ad,
+          please notify the site administrator using the contact details provided below.
+        </li>
+        <li>Advertising revenue helps support the maintenance and continued development of this free academic tool.</li>
+          </ul>
+
+          <h2>7. Changes to Terms</h2>
+          <ul>
+        <li>
+          We reserve the right to modify or update these Terms and Conditions at any time without prior notice.
+          Any changes will be posted on this page and become effective from the date of publication.
+        </li>
+          </ul>
+
+          <h2>8. Contact Information</h2>
+          <ul>
+        <li>
+          If you have any questions, concerns, or feedback regarding these Terms and Conditions, please contact the sole
+          owner and administrator using the contact links provided on this website.
+        </li>
+          </ul>
+
+          <h2>9. Acknowledgment</h2>
+          <ul>
+        <li>
+          By continuing to use this site, you acknowledge that you have read, understood, and agree to these Terms and
+          Conditions and our Privacy Policy.
+        </li>
+          </ul>
+          <hr>
+          <br>
+          <p><em>Last updated: September 1, 2025</em></p>
         </div>
-    </footer>
+      </section>
+    </main>
+    <!-- Footer Section -->
+  <footer>
+    <nav class="bottom-nav-bar">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="../index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+        <li><a class="nav-link" href="create.html"><i class="fa fa-plus"></i><span>Create</span></a></li>
+        <li><a class="nav-link" href="guidelines.html"><i class="fa fa-file"></i><span>Guidelines</span></a></li>
+        <li><a class="nav-link" href="about.html"><i class="fa fa-info-circle"></i><span>About</span></a></li>
+      </ul>
+    </nav>
+  </footer>
 
     <!-- JS Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>

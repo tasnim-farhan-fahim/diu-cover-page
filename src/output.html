@@ -41,58 +41,52 @@
 <body>
     <!-- Header Section -->
     <header>
-        <img src="../img/header-diu.png" alt="DIU Cover Page Logo">
-        <button onclick="window.history.back()">
-            <i class="fas fa-angle-double-left"></i> Back
-        </button>
+        <nav class="top-nav-bar">
+        <div class="logo">
+            <a href="../index.html">
+            <img src="../img/header-diu.png" alt="DIU Cover Page Logo">
+            </a>
+        </div>
+        </nav>
+        <button class="back-button" onclick="window.history.back()"> <i class="fa fa-arrow-circle-left"></i></button>
     </header>
     <!-- Main Section -->
-    <section class="main">
-        <div id="outputContainer">
-            <div class="innerOutputContainer">
-                <div class="page-top-logo">
-                    <img src="../img/top-logo.png" alt="University Logo">
+     <main>
+        <div id="progress-bar-right"></div>
+        <div id="progress-bar-left"></div>
+        <section>
+            <div id="outputContainer">
+                <div class="innerOutputContainer">
+                    <div class="page-top-logo">
+                        <img src="../img/top-logo.png" alt="University Logo">
+                    </div>
+                    <div class="page-middle-logo">
+                        <img src="../img/logo1.png" alt="University Logo">
+                    </div>
+                    <div id="output"></div>
                 </div>
-                <div class="page-middle-logo">
-                    <img src="../img/logo1.png" alt="University Logo">
+                <div>
+                    <p class="watermark">www.diucoverpage.com</p>
                 </div>
-                <div id="output"></div>
             </div>
-            <div>
-                <p class="watermark">www.diucoverpage.com</p>
+            <div class="buttonContainer">
+                <button id="downloadImg" class="downloadImg">Download Image</button>
+                <button id="downloadPdf" class="downloadPdf">Download PDF</button>
             </div>
-        </div>
-        <div class="buttonContainer">
-            <button id="downloadImg" class="downloadImg">Download Image</button>
-            <button id="downloadPdf" class="downloadPdf">Download PDF</button>
-        </div>
-    </section>
+        </section>
+     </main>
 
     <!-- Footer Section -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-feedback">
-                <p>For any feedback or suggestion, click the links bellow:</p>
-                <ul class="footer-social-links">
-                    <li><a href="https://t.me/zero2fahim" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a></li>
-                    <li><a href="https://www.facebook.com/zero2fahim" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://www.instagram.com/zero2fahim" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                    <li><a href="https://github.com/tasnim-farhan-fahim" target="_blank" title="GitHub"><i class="fab fa-github"></i></a></li>
-                    <li><a href="https://www.linkedin.com/in/tasnim-farhan-fahim" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a></li>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer-info">
-                <p>Created by <span>Tasnim Farhan Fahim</span></p>
-                <p class="footer-email"><a href="mailto:fahim22205101291@diu.edu.bd"><i class="fas fa-envelope"></i> Fahim22205101291@diu.edu.bd</a></p>
-                <div class="footer-links">
-                    <a href="../src/terms.html">Terms and Conditions</a> | 
-                    <a href="../src/policy.html">Privacy and Policy</a>
-                </div>
-                <p> All rights reserved &copy;DIU Cover Page 2025</p>
-            </div>
-        </div>
-    </footer>
+  <footer>
+    <nav class="bottom-nav-bar">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="../index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+        <li><a class="nav-link" href="create.html"><i class="fa fa-plus"></i><span>Create</span></a></li>
+        <li><a class="nav-link" href="guidelines.html"><i class="fa fa-file"></i><span>Guidelines</span></a></li>
+        <li><a class="nav-link" href="about.html"><i class="fa fa-info-circle"></i><span>About</span></a></li>
+      </ul>
+    </nav>
+  </footer>
 
     <!-- Output Script for Local Storage -->
     <script>
