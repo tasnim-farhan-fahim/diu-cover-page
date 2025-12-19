@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Page Not Found | DIU Cover Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, follow">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://diucoverpage.com/css/style.css">
+
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --accent-green: #2ea44f;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .error-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* Animated 404 Text */
+        .error-code {
+            font-size: clamp(100px, 15vw, 150px);
+            font-weight: 900;
+            color: var(--primary-blue);
+            line-height: 1;
+            margin: 0;
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .error-message {
+            font-size: 22px;
+            color: #333;
+            margin: 20px 0 10px;
+            font-weight: 500;
+        }
+
+        .error-subtext {
+            color: #666;
+            margin-bottom: 30px;
+            max-width: 400px;
+        }
+
+        /* Redirect Progress Bar */
+        .timer-wrapper {
+            width: 250px;
+            background: #e0e0e0;
+            height: 4px;
+            border-radius: 10px;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .timer-bar {
+            background: var(--primary-blue);
+            height: 100%;
+            width: 100%;
+            animation: shrink 5s linear forwards;
+            transform-origin: left;
+        }
+
+        @keyframes shrink {
+            from { transform: scaleX(1); }
+            to { transform: scaleX(0); }
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background-color: var(--primary-blue);
+            color: white !important;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 15px rgba(0,51,102,0.2);
+        }
+
+        .back-home:hover {
+            background-color: #002244;
+            transform: translateY(-2px);
+        }
+
+        /* Keep header/footer fixed if needed */
+        header, author { width: 100%; }
+    </style>
+</head>
+<body>
+  <header>
+    <nav class="top-nav-bar">
+      <div class="logo">
+        <a href="https://diucoverpage.com/">
+          <img src="https://diucoverpage.com/img/header-diu.png" alt="DIU Cover Page Logo">
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="error-container">
+    <h1 class="error-code">404</h1>
+    <p class="error-message">Oops! Page Not Found</p>
+    <p class="error-subtext">The page you're looking for might have been removed or the URL is incorrect.</p>
+    
+    <a href="https://diucoverpage.com/" class="back-home">
+      <i class="fa fa-home"></i> Back to Homepage
+    </a>
+
+    <div class="timer-wrapper">
+        <div class="timer-bar"></div>
+    </div>
+    <p style="font-size: 12px; color: #999;">Redirecting in 5 seconds...</p>
+  </main>
+
+  <author>
+    <nav class="bottom-nav-bar">
+      <ul class="nav-links">
+        <li><a class="nav-link" href="https://diucoverpage.com/index.html"><i class="fa fa-home"></i><span>Home</span></a></li>
+        <li><a class="nav-link" href="https://diucoverpage.com/src/create.html"><i class="fa fa-plus"></i><span>Create</span></a></li>
+        <li><a class="nav-link" href="https://diucoverpage.com/src/guidelines.html"><i class="fa fa-file"></i><span>Guidelines</span></a></li>
+        <li><a class="nav-link" href="https://diucoverpage.com/src/about.html"><i class="fa fa-info-circle"></i><span>About</span></a></li>
+      </ul>
+    </nav>
+  </author>
+
+  <script>
+    // Redirect after 5 seconds
+    setTimeout(function(){
+        window.location.href = "https://diucoverpage.com/";
+    }, 5000);
+  </script>
+</body>
+</html>
