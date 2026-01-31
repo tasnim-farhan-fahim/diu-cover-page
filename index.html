@@ -37,8 +37,15 @@
     <!-- Favicon -->
     <link rel="icon" href="img/logo1.png" type="image/png">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/survey.css">
 </head>
 <body>
+    <!-- Loading Screen Section -->
+  <div id="loading-screen" class="loader-wrapper">
+    <div class="loading">
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
     <!-- Header Section -->
   <header>
     <nav class="top-nav-bar">
@@ -88,12 +95,32 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="survy-form card">
-            <h2>Help Us Improve DIU Cover Page!</h2><hr>
-            <p>Your feedback matters to us. Please take a moment to fill out this short survey and let us know how we can make DIU Cover Page even better for you.</p>
-            <a class="button" href="https://forms.gle/YourSurveyLink" target="_blank">Take the Survey <i class="fa fa-arrow-right"></i></a>
-        </div> -->
     </section>
+    <!-- Survey Section -->
+    <div id="modal-overlay" class="overlay">
+  <section id="info-section" class="info-card">
+    <button class="close-btn" id="close-btn">&times;</button>
+    <div class="content">
+      <h1>I Helped You, Now You Help Me</h1>
+      <br><hr><br>
+      <p>
+        Hello, fellow <strong>DIU students!</strong> I’m working on my thesis paper titled <span>"Reels Addiction and Its Impact on University Students"</span> and I really need your support(with proper consent).
+        <br><br>
+        It takes about <strong>3-4 minutes</strong> to complete. Your <strong>honest feedback</strong> is crucial for gathering real data. Please fill it out carefully, and feel free to share the link with other students to help me reach my goal!
+      </p>
+      
+      <div class="survey-link">
+        <strong>Your Responses Are Anonymous and Confidential.</strong><br><br>
+        <a href="https://forms.gle/ySQer5LBehQfJB4u5" target="_blank" id="survey-url">https://forms.gle/ySQer5LBehQfJB4u5</a>
+        <button id="copy-btn" class="copy-btn">Copy</button> 
+        <br><br><strong>OR Click 👇</strong>
+      </div>
+      
+      <button class="fill-up-btn" onclick="window.open('https://forms.gle/ySQer5LBehQfJB4u5', '_blank')">Fill Up</button>
+    </div>
+  </section>
+</div>
+        <!-- End Survey Section -->
   </main>
     <!-- Footer Section -->
   <footer>
@@ -112,5 +139,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html-docx-js/0.4.0/html-docx.min.js" defer></script>
     <script src="scripts/script.js"></script>
+    <script src="scripts/survey.js"></script>
 </body>
 </html>

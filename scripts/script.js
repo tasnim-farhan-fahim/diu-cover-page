@@ -1,4 +1,10 @@
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loading-screen');
 
+  setTimeout(() => {
+    loader.classList.add('loader-hidden');
+  }, 900); 
+});
 // Prevent right-click context menu
 // document.addEventListener('contextmenu', e => e.preventDefault());
 

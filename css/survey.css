@@ -1,0 +1,118 @@
+/* Survey Section Styles */
+/* This locks the background */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.1); /* Darkens the background */
+  backdrop-filter: blur(4px); /* Blurs the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 899; /* Keeps it above everything else */
+}
+
+.info-card {
+  position: relative;
+  max-width: 550px;
+  width: 90%;
+  padding: 30px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  height: 28px;
+  width: 28px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #6a32eb;
+  border: 1px solid #6a32eb;
+  border-radius: 4px;
+  line-height: 1;
+  animation: wiggleClose 2s infinite ease-in-out;
+}
+@keyframes wiggleClose {
+  0%, 90%, 100% { transform: rotate(0deg); }
+  92% { transform: rotate(15deg); }
+  95% { transform: rotate(-15deg); }
+  97% { transform: rotate(15deg); }
+}
+.close-btn:hover {
+  color: #ff4d4d;
+}
+
+.info-card h1 {
+  margin-top: 0;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.info-card p {
+  line-height: 1.5;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.info-card span {
+  font-size: 22px; /* Adjusted slightly for better flow */
+  color: #6a32eb;
+  font-weight: bold;
+}
+
+.survey-link {
+  text-align: center;
+  font-size: 16px;
+  margin: 15px 0;
+}
+
+.survey-link a {
+  font-size: 0.85rem;
+  color: #000;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.copy-btn {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 4px 10px;
+  margin-left: 4px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.fill-up-btn {
+  background-color: #6a32eb;
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block;
+  transition: background-color 0.3s ease;
+  animation: softGlow 2s infinite ease-in-out;
+}
+.fill-up-btn:hover {
+  background-color: #4e1fba;
+  transform: translateY(-2px);
+}
+/* End Survey Section */

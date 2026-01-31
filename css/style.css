@@ -4,6 +4,64 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
 }
+/* Loading Screen Style */
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10001;
+  transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+/* Uiverse Loader Style */
+.loading {
+  --speed-of-animation: 0.9s;
+  --gap: 6px;
+  --color: #6a32eb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  gap: var(--gap);
+  height: 100px;
+}
+
+.loading span {
+  width: 4px;
+  height: 50px;
+  background: var(--color);
+  animation: scale var(--speed-of-animation) ease-in-out infinite;
+}
+
+.loading span:nth-child(2) { background: var(--color); animation-delay: -0.8s; }
+.loading span:nth-child(3) { background: var(--color); animation-delay: -0.7s; }
+.loading span:nth-child(4) { background: var(--color); animation-delay: -0.6s; }
+.loading span:nth-child(5) { background: var(--color); animation-delay: -0.5s; }
+
+@keyframes scale {
+  0%, 40%, 100% { transform: scaleY(0.05); }
+  20% { transform: scaleY(1); }
+}
+
+.loader-wrapper p {
+  margin-top: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #6a32eb;
+  font-weight: bold;
+}
+
+/* Class to hide loader via JS */
+.loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
 /* Hide the scrollbar*/
 html::-webkit-scrollbar {
     /* Completely hides the scrollbar */
@@ -99,7 +157,7 @@ body::after {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
+  z-index: 900;
   border-radius: 1rem;
   border: 2px solid transparent;
   cursor: pointer;
@@ -166,7 +224,7 @@ body::after {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1000;
+  z-index: 800;
   border-radius: 1rem;
 }
 .bottom-nav-bar .nav-links {
@@ -337,6 +395,7 @@ body::after {
 .author-email a{
     text-decoration: none;
     border: 2px solid #444;
+    border-radius: 6px;
     padding: 4px 8px;
     color: #444;
     font-size: 14px;
