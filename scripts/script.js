@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
 
   setTimeout(() => {
     loader.classList.add('loader-hidden');
-  }, 900); 
+  }, 500); 
 });
 // Prevent right-click context menu
 // document.addEventListener('contextmenu', e => e.preventDefault());
