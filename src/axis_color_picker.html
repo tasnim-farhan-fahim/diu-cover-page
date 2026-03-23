@@ -1,0 +1,1178 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+      <link rel="icon" type="image/x-icon" href="../img/crosshairs.png" />
+    <title>AxisColor Picker - OpenGL Project Helper</title>
+    <style>
+      :root {
+        --bg-main: #0f172a;
+        --bg-panel: #1e293b;
+        --bg-output: #334155;
+        --accent: #6366f1;
+        --accent-hover: #818cf8;
+        --danger: #ef4444;
+        --danger-hover: #f87171;
+        --text-main: #f8fafc;
+        --text-dim: #94a3b8;
+        --border: #475569;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-main);
+        height: 100vh;
+        display: flex;
+        overflow: hidden;
+      }
+      ::selection {
+        color: #fff;
+        background: rgba(99, 102, 241);
+      }
+      /* ── Mobile overlay ───────────────────────────────────────────────── */
+      #mobile-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: var(--bg-main);
+        color: var(--text-main);
+        z-index: 999999;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+      }
+      #mobile-overlay i {
+        font-size: 50px;
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+      #mobile-overlay h2 {
+        font-size: 24px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+      #mobile-overlay p {
+        color: var(--text-dim);
+        font-size: 14px;
+      }
+      @media (max-width: 1024px) {
+        #mobile-overlay {
+          display: flex;
+        }
+        .main-container,
+        #noteWidget,
+        #magnifier,
+        #coordTooltip,
+        #snapDot {
+          display: none !important;
+        }
+      }
+
+      /* ── Layout ───────────────────────────────────────────────────────── */
+      .main-container {
+        display: flex;
+        flex: 1;
+        padding: 20px;
+        gap: 20px;
+        width: 100%;
+      }
+
+      .canvas-wrapper {
+        flex: 1;
+        position: relative;
+        background: #000;
+        border-radius: 12px;
+        border: 2px solid var(--border);
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background 0.3s ease;
+      }
+      .canvas-wrapper.light-mode {
+        background: #ffffff;
+      }
+      .canvas-wrapper.drag-over {
+        border: 2px dashed var(--accent);
+        background: rgba(99, 102, 241, 0.1);
+      }
+
+      .canvas-container {
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        position: relative;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        display: flex;
+      }
+      .canvas-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      #canvasMount {
+        position: relative;
+        margin: auto;
+        line-height: 0;
+        font-size: 0;
+      }
+
+      #mainCanvas {
+        display: block;
+      }
+
+      /* ── HUD elements ─────────────────────────────────────────────────── */
+      #coordTooltip {
+        position: fixed;
+        pointer-events: none;
+        background: var(--accent);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 6px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        display: none;
+        white-space: nowrap;
+      }
+
+      #snapDot {
+        position: fixed;
+        pointer-events: none;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #f59e0b;
+        border: 2px solid #fff;
+        transform: translate(-50%, -50%);
+        z-index: 9998;
+        display: none;
+        box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+      }
+
+      /* ── Right panel ──────────────────────────────────────────────────── */
+      .right-panel {
+        width: 320px;
+        background: var(--bg-panel);
+        border-radius: 16px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 20px;
+        border: 1px solid var(--border);
+        overflow-y: auto;
+      }
+      .right-panel-box {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      h3 {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-dim);
+        margin-top: 4px;
+      }
+
+      .output-box {
+        background: var(--bg-output);
+        color: #38bdf8;
+        padding: 12px;
+        border-radius: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 13px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      #colorPicker {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 40px;
+        height: 40px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+      #colorPicker::-webkit-color-swatch {
+        border-radius: 50%;
+        border: 2px solid var(--text-main);
+      }
+
+      /* ── UNIFIED BUTTON SYSTEM ────────────────────────────────────────────
+         All buttons share ONE rule set:
+           default  → gray  (--bg-output)
+           hover    → blue  (--accent-hover)
+           .active  → blue  (--accent)
+           .btn-danger         → red  (--danger)
+           .btn-danger:hover   → lighter red
+         No more separate .mode-btn class — everything is consistent.
+      ── ------------------------------------------------------------------ */
+      .btn-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      button {
+        flex: 1;
+        padding: 10px 12px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: var(--bg-output);
+        color: var(--text-main);
+        font-size: 12px;
+        font-weight: 600;
+        transition:
+          background 0.15s ease,
+          transform 0.1s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+      button:hover {
+        background: var(--accent-hover);
+        transform: translateY(-1px);
+      }
+      button.active {
+        background: var(--accent);
+        color: white;
+      }
+      button.active:hover {
+        background: var(--accent-hover);
+      }
+
+      button.btn-danger {
+        background: var(--danger);
+        color: white;
+      }
+      button.btn-danger:hover {
+        background: var(--danger-hover);
+        transform: translateY(-1px);
+      }
+
+      /* Upload button: accent blue */
+      #btnUpload {
+        background: var(--accent);
+        color: white;
+      }
+      #btnUpload:hover {
+        background: var(--accent-hover);
+      }
+
+      /* Theme buttons: gray by default, theme color only when active */
+      #btnDark.active {
+        background: #0f172a;
+        color: #f8fafc;
+        border: 1.5px solid var(--border);
+      }
+      #btnLight.active {
+        background: #f8fafc;
+        color: #0f172a;
+        border: 1.5px solid var(--border);
+      }
+
+      /* Copy buttons: smaller text, tighter vertical padding */
+      #copyCoord,
+      #copyColor {
+        font-size: 10px;
+        padding: 5px 12px;
+      }
+
+      .history-item {
+        background: rgba(0, 0, 0, 0.2);
+        padding: 8px;
+        margin-top: 2px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-family: monospace;
+        border-left: 3px solid var(--accent);
+      }
+
+      /* ── Note widget ──────────────────────────────────────────────────── */
+      #noteWidget {
+        position: fixed;
+        bottom: 40px;
+        right: 380px;
+        z-index: 10000;
+        width: 48px;
+        height: 48px;
+      }
+      #noteIcon {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: var(--accent);
+        color: white;
+        border: none;
+        cursor: grab;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        padding: 0;
+        transition: background 0.15s;
+      }
+      #noteIcon:hover {
+        background: var(--accent-hover);
+      }
+      #noteBox {
+        position: absolute;
+        bottom: 60px;
+        right: 0;
+        background: var(--bg-panel);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        width: 400px;
+        height: 280px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .note-header {
+        background: var(--bg-output);
+        padding: 10px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--text-main);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #noteBox textarea {
+        flex: 1;
+        background: transparent;
+        border: none;
+        color: var(--text-main);
+        padding: 12px;
+        resize: none;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      #noteBox textarea:focus {
+        outline: none;
+      }
+      #noteBox textarea::placeholder {
+        color: var(--text-dim);
+      }
+
+      /* ── Magnifier ────────────────────────────────────────────────────── */
+      #magnifier {
+        position: fixed;
+        width: 120px;
+        height: 120px;
+        border: 2px solid var(--accent);
+        border-radius: 50%;
+        pointer-events: none;
+        display: none;
+        z-index: 9999;
+        background-repeat: no-repeat;
+        background-color: #000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      }
+      #magnifier::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 6px;
+        height: 6px;
+        transform: translate(-50%, -50%);
+        border: 1px solid rgba(255, 0, 0, 0.8);
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mobile-overlay">
+      <i class="fa fa-desktop"></i>
+      <h2>Desktop Only</h2>
+      <p>This coordinate mapping tool is only supported on PC.</p>
+    </div>
+
+    <div id="magnifier"></div>
+    <div id="coordTooltip">0, 0</div>
+    <div id="snapDot"></div>
+
+    <div class="main-container">
+      <div class="canvas-wrapper" id="dropZone">
+        <div class="canvas-container" id="scrollContainer">
+          <div id="canvasMount">
+            <canvas id="mainCanvas"></canvas>
+          </div>
+        </div>
+        <div
+          style="
+            position: fixed;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-100%);
+            color: var(--text-dim);
+            font-size: 12px;
+            font-weight: bold;
+            pointer-events: none;
+          "
+        >
+          @ <span style="color: var(--accent);">DIU Cover Page</span> (2024-2026)
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="right-panel-box">
+          <button id="btnUpload">
+            <i class="fa fa-upload"></i> Upload Image
+          </button>
+          <input
+            type="file"
+            id="imgInput"
+            accept="image/*"
+            style="display: none"
+          />
+
+          <button id="clearImage" class="btn-danger">
+            <i class="fa fa-trash"></i> Clear Image
+          </button>
+
+          <div class="btn-row">
+            <button id="btnDark" class="active">
+              <i class="fa fa-moon-o"></i> Dark
+            </button>
+            <button id="btnLight"><i class="fa fa-sun-o"></i> Light</button>
+          </div>
+
+          <div
+            class="output-box"
+            id="sizeInfo"
+            style="text-align: center; color: var(--text-dim)"
+          >
+            Image Resolution Info
+          </div>
+
+          <h3>Current Selection</h3>
+          <div class="output-box" id="clickPos">glVertex2i(0, 0);</div>
+          <button id="copyCoord">
+            <i class="fa fa-clipboard"></i> Copy Axis
+          </button>
+
+          <h3>Color Picker</h3>
+          <div style="display: flex; align-items: center; gap: 12px">
+            <input type="color" id="colorPicker" />
+            <div class="output-box" id="colorInfo" style="flex: 1">
+              0.000, 0.000, 0.000
+            </div>
+          </div>
+          <button id="copyColor">
+            <i class="fa fa-clipboard"></i> Copy RGB
+          </button>
+
+          <h3>History (Last 5)</h3>
+          <div id="historyBox"></div>
+        </div>
+
+        <div class="right-panel-box">
+          <h3>Live Preview</h3>
+          <div class="btn-row">
+            <button id="togglePreview">
+              <i class="fa fa-eye"></i> Preview
+            </button>
+            <button id="clearPreview" class="btn-danger">
+              <i class="fa fa-eraser"></i> Clear
+            </button>
+          </div>
+
+          <h3>Grid &amp; Snap</h3>
+          <div class="btn-row">
+            <button id="toggleGrid"><i class="fa fa-th"></i> Show Grid</button>
+            <button id="toggleSnap" class="active">
+              <i class="fa fa-magnet"></i> Snap On
+            </button>
+          </div>
+
+          <h3>Tools</h3>
+          <div class="btn-row">
+            <button id="modeSelect" class="active">
+              <i class="fa fa-mouse-pointer"></i> Select
+            </button>
+            <button id="modeMove">
+              <i class="fa fa-hand-paper-o"></i> Drag
+            </button>
+            <button id="modeMagnify">
+              <i class="fa fa-search"></i> Magnify
+            </button>
+          </div>
+
+          <div class="btn-row">
+            <button id="zoomOut"><i class="fa fa-minus"></i></button>
+            <button id="resetZoom">Reset</button>
+            <button id="zoomIn"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="noteWidget">
+      <div id="noteBox">
+        <div class="note-header">
+          <span><i class="fa fa-pencil"></i> Scratchpad</span>
+        </div>
+        <textarea
+          id="noteTextarea"
+          placeholder="Type your notes here..."
+        ></textarea>
+      </div>
+      <button id="noteIcon"><i class="fa fa-commenting-o"></i></button>
+    </div>
+
+    <script>
+      // ── DOM refs ──────────────────────────────────────────────────────────────
+      const canvas = document.getElementById("mainCanvas");
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
+      const mount = document.getElementById("canvasMount");
+      const scrollCont = document.getElementById("scrollContainer");
+      const dropZone = document.getElementById("dropZone");
+      const tooltip = document.getElementById("coordTooltip");
+      const snapDot = document.getElementById("snapDot");
+      const mag = document.getElementById("magnifier");
+
+      // ── Performance: image cache canvas ──────────────────────────────────────
+      // imageCache holds the scaled image pixels only (no grid, no markers).
+      // On redraw we blit from this instead of re-decoding the image every time.
+      // It is only regenerated when `img` or `scale` actually changes.
+      const imageCache = document.createElement("canvas");
+      const icCtx = imageCache.getContext("2d");
+      let imageCacheValid = false; // true when cache matches current img+scale
+
+      // Offscreen canvas at 1:1 scale — used exclusively for colour picking.
+      // Never has overlays drawn on it, so colour reads are always accurate.
+      const offscreen = document.createElement("canvas");
+      const offCtx = offscreen.getContext("2d", { willReadFrequently: true });
+      let offscreenValid = false;
+
+      // ── State ─────────────────────────────────────────────────────────────────
+      let img = null;
+      let scale = 1;
+      let mode = "select";
+      let isPanning = false;
+      let panStart = {};
+      let history = [];
+      let clickCoords = [];
+      let previewActive = false;
+      let gridActive = false;
+      let snapActive = true;
+      let magnifyActive = false;
+
+      // rAF handle — prevents scheduling multiple redraws in the same frame
+      let rafPending = false;
+
+      // ── Restore localStorage ──────────────────────────────────────────────────
+      (function restore() {
+        const n = localStorage.getItem("icp_notes");
+        if (n) document.getElementById("noteTextarea").value = n;
+
+        const h = localStorage.getItem("icp_history");
+        if (h) {
+          history = JSON.parse(h);
+          renderHistory();
+        }
+
+        const cc = localStorage.getItem("icp_clickCoords");
+        if (cc) clickCoords = JSON.parse(cc);
+
+        const coord = localStorage.getItem("icp_coord");
+        if (coord) document.getElementById("clickPos").textContent = coord;
+
+        const ci = localStorage.getItem("icp_colorInfo");
+        if (ci) document.getElementById("colorInfo").textContent = ci;
+
+        const ch = localStorage.getItem("icp_colorHex");
+        if (ch) document.getElementById("colorPicker").value = ch;
+
+        const im = localStorage.getItem("icp_image");
+        if (im) {
+          img = new Image();
+          img.onload = () => {
+            scale = 1;
+            invalidateCache();
+            scheduleRedraw();
+            centerScroll();
+          };
+          img.src = im;
+        }
+      })();
+
+      // ── Cache invalidation ────────────────────────────────────────────────────
+      function invalidateCache() {
+        imageCacheValid = false;
+        offscreenValid = false;
+      }
+
+      // ── Vertex math ───────────────────────────────────────────────────────────
+      // 1st-quadrant graph: (0,0) = bottom-left, (W,H) = top-right.
+      // For N×M image → (N+1)×(M+1) vertices.
+      function getVertex(clientX, clientY) {
+        const rect = canvas.getBoundingClientRect();
+        const rawX = (clientX - rect.left) / scale;
+        const rawY = (clientY - rect.top) / scale;
+        const vx = Math.max(0, Math.min(Math.round(rawX), img.width));
+        const vy = Math.max(0, Math.min(Math.round(rawY), img.height));
+        return {
+          vx,
+          vy,
+          gx: vx,
+          gy: img.height - vy,
+          sx: rect.left + vx * scale,
+          sy: rect.top + vy * scale,
+          // Is cursor actually over the image area?
+          over:
+            rawX >= -0.5 &&
+            rawX <= img.width + 0.5 &&
+            rawY >= -0.5 &&
+            rawY <= img.height + 0.5,
+        };
+      }
+
+      // ── Scheduled redraw (rAF-throttled) ──────────────────────────────────────
+      // Call this instead of redraw() directly to avoid redundant frames.
+      function scheduleRedraw() {
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => {
+          rafPending = false;
+          redraw();
+        });
+      }
+
+      // ── Core redraw ───────────────────────────────────────────────────────────
+      function redraw() {
+        if (!img) return;
+
+        const cw = img.width * scale + 1; // +1: boundary vertices reachable
+        const ch = img.height * scale + 1;
+
+        // Resize canvas only when dimensions actually change (avoids clearing)
+        if (canvas.width !== cw || canvas.height !== ch) {
+          canvas.width = cw;
+          canvas.height = ch;
+          mount.style.width = cw + "px";
+          mount.style.height = ch + "px";
+        }
+
+        // ── Rebuild image cache if stale ────────────────────────────────────
+        if (!imageCacheValid) {
+          const iw = img.width * scale;
+          const ih = img.height * scale;
+          imageCache.width = iw;
+          imageCache.height = ih;
+          icCtx.drawImage(img, 0, 0, iw, ih);
+          imageCacheValid = true;
+        }
+
+        // ── Rebuild offscreen colour canvas if stale ────────────────────────
+        if (!offscreenValid) {
+          offscreen.width = img.width;
+          offscreen.height = img.height;
+          offCtx.drawImage(img, 0, 0, img.width, img.height);
+          offscreenValid = true;
+        }
+
+        // ── Composite: image → overlays ─────────────────────────────────────
+        ctx.clearRect(0, 0, cw, ch);
+        ctx.drawImage(imageCache, 0, 0); // fast blit from cache
+
+        if (gridActive) drawGrid();
+        if (previewActive && clickCoords.length) drawMarkers();
+
+        // Update info label
+        document.getElementById("sizeInfo").textContent =
+          `${img.width} × ${img.height}px  (${Math.round(scale * 100)}%)`;
+
+        mag.style.backgroundImage = `url(${img.src})`;
+      }
+
+      // ── Grid overlay ──────────────────────────────────────────────────────────
+      function drawGrid() {
+        const minPx = 6;
+        const step = Math.max(1, Math.ceil(minPx / scale));
+        const iw = img.width * scale;
+        const ih = img.height * scale;
+
+        ctx.save();
+        ctx.strokeStyle = "rgba(99,102,241,0.25)";
+        ctx.lineWidth = 0.5;
+
+        for (let xi = 0; xi <= img.width; xi += step) {
+          const px = xi * scale;
+          ctx.beginPath();
+          ctx.moveTo(px, 0);
+          ctx.lineTo(px, ih);
+          ctx.stroke();
+        }
+        for (let yi = 0; yi <= img.height; yi += step) {
+          const py = yi * scale;
+          ctx.beginPath();
+          ctx.moveTo(0, py);
+          ctx.lineTo(iw, py);
+          ctx.stroke();
+        }
+
+        ctx.strokeStyle = "rgba(99,102,241,0.7)";
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(0, 0, iw, ih);
+
+        if (scale >= 4) {
+          ctx.fillStyle = "rgba(99,102,241,0.55)";
+          for (let xi = 0; xi <= img.width; xi += step)
+            for (let yi = 0; yi <= img.height; yi += step) {
+              ctx.beginPath();
+              ctx.arc(xi * scale, yi * scale, 2, 0, Math.PI * 2);
+              ctx.fill();
+            }
+        }
+        ctx.restore();
+      }
+
+      // ── Marker overlay ────────────────────────────────────────────────────────
+      function drawMarkers() {
+        ctx.save();
+        clickCoords.forEach((pt, idx) => {
+          const cx = pt.gx * scale;
+          const cy = (img.height - pt.gy) * scale;
+          const arm = Math.max(8, 14 / scale);
+          const col = idx === 0 ? "#f59e0b" : "#ef4444";
+          const lw = idx === 0 ? 2 : 1.5;
+          const r = idx === 0 ? 4 : 3;
+
+          ctx.strokeStyle = col;
+          ctx.lineWidth = lw;
+          ctx.beginPath();
+          ctx.moveTo(cx - arm, cy);
+          ctx.lineTo(cx + arm, cy);
+          ctx.moveTo(cx, cy - arm);
+          ctx.lineTo(cx, cy + arm);
+          ctx.stroke();
+
+          ctx.fillStyle = col;
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.restore();
+      }
+
+      function centerScroll() {
+        scrollCont.scrollLeft = (canvas.width - scrollCont.clientWidth) / 2;
+        scrollCont.scrollTop = (canvas.height - scrollCont.clientHeight) / 2;
+      }
+
+      function renderHistory() {
+        document.getElementById("historyBox").innerHTML = history
+          .slice(0, 5)
+          .map((h) => `<div class="history-item">${h}</div>`)
+          .join("");
+      }
+
+      // ── Image loading ─────────────────────────────────────────────────────────
+      function loadImage(file) {
+        if (!file || !file.type.startsWith("image/")) return;
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          img = new Image();
+          img.onload = () => {
+            scale = 1;
+            invalidateCache();
+            scheduleRedraw();
+            centerScroll();
+          };
+          img.src = ev.target.result;
+          try {
+            localStorage.setItem("icp_image", ev.target.result);
+          } catch (e) {
+            console.warn("Image too large for localStorage");
+          }
+        };
+        reader.readAsDataURL(file);
+      }
+
+      document.getElementById("btnUpload").onclick = () =>
+        document.getElementById("imgInput").click();
+
+      document.getElementById("imgInput").onchange = (e) =>
+        loadImage(e.target.files[0]);
+
+      document.getElementById("clearImage").onclick = () => {
+        img = null;
+        imageCacheValid = offscreenValid = false;
+        canvas.width = canvas.height = 0;
+        mount.style.width = mount.style.height = "0px";
+        document.getElementById("sizeInfo").textContent =
+          "Image Resolution Info";
+        document.getElementById("imgInput").value = "";
+        tooltip.style.display = snapDot.style.display = "none";
+        mag.style.backgroundImage = "none";
+        history = [];
+        clickCoords = [];
+        renderHistory();
+        document.getElementById("clickPos").textContent = "glVertex2i(0, 0);";
+        document.getElementById("colorInfo").textContent =
+          "0.000, 0.000, 0.000";
+        document.getElementById("colorPicker").value = "#000000";
+        [
+          "icp_image",
+          "icp_history",
+          "icp_coord",
+          "icp_colorInfo",
+          "icp_colorHex",
+          "icp_clickCoords",
+        ].forEach((k) => localStorage.removeItem(k));
+      };
+
+      // ── Canvas background ─────────────────────────────────────────────────────
+      document.getElementById("btnDark").onclick = () => {
+        dropZone.classList.remove("light-mode");
+        document.getElementById("btnDark").classList.add("active");
+        document.getElementById("btnLight").classList.remove("active");
+      };
+      document.getElementById("btnLight").onclick = () => {
+        dropZone.classList.add("light-mode");
+        document.getElementById("btnLight").classList.add("active");
+        document.getElementById("btnDark").classList.remove("active");
+      };
+
+      // ── Drag & drop ───────────────────────────────────────────────────────────
+      ["dragenter", "dragover", "dragleave", "drop"].forEach((ev) =>
+        dropZone.addEventListener(ev, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }),
+      );
+      ["dragenter", "dragover"].forEach((ev) =>
+        dropZone.addEventListener(ev, () =>
+          dropZone.classList.add("drag-over"),
+        ),
+      );
+      ["dragleave", "drop"].forEach((ev) =>
+        dropZone.addEventListener(ev, () =>
+          dropZone.classList.remove("drag-over"),
+        ),
+      );
+      dropZone.addEventListener("drop", (e) =>
+        loadImage(e.dataTransfer.files[0]),
+      );
+
+      // ── Cursor ────────────────────────────────────────────────────────────────
+      const CROSSHAIR =
+        `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'>` +
+        `<line x1='16' y1='6' x2='16' y2='26' stroke='black' stroke-width='4' stroke-linecap='round'/>` +
+        `<line x1='6' y1='16' x2='26' y2='16' stroke='black' stroke-width='4' stroke-linecap='round'/>` +
+        `<line x1='16' y1='7' x2='16' y2='25' stroke='white' stroke-width='2' stroke-linecap='round'/>` +
+        `<line x1='7' y1='16' x2='25' y2='16' stroke='white' stroke-width='2' stroke-linecap='round'/>` +
+        `</svg>") 16 16, crosshair`;
+
+      function setCursor(c) {
+        canvas.style.cursor = c || CROSSHAIR;
+      }
+      setCursor();
+
+      // ── Mouse: move ───────────────────────────────────────────────────────────
+      // Tooltip and snap dot updates are pure CSS moves — no canvas redraws here.
+      canvas.addEventListener("mousemove", (e) => {
+        if (!img) return;
+
+        if (mode === "move" && isPanning) {
+          scrollCont.scrollLeft = panStart.sL - (e.clientX - panStart.x);
+          scrollCont.scrollTop = panStart.sT - (e.clientY - panStart.y);
+          return;
+        }
+
+        const v = getVertex(e.clientX, e.clientY);
+        if (!v.over) {
+          tooltip.style.display = snapDot.style.display = "none";
+          mag.style.display = "none";
+          return;
+        }
+
+        // Tooltip
+        tooltip.style.display = "block";
+        tooltip.textContent = `${v.gx}, ${v.gy}`;
+
+        // Snap dot
+        if (snapActive && mode === "select") {
+          snapDot.style.display = "block";
+          snapDot.style.left = v.sx + "px";
+          snapDot.style.top = v.sy + "px";
+        } else {
+          snapDot.style.display = "none";
+        }
+
+        const W = window.innerWidth,
+          H = window.innerHeight,
+          D = 20;
+        const tw = tooltip.offsetWidth,
+          th = tooltip.offsetHeight;
+        let tl = e.clientX > W / 2 ? e.clientX - tw - D : e.clientX + D;
+        let tt = e.clientY > H / 2 ? e.clientY - th - D : e.clientY + D;
+
+        // Magnifier
+        if (magnifyActive) {
+          const ms = 120,
+            zoom = 5;
+          let ml = e.clientX > W / 2 ? e.clientX - ms - D : e.clientX + D;
+          let mt = e.clientY > H / 2 ? e.clientY - ms - D : e.clientY + D;
+          mag.style.left = ml + "px";
+          mag.style.top = mt + "px";
+          mag.style.display = "block";
+          mag.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
+          const r = canvas.getBoundingClientRect();
+          const ex = (e.clientX - r.left) / scale;
+          const ey = (e.clientY - r.top) / scale;
+          mag.style.backgroundPosition = `${-(ex * zoom - 60)}px ${-(ey * zoom - 60)}px`;
+          if (e.clientY > H / 2) tt -= 130;
+          else tt += 130;
+        } else {
+          mag.style.display = "none";
+        }
+
+        tooltip.style.left = tl + "px";
+        tooltip.style.top = tt + "px";
+      });
+
+      canvas.addEventListener("mouseleave", () => {
+        tooltip.style.display = snapDot.style.display = "none";
+        mag.style.display = "none";
+      });
+
+      // ── Mouse: click ──────────────────────────────────────────────────────────
+      canvas.addEventListener("mousedown", (e) => {
+        if (!img) return;
+
+        if (mode === "move") {
+          isPanning = true;
+          setCursor("grabbing");
+          panStart = {
+            x: e.clientX,
+            y: e.clientY,
+            sL: scrollCont.scrollLeft,
+            sT: scrollCont.scrollTop,
+          };
+          return;
+        }
+
+        const v = getVertex(e.clientX, e.clientY);
+        if (!v.over) return;
+
+        const cmd = `glVertex2i(${v.gx}, ${v.gy});`;
+        document.getElementById("clickPos").textContent = cmd;
+
+        history.unshift(cmd);
+        renderHistory();
+
+        clickCoords.unshift({ gx: v.gx, gy: v.gy });
+        localStorage.setItem("icp_clickCoords", JSON.stringify(clickCoords));
+
+        // Colour: clamp vertex indices to valid pixel range [0, W-1]×[0, H-1]
+        const pxX = Math.min(v.vx, img.width - 1);
+        const pxY = Math.min(v.vy, img.height - 1);
+        const p = offCtx.getImageData(pxX, pxY, 1, 1).data;
+        const rgb = [p[0] / 255, p[1] / 255, p[2] / 255]
+          .map((n) => n.toFixed(3))
+          .join(", ");
+        const hex = `#${((1 << 24) | (p[0] << 16) | (p[1] << 8) | p[2]).toString(16).slice(1)}`;
+        document.getElementById("colorInfo").textContent = rgb;
+        document.getElementById("colorPicker").value = hex;
+
+        localStorage.setItem("icp_history", JSON.stringify(history));
+        localStorage.setItem("icp_coord", cmd);
+        localStorage.setItem("icp_colorInfo", rgb);
+        localStorage.setItem("icp_colorHex", hex);
+
+        scheduleRedraw();
+      });
+
+      window.addEventListener("mouseup", () => {
+        isPanning = false;
+        if (mode === "move") setCursor("grab");
+      });
+
+      // ── Zoom ──────────────────────────────────────────────────────────────────
+      document.getElementById("zoomIn").onclick = () => {
+        scale *= 1.2;
+        invalidateCache();
+        scheduleRedraw();
+      };
+      document.getElementById("zoomOut").onclick = () => {
+        scale /= 1.2;
+        invalidateCache();
+        scheduleRedraw();
+      };
+      document.getElementById("resetZoom").onclick = () => {
+        if (scale === 1) return;
+        scale = 1;
+        invalidateCache();
+        scheduleRedraw();
+      };
+
+      canvas.addEventListener(
+        "wheel",
+        (e) => {
+          if (!e.ctrlKey) return;
+          e.preventDefault();
+          scale = e.deltaY > 0 ? scale / 1.1 : scale * 1.1;
+          invalidateCache();
+          scheduleRedraw();
+        },
+        { passive: false },
+      );
+
+      // ── Mode buttons ──────────────────────────────────────────────────────────
+      document.getElementById("modeSelect").onclick = () => {
+        mode = "select";
+        setCursor();
+        document.getElementById("modeSelect").classList.add("active");
+        document.getElementById("modeMove").classList.remove("active");
+      };
+      document.getElementById("modeMove").onclick = () => {
+        mode = "move";
+        setCursor("grab");
+        snapDot.style.display = "none";
+        document.getElementById("modeMove").classList.add("active");
+        document.getElementById("modeSelect").classList.remove("active");
+      };
+
+      // ── Preview ───────────────────────────────────────────────────────────────
+      document.getElementById("togglePreview").onclick = function () {
+        previewActive = !previewActive;
+        this.classList.toggle("active", previewActive);
+        scheduleRedraw();
+      };
+      document.getElementById("clearPreview").onclick = () => {
+        clickCoords = [];
+        localStorage.removeItem("icp_clickCoords");
+        scheduleRedraw();
+      };
+
+      // ── Grid ──────────────────────────────────────────────────────────────────
+      document.getElementById("toggleGrid").onclick = function () {
+        gridActive = !gridActive;
+        this.classList.toggle("active", gridActive);
+        this.innerHTML = gridActive
+          ? '<i class="fa fa-th"></i> Hide Grid'
+          : '<i class="fa fa-th"></i> Show Grid';
+        scheduleRedraw();
+      };
+
+      // ── Snap ─────────────────────────────────────────────────────────────────
+      document.getElementById("toggleSnap").onclick = function () {
+        snapActive = !snapActive;
+        this.classList.toggle("active", snapActive);
+        this.innerHTML = snapActive
+          ? '<i class="fa fa-magnet"></i> Snap On'
+          : '<i class="fa fa-magnet"></i> Snap Off';
+        if (!snapActive) snapDot.style.display = "none";
+      };
+
+      // ── Magnify ───────────────────────────────────────────────────────────────
+      document.getElementById("modeMagnify").onclick = function () {
+        magnifyActive = !magnifyActive;
+        this.classList.toggle("active", magnifyActive);
+        if (!magnifyActive) mag.style.display = "none";
+      };
+
+      // ── Copy buttons ──────────────────────────────────────────────────────────
+      function setupCopy(btnId, srcId) {
+        document.getElementById(btnId).onclick = function () {
+          navigator.clipboard.writeText(
+            document.getElementById(srcId).textContent,
+          );
+          const old = this.innerHTML;
+          this.textContent = "Copied!";
+          setTimeout(() => (this.innerHTML = old), 1000);
+        };
+      }
+      setupCopy("copyCoord", "clickPos");
+      setupCopy("copyColor", "colorInfo");
+
+      // ── Floating Note Widget ──────────────────────────────────────────────────
+      const noteWidget = document.getElementById("noteWidget");
+      const noteIcon = document.getElementById("noteIcon");
+      const noteBox = document.getElementById("noteBox");
+      const noteTextarea = document.getElementById("noteTextarea");
+
+      noteTextarea.addEventListener("input", (e) =>
+        localStorage.setItem("icp_notes", e.target.value),
+      );
+
+      let draggingNote = false,
+        noteMoved = false,
+        ndx,
+        ndy,
+        nIL,
+        nIT;
+
+      noteIcon.addEventListener("mousedown", (e) => {
+        draggingNote = true;
+        noteMoved = false;
+        ndx = e.clientX;
+        ndy = e.clientY;
+        const r = noteWidget.getBoundingClientRect();
+        nIL = r.left;
+        nIT = r.top;
+        document.body.style.userSelect = "none";
+      });
+
+      window.addEventListener("mousemove", (e) => {
+        if (!draggingNote) return;
+        const dx = e.clientX - ndx,
+          dy = e.clientY - ndy;
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) noteMoved = true;
+        if (!noteMoved) return;
+        const m = 15,
+          s = 48;
+        const nL = Math.max(m, Math.min(nIL + dx, window.innerWidth - s - m));
+        const nT = Math.max(m, Math.min(nIT + dy, window.innerHeight - s - m));
+        noteWidget.style.right = "auto";
+        noteWidget.style.bottom = "auto";
+        noteWidget.style.left = nL + "px";
+        noteWidget.style.top = nT + "px";
+        noteBox.style.right = nL < window.innerWidth / 2 ? "auto" : "0";
+        noteBox.style.left = nL < window.innerWidth / 2 ? "0" : "auto";
+        noteBox.style.bottom = nT < window.innerHeight / 2 ? "auto" : "60px";
+        noteBox.style.top = nT < window.innerHeight / 2 ? "60px" : "auto";
+      });
+
+      window.addEventListener("mouseup", () => {
+        if (!draggingNote) return;
+        draggingNote = false;
+        document.body.style.userSelect = "auto";
+        if (!noteMoved)
+          noteBox.style.display =
+            noteBox.style.display === "flex" ? "none" : "flex";
+      });
+    </script>
+  </body>
+</html>

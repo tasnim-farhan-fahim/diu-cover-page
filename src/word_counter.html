@@ -1,0 +1,2741 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="icon" type="image/x-icon" href="../img/word_counter.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Word Counter — by DIU Cover Page</title>
+    <style>
+      :root {
+        --bg-main: #0f172a;
+        --bg-panel: #1e293b;
+        --bg-output: #334155;
+        --accent: #6366f1;
+        --accent-hover: #818cf8;
+        --danger: #ef4444;
+        --danger-hover: #f87171;
+        --text-main: #f8fafc;
+        --text-dim: #94a3b8;
+        --border: #475569;
+        --hl-upper: #818cf8;
+        --hl-lower: #cbd5e1;
+        --hl-digit: #f59e0b;
+        --hl-punct: #fb923c;
+        --hl-special: #f472b6;
+        --hl-speak-bg: #6a32eb;
+        --hl-find-bg: rgba(245, 158, 11, 0.38);
+        --hl-find-cur: #d97706;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", sans-serif;
+        background: var(--bg-main);
+        color: var(--text-main);
+        height: 100vh;
+        display: flex;
+        overflow: hidden;
+      }
+
+      .main-container {
+        display: flex;
+        flex: 1;
+        padding: 20px;
+        gap: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /* ── Resizer ── */
+      #resizer {
+        width: 8px;
+        min-width: 8px;
+        cursor: col-resize;
+        background: var(--border);
+        border-radius: 4px;
+        margin: 0 7px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+      #resizer:hover,
+      #resizer.dragging {
+        background: var(--accent);
+      }
+      #resizer::after {
+        content: "⋮";
+        font-size: 14px;
+        color: var(--text-dim);
+        pointer-events: none;
+      }
+
+      /* ── Left panel ── */
+      .editor-area {
+        flex: 1;
+        min-width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow: hidden;
+      }
+
+      .editor-toolbar {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-shrink: 0;
+        flex-wrap: nowrap;
+      }
+
+      .editor-title {
+        flex: 1;
+        line-height: 1.15;
+      }
+      .editor-title .title-big {
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--text-main);
+        letter-spacing: -0.5px;
+        display: block;
+      }
+      .editor-title .title-big span {
+        color: var(--accent);
+      }
+      .editor-title .title-small {
+        font-size: 11px;
+        color: var(--text-dim);
+        font-weight: 500;
+        letter-spacing: 0.3px;
+      }
+
+      /* ── Find Bar ── */
+      .find-bar {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        padding: 7px 10px;
+        background: var(--bg-panel);
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+        flex-shrink: 0;
+      }
+      .find-bar.open {
+        display: flex;
+      }
+      .find-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .find-bar-icon {
+        color: var(--accent);
+        font-size: 12px;
+        flex-shrink: 0;
+        width: 14px;
+        text-align: center;
+      }
+      .find-bar-icon.replace-icon {
+        color: #4ade80;
+      }
+      #findInput,
+      #replaceInput {
+        flex: 1;
+        min-width: 0;
+        background: var(--bg-output);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 5px 10px;
+        color: var(--text-main);
+        font-size: 13px;
+        font-family: inherit;
+        outline: none;
+        transition: border-color 0.15s;
+      }
+      #findInput:focus {
+        border-color: var(--accent);
+      }
+      #replaceInput:focus {
+        border-color: #4ade80;
+      }
+      .find-count {
+        font-size: 11px;
+        color: var(--text-dim);
+        font-family: monospace;
+        white-space: nowrap;
+        min-width: 44px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .find-count.has-results {
+        color: var(--accent-hover);
+      }
+      .find-bar .find-icon-btn {
+        flex: 0 0 auto;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        font-size: 11px;
+      }
+      .find-bar .replace-btn {
+        flex: 0 0 auto;
+        height: 28px;
+        padding: 0 10px;
+        font-size: 11px;
+        white-space: nowrap;
+      }
+      .find-bar .replace-btn.green {
+        background: rgba(74, 222, 128, 0.18);
+        color: #4ade80;
+      }
+      .find-bar .replace-btn.green:hover {
+        background: rgba(74, 222, 128, 0.32);
+      }
+
+      .canvas-wrapper {
+        flex: 1;
+        background: var(--bg-panel);
+        border-radius: 12px;
+        border: 2px solid var(--border);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+
+      /* ── Editor header (now contains stats) ── */
+      .editor-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 14px;
+        border-bottom: 1px solid var(--border);
+        background: var(--bg-output);
+        border-radius: 10px 10px 0 0;
+        flex-shrink: 0;
+        gap: 12px;
+      }
+      .editor-header-left {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-dim);
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        flex-shrink: 0;
+      }
+      .editor-header-left i {
+        color: var(--accent);
+      }
+
+      /* Inline quick stats */
+      .header-stats {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        flex: 1;
+        text-align: right;
+        justify-content: flex-end;
+        overflow: hidden;
+      }
+      .hstat {
+        font-size: 11px;
+        color: var(--text-dim);
+        font-family: "JetBrains Mono", monospace;
+        white-space: nowrap;
+      }
+      .hstat span {
+        color: var(--accent-hover);
+        font-weight: 700;
+      }
+
+      .live-badge {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 11px;
+        color: #4ade80;
+        font-weight: 600;
+        flex-shrink: 0;
+      }
+      .live-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #4ade80;
+        animation: pulse 1.8s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: scale(0.8);
+        }
+      }
+
+      /* ── Color legend ── */
+      .color-legend {
+        display: flex;
+        gap: 12px;
+        padding: 5px 14px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(0, 0, 0, 0.18);
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .legend-label {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--text-dim);
+        font-weight: 600;
+      }
+      .legend-item {
+        font-size: 11px;
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .legend-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .li-upper {
+        color: var(--hl-upper);
+      }
+      .ld-upper {
+        background: var(--hl-upper);
+      }
+      .li-lower {
+        color: var(--hl-lower);
+      }
+      .ld-lower {
+        background: var(--hl-lower);
+      }
+      .li-digit {
+        color: var(--hl-digit);
+      }
+      .ld-digit {
+        background: var(--hl-digit);
+      }
+      .li-punct {
+        color: var(--hl-punct);
+      }
+      .ld-punct {
+        background: var(--hl-punct);
+      }
+      .li-special {
+        color: var(--hl-special);
+      }
+      .ld-special {
+        background: var(--hl-special);
+      }
+
+      /* ── Highlight overlay ── */
+      .highlight-wrap {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        min-height: 0;
+      }
+
+      #highlights,
+      #mainTextarea {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 16px;
+        font-family: "Lora", Georgia, serif;
+        font-size: 15px;
+        line-height: 1.85;
+        border: none;
+        outline: none;
+        resize: none;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        margin: 0;
+        tab-size: 4;
+        overflow: auto;
+      }
+      #highlights {
+        color: var(--hl-lower);
+        background: transparent;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+        scrollbar-width: none;
+      }
+      #highlights .hl-upper {
+        color: var(--hl-upper);
+      }
+      #highlights .hl-digit {
+        color: var(--hl-digit);
+      }
+      #highlights .hl-punct {
+        color: var(--hl-punct);
+      }
+      #highlights .hl-special {
+        color: var(--hl-special);
+      }
+      #highlights .hl-speaking {
+        background: var(--hl-speak-bg);
+        color: #ffffff !important;
+        border-radius: 3px;
+        padding: 1px 0;
+      }
+      /* Find highlights */
+      #highlights .hl-find {
+        background: var(--hl-find-bg);
+        border-radius: 2px;
+        outline: 1px solid rgba(245, 158, 11, 0.5);
+      }
+      #highlights .hl-find-current {
+        background: var(--hl-find-cur);
+        color: #0f172a !important;
+        border-radius: 2px;
+        font-weight: 700;
+      }
+
+      #mainTextarea {
+        background: transparent;
+        color: transparent;
+        caret-color: #f8fafc;
+        z-index: 1;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border) transparent;
+        font-family: "Lora", Georgia, serif;
+      }
+      #mainTextarea::placeholder {
+        color: var(--text-dim);
+      }
+      #mainTextarea::selection {
+        color: #fff;
+        background: rgba(99, 102, 241);
+      }
+      #mainTextarea::-webkit-scrollbar {
+        width: 4px;
+      }
+      #mainTextarea::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 99px;
+      }
+
+      /* ── Editor footer (copyright) ── */
+      .editor-footer {
+        padding: 6px 14px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        flex-shrink: 0;
+        background: rgba(0, 0, 0, 0.12);
+      }
+      .footer-copy {
+        font-size: 11px;
+        color: var(--text-dim);
+        font-style: italic;
+        letter-spacing: 0.2px;
+      }
+      .footer-copy span {
+        color: var(--accent-hover);
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      /* ── Right panel ── */
+      .right-panel {
+        width: 370px;
+        min-width: 400px;
+        max-width: 660px;
+        background: var(--bg-panel);
+        border-radius: 16px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        border: 1px solid var(--border);
+        overflow-y: auto;
+        flex-shrink: 0;
+        scrollbar-width: thin;
+        scrollbar-color: var(--border) transparent;
+      }
+      .right-panel::-webkit-scrollbar {
+        width: 4px;
+      }
+      .right-panel::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 99px;
+      }
+
+      h3 {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--text-dim);
+        margin-top: 6px;
+        margin-bottom: 2px;
+      }
+
+      /* ── Stat cards ── */
+      .stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+      }
+      .stat-card {
+        background: var(--bg-output);
+        border-radius: 8px;
+        padding: 9px 11px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        transition: border-color 0.2s;
+      }
+      .stat-card:hover {
+        border-color: var(--accent);
+      }
+      .stat-card.accent-card {
+        border-left: 3px solid var(--accent);
+      }
+      .stat-card.gold-card {
+        border-left: 3px solid #f59e0b;
+      }
+      .stat-card.green-card {
+        border-left: 3px solid #4ade80;
+      }
+      .stat-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--text-dim);
+        font-weight: 600;
+      }
+      .stat-value {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text-main);
+        line-height: 1.2;
+      }
+      .stat-value.small {
+        font-size: 13px;
+      }
+      .stat-sub {
+        font-size: 10px;
+        color: var(--text-dim);
+        margin-top: 1px;
+      }
+
+      /* ── Output box ── */
+      .output-box {
+        background: var(--bg-output);
+        color: #38bdf8;
+        padding: 9px 11px;
+        border-radius: 8px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        word-break: break-all;
+        line-height: 1.5;
+      }
+      .output-box.muted {
+        color: var(--text-dim);
+      }
+
+      /* ── Buttons ── */
+      .btn-row {
+        display: flex;
+        gap: 8px;
+      }
+
+      button {
+        flex: 1;
+        height: 36px;
+        padding: 0 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        background: var(--bg-output);
+        color: var(--text-main);
+        font-size: 11px;
+        font-weight: 600;
+        transition:
+          background 0.15s ease,
+          transform 0.1s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        white-space: nowrap;
+        font-family: inherit;
+      }
+      button:hover {
+        background: var(--accent-hover);
+        transform: translateY(-1px);
+      }
+      button.active {
+        background: var(--accent);
+        color: white;
+      }
+      button.active:hover {
+        background: var(--accent-hover);
+      }
+      button.btn-danger {
+        background: var(--danger);
+        color: white;
+      }
+      button.btn-danger:hover {
+        background: var(--danger-hover);
+        transform: translateY(-1px);
+      }
+      button.btn-accent {
+        background: var(--accent);
+        color: white;
+      }
+      button.btn-accent:hover {
+        background: var(--accent-hover);
+      }
+      button:disabled {
+        opacity: 0.38;
+        cursor: not-allowed;
+        transform: none !important;
+      }
+      .editor-toolbar button {
+        flex: 0 0 auto;
+        font-size: 12px;
+        padding: 0 14px;
+      }
+
+      /* ── Convert grid ── */
+      .convert-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+      .convert-grid button {
+        height: 36px;
+        font-size: 11px;
+      }
+
+      /* ── Case pills ── */
+      .case-row {
+        display: flex;
+        gap: 6px;
+      }
+      .case-pill {
+        flex: 1;
+        background: var(--bg-output);
+        border-radius: 6px;
+        padding: 7px 8px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .case-pill-val {
+        font-family: monospace;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .case-pill-lbl {
+        font-size: 9px;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        color: var(--text-dim);
+        margin-top: 2px;
+      }
+
+      /* ── Readability ── */
+      .readability-wrap {
+        background: var(--bg-output);
+        border-radius: 8px;
+        padding: 10px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .readability-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--text-dim);
+        font-weight: 600;
+        margin-bottom: 6px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .readability-label span {
+        color: var(--text-main);
+        font-family: monospace;
+      }
+      .readability-bar {
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .readability-fill {
+        height: 100%;
+        border-radius: 99px;
+        transition:
+          width 0.4s ease,
+          background 0.4s ease;
+        width: 0%;
+        background: var(--accent);
+      }
+      .readability-desc {
+        font-size: 10px;
+        color: var(--text-dim);
+        margin-top: 4px;
+      }
+
+      /* ── Top words ── */
+      .top-words-list {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .top-word-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+      }
+      .tw-rank {
+        font-size: 10px;
+        color: var(--text-dim);
+        width: 14px;
+        text-align: right;
+        font-family: monospace;
+      }
+      .tw-word {
+        font-family: "JetBrains Mono", monospace;
+        color: #38bdf8;
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .tw-bar-wrap {
+        width: 55px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .tw-bar {
+        height: 100%;
+        background: var(--accent);
+        border-radius: 99px;
+      }
+      .tw-count {
+        font-family: monospace;
+        font-size: 11px;
+        color: var(--text-dim);
+        width: 20px;
+        text-align: right;
+      }
+
+      /* ── Divider ── */
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 3px 0;
+        opacity: 0.5;
+      }
+
+      /* ── Copy flash ── */
+      .copy-flash {
+        position: fixed;
+        background: var(--accent);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 600;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+
+      /* ── Voice toggle ── */
+      .voice-toggle-wrap {
+        background: var(--bg-output);
+        border-radius: 8px;
+        padding: 8px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .voice-toggle-label {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--text-dim);
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      .voice-toggle-track {
+        flex: 1;
+        height: 28px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 99px;
+        position: relative;
+        cursor: pointer;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        transition: border-color 0.2s;
+        overflow: hidden;
+      }
+      .voice-toggle-track:hover {
+        border-color: var(--accent);
+      }
+      .voice-toggle-left,
+      .voice-toggle-right {
+        flex: 1;
+        z-index: 1;
+        text-align: center;
+        font-size: 11px;
+        font-weight: 700;
+        transition: color 0.25s;
+        user-select: none;
+      }
+      .voice-toggle-left {
+        color: var(--text-dim);
+      }
+      .voice-toggle-right {
+        color: var(--text-dim);
+      }
+      .voice-toggle-left.active {
+        color: #fff;
+      }
+      .voice-toggle-right.active {
+        color: #fff;
+      }
+      .voice-toggle-thumb {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: calc(50% - 4px);
+        height: calc(100% - 4px);
+        background: var(--accent);
+        border-radius: 99px;
+        transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        pointer-events: none;
+      }
+      .voice-toggle-track.female .voice-toggle-thumb {
+        left: calc(50% + 2px);
+      }
+      .voice-icon {
+        font-size: 15px;
+      }
+
+      /* ── Read Aloud ── */
+      .speech-wrap {
+        background: var(--bg-output);
+        border-radius: 8px;
+        padding: 10px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .speech-controls {
+        display: flex;
+        gap: 7px;
+      }
+      .speech-progress-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .speech-bar-bg {
+        flex: 1;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 99px;
+        overflow: hidden;
+      }
+      .speech-bar-fill {
+        height: 100%;
+        background: #4ade80;
+        border-radius: 99px;
+        width: 0%;
+        transition: width 0.2s ease;
+      }
+      .speech-status {
+        font-size: 10px;
+        color: var(--text-dim);
+        font-family: "JetBrains Mono", monospace;
+        white-space: nowrap;
+      }
+      .speech-rate-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        color: var(--text-dim);
+      }
+      .speech-rate-row input[type="range"] {
+        flex: 1;
+        -webkit-appearance: none;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 99px;
+        outline: none;
+        cursor: pointer;
+      }
+      .speech-rate-row input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 12px;
+        height: 12px;
+        background: var(--accent);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      .speech-rate-val {
+        font-family: monospace;
+        font-size: 11px;
+        color: var(--accent-hover);
+        min-width: 28px;
+        text-align: right;
+      }
+
+      /* ── Mobile Layout ── */
+      @media (max-width: 768px) {
+        body {
+          height: auto;
+          min-height: 100vh;
+          overflow: auto;
+        }
+        .main-container {
+          flex-direction: column;
+          overflow: visible;
+          height: auto;
+          padding: 10px;
+          gap: 12px;
+        }
+        .editor-area {
+          min-width: unset !important;
+          width: 100% !important;
+          flex: none;
+          height: auto;
+        }
+        .canvas-wrapper {
+          height: 360px;
+          flex: none;
+        }
+        #resizer {
+          display: none;
+        }
+        .right-panel {
+          width: 100% !important;
+          min-width: unset !important;
+          max-width: none !important;
+          flex-shrink: 1;
+          overflow-y: visible;
+        }
+        .editor-toolbar {
+          flex-wrap: wrap;
+          gap: 6px;
+        }
+        .editor-toolbar button {
+          flex: 0 0 auto;
+          font-size: 11px;
+          padding: 0 10px;
+          height: 32px;
+        }
+        .editor-title .title-big {
+          font-size: 16px;
+        }
+        .stat-grid {
+          gap: 5px;
+        }
+        .convert-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .find-bar {
+          flex-wrap: wrap;
+        }
+        .header-stats {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="copyFlash" class="copy-flash">Copied!</div>
+
+    <div class="main-container">
+      <!-- ══ LEFT: Editor ══ -->
+      <div class="editor-area" id="editorArea">
+        <div class="editor-toolbar">
+          <div class="editor-title">
+            <span class="title-big">Word <span>Counter</span></span>
+            <span class="title-small">by DIU Cover Page</span>
+          </div>
+          <button class="btn-accent" id="btnPaste">
+            <i class="fa fa-paste"></i> Paste
+          </button>
+          <button id="btnFind" title="Find (Ctrl+F)">
+            <i class="fa fa-search"></i> Find
+          </button>
+          <button id="btnUndo" disabled title="Undo (Ctrl+Z)">
+            <i class="fa fa-undo"></i> Undo
+          </button>
+          <button id="btnRedo" disabled title="Redo (Ctrl+Y)">
+            <i class="fa fa-repeat"></i> Redo
+          </button>
+          <button id="btnCopyAll"><i class="fa fa-copy"></i> Copy All</button>
+          <button class="btn-danger" id="btnClear">
+            <i class="fa fa-trash"></i> Clear
+          </button>
+        </div>
+
+        <!-- ── Find & Replace Bar ── -->
+        <div class="find-bar" id="findBar">
+          <!-- Row 1: Find -->
+          <div class="find-row">
+            <span class="find-bar-icon"><i class="fa fa-search"></i></span>
+            <input
+              type="text"
+              id="findInput"
+              placeholder="Find phrase or word…"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <span id="findCount" class="find-count">0 / 0</span>
+            <button
+              class="find-icon-btn"
+              id="btnFindPrev"
+              title="Previous (Shift+Enter)"
+            >
+              <i class="fa fa-chevron-up"></i>
+            </button>
+            <button class="find-icon-btn" id="btnFindNext" title="Next (Enter)">
+              <i class="fa fa-chevron-down"></i>
+            </button>
+            <button
+              class="find-icon-btn"
+              id="btnFindClose"
+              title="Close (Esc)"
+              style="color: #ef4444"
+            >
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+          <!-- Row 2: Replace -->
+          <div class="find-row">
+            <span class="find-bar-icon replace-icon"
+              ><i class="fa fa-pencil"></i
+            ></span>
+            <input
+              type="text"
+              id="replaceInput"
+              placeholder="Replace with…"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button
+              class="replace-btn green"
+              id="btnReplace"
+              title="Replace current match"
+            >
+              Replace
+            </button>
+            <button
+              class="replace-btn green"
+              id="btnReplaceAll"
+              title="Replace all matches"
+            >
+              All
+            </button>
+          </div>
+        </div>
+
+        <div class="canvas-wrapper">
+          <!-- Header: label + inline stats + live badge -->
+          <div class="editor-header">
+            <div class="editor-header-left">
+              <i class="fa fa-file-text-o"></i> Editor
+            </div>
+            <div class="header-stats">
+              <span class="hstat">Words: <span id="fWords">0</span></span>
+              <span class="hstat">Chars: <span id="fChars">0</span></span>
+              <span class="hstat">Lines: <span id="fLines">0</span></span>
+              <span class="hstat">Read: <span id="fRead">0s</span></span>
+            </div>
+            <div class="live-badge">
+              <div class="live-dot"></div>
+              Live Analysis
+            </div>
+          </div>
+
+          <!-- Color legend -->
+          <div class="color-legend">
+            <span class="legend-label">Colors:</span>
+            <span class="legend-item li-upper"
+              ><span class="legend-dot ld-upper"></span> UPPER</span
+            >
+            <span class="legend-item li-lower"
+              ><span class="legend-dot ld-lower"></span> lower</span
+            >
+            <span class="legend-item li-digit"
+              ><span class="legend-dot ld-digit"></span> Digits</span
+            >
+            <span class="legend-item li-punct"
+              ><span class="legend-dot ld-punct"></span> Punct</span
+            >
+            <span class="legend-item li-special"
+              ><span class="legend-dot ld-special"></span> Special</span
+            >
+          </div>
+
+          <!-- Highlight + textarea -->
+          <div class="highlight-wrap">
+            <div id="highlights" aria-hidden="true"></div>
+            <textarea
+              id="mainTextarea"
+              spellcheck="true"
+              placeholder="Start typing or paste your text here…"
+            ></textarea>
+          </div>
+
+          <!-- Footer: copyright -->
+          <div class="editor-footer">
+            <span class="footer-copy"
+              >© <span>DIU Cover Page</span> (2024–2026)</span
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ RESIZER ══ -->
+      <div id="resizer" title="Drag to resize"></div>
+
+      <!-- ══ RIGHT: Stats Panel ══ -->
+      <div class="right-panel" id="rightPanel">
+        <!-- VOICE TOGGLE — top of right panel -->
+        <h3>Read Aloud <span style="color: #38bdf8;">(English only)</span></h3>
+        <div class="voice-toggle-wrap">
+          <span class="voice-toggle-label"
+            ><i class="fa fa-microphone"></i
+          ></span>
+          <div
+            class="voice-toggle-track"
+            id="voiceToggle"
+            title="Switch voice gender"
+          >
+            <div class="voice-toggle-thumb" id="voiceThumb"></div>
+            <div class="voice-toggle-left active" id="voiceLabelMale">
+              <span class="voice-icon">♂</span> Male
+            </div>
+            <div class="voice-toggle-right" id="voiceLabelFemale">
+              Female <span class="voice-icon">♀</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="speech-wrap">
+          <div class="speech-controls">
+            <button id="btnSpeak" class="btn-accent" style="flex: 2">
+              <i class="fa fa-volume-up"></i> Read Aloud
+            </button>
+            <button id="btnSpeakPause" disabled style="flex: 1">
+              <i class="fa fa-pause"></i> Pause
+            </button>
+            <button
+              id="btnSpeakStop"
+              class="btn-danger"
+              disabled
+              style="flex: 1"
+            >
+              <i class="fa fa-stop"></i> Stop
+            </button>
+          </div>
+          <div class="speech-progress-wrap">
+            <div class="speech-bar-bg">
+              <div class="speech-bar-fill" id="speechBar"></div>
+            </div>
+            <span class="speech-status" id="speechStatus">Idle</span>
+          </div>
+          <div class="speech-rate-row">
+            <span>Speed</span>
+            <input
+              type="range"
+              id="speechRate"
+              min="0.5"
+              max="2"
+              step="0.1"
+              value="1"
+            />
+            <span class="speech-rate-val" id="speechRateVal">1.0×</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <h3>Core Counts</h3>
+        <div class="stat-grid">
+          <div class="stat-card accent-card">
+            <div class="stat-label">Words</div>
+            <div class="stat-value" id="sWords">0</div>
+          </div>
+          <div class="stat-card accent-card">
+            <div class="stat-label">Unique Words</div>
+            <div class="stat-value" id="sUnique">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Characters</div>
+            <div class="stat-value" id="sChars">0</div>
+            <div class="stat-sub">with spaces</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">No-Space</div>
+            <div class="stat-value" id="sCharsNoSpace">0</div>
+            <div class="stat-sub">spaces excluded</div>
+          </div>
+          <div class="stat-card green-card">
+            <div class="stat-label">Sentences</div>
+            <div class="stat-value" id="sSentences">0</div>
+          </div>
+          <div class="stat-card green-card">
+            <div class="stat-label">Paragraphs</div>
+            <div class="stat-value" id="sParagraphs">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Lines</div>
+            <div class="stat-value" id="sLines">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Whitespace</div>
+            <div class="stat-value" id="sWhitespace">0</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <h3>Letter Analysis</h3>
+        <div class="stat-grid">
+          <div class="stat-card gold-card">
+            <div class="stat-label">Vowels</div>
+            <div class="stat-value" id="sVowels">0</div>
+          </div>
+          <div class="stat-card gold-card">
+            <div class="stat-label">Consonants</div>
+            <div class="stat-value" id="sConsonants">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Letters Only</div>
+            <div class="stat-value" id="sLetters">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label" style="color: var(--hl-digit)">Digits</div>
+            <div class="stat-value" id="sDigits" style="color: var(--hl-digit)">
+              0
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label" style="color: var(--hl-punct)">
+              Punctuation
+            </div>
+            <div class="stat-value" id="sPunct" style="color: var(--hl-punct)">
+              0
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label" style="color: var(--hl-special)">
+              Special
+            </div>
+            <div
+              class="stat-value"
+              id="sSpecial"
+              style="color: var(--hl-special)"
+            >
+              0
+            </div>
+          </div>
+        </div>
+
+        <h3>Case Breakdown</h3>
+        <div class="case-row">
+          <div class="case-pill">
+            <div
+              class="case-pill-val"
+              id="cUpper"
+              style="color: var(--hl-upper)"
+            >
+              0
+            </div>
+            <div class="case-pill-lbl">UPPER words</div>
+          </div>
+          <div class="case-pill">
+            <div
+              class="case-pill-val"
+              id="cLower"
+              style="color: var(--hl-lower)"
+            >
+              0
+            </div>
+            <div class="case-pill-lbl">lower words</div>
+          </div>
+          <div class="case-pill">
+            <div
+              class="case-pill-val"
+              id="cMixed"
+              style="color: var(--accent-hover)"
+            >
+              0
+            </div>
+            <div class="case-pill-lbl">Mixed words</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <h3>Word Metrics</h3>
+        <div class="stat-grid">
+          <div class="stat-card">
+            <div class="stat-label">Avg Word</div>
+            <div class="stat-value small" id="sAvgWord">0.00</div>
+            <div class="stat-sub">chars/word</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Avg Sentence</div>
+            <div class="stat-value small" id="sAvgSent">0.00</div>
+            <div class="stat-sub">words/sent</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">~Syllables</div>
+            <div class="stat-value" id="sSyllables">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Lexical Density</div>
+            <div class="stat-value small" id="sLexical">0%</div>
+          </div>
+        </div>
+
+        <h3>Longest / Shortest</h3>
+        <div class="output-box" id="sLongest">—</div>
+        <div class="output-box" id="sShortest" style="margin-top: 5px">—</div>
+
+        <div class="divider"></div>
+        <h3>Time Estimates</h3>
+        <div class="stat-grid">
+          <div class="stat-card accent-card">
+            <div class="stat-label">Read Avg</div>
+            <div class="stat-value small" id="sReadAvg">0s</div>
+            <div class="stat-sub">238 wpm</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Read Slow</div>
+            <div class="stat-value small" id="sReadSlow">0s</div>
+            <div class="stat-sub">130 wpm</div>
+          </div>
+          <div class="stat-card green-card">
+            <div class="stat-label">Speak Avg</div>
+            <div class="stat-value small" id="sSpeak">0s</div>
+            <div class="stat-sub">150 wpm</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Type Time</div>
+            <div class="stat-value small" id="sType">0s</div>
+            <div class="stat-sub">40 wpm</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <h3>Readability Score</h3>
+        <div class="readability-wrap">
+          <div class="readability-label">
+            Flesch Ease <span id="rScore">—</span>
+          </div>
+          <div class="readability-bar">
+            <div class="readability-fill" id="rBar"></div>
+          </div>
+          <div class="readability-desc" id="rDesc">
+            Type text to calculate readability…
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <h3>Top 5 Words</h3>
+        <div class="top-words-list" id="topWordsList">
+          <div class="output-box muted">No text yet…</div>
+        </div>
+
+        <div class="divider"></div>
+        <h3>Case Converter</h3>
+        <div class="convert-grid">
+          <button id="btnUpper">
+            <i class="fa fa-arrow-up"></i> UPPERCASE
+          </button>
+          <button id="btnLower">
+            <i class="fa fa-arrow-down"></i> lowercase
+          </button>
+          <button id="btnTitle"><i class="fa fa-font"></i> Title Case</button>
+          <button id="btnSentence">
+            <i class="fa fa-align-left"></i> Sentence Case
+          </button>
+          <button id="btnCamel"><i class="fa fa-code"></i> camelCase</button>
+          <button id="btnSnake"><i class="fa fa-minus"></i> snake_case</button>
+          <button id="btnKebab"><i class="fa fa-link"></i> kebab-case</button>
+          <button id="btnAlternate">
+            <i class="fa fa-exchange"></i> aLtErNaTe
+          </button>
+        </div>
+
+        <div class="divider"></div>
+        <h3>Quick Actions</h3>
+        <div class="btn-row">
+          <button id="btnRemoveExtra">
+            <i class="fa fa-compress"></i> Clean Spaces
+          </button>
+          <button id="btnRemoveLines">
+            <i class="fa fa-minus-circle"></i> Clean Lines
+          </button>
+        </div>
+        <div class="btn-row" style="margin-top: 6px">
+          <button id="btnReverse">
+            <i class="fa fa-refresh"></i> Flip Words
+          </button>
+          <button id="btnReverseText">
+            <i class="fa fa-undo"></i> Flip Text
+          </button>
+        </div>
+        <div class="btn-row" style="margin-top: 6px">
+          <button id="btnSortLines">
+            <i class="fa fa-sort"></i> Sort Lines
+          </button>
+          <button id="btnDedup">
+            <i class="fa fa-clone"></i> Remove Dupes
+          </button>
+        </div>
+        <div class="btn-row" style="margin-top: 6px">
+          <button id="btnToParagraph">
+            <i class="fa fa-paragraph"></i> To Paragraph
+          </button>
+          <button id="btnToSingleLine">
+            <i class="fa fa-long-arrow-right"></i> Single Line
+          </button>
+        </div>
+        <div class="btn-row" style="margin-top: 6px">
+          <button id="btnRemovePunct">
+            <i class="fa fa-eraser"></i> Remove Punct
+          </button>
+          <button id="btnRemoveSpecial">
+            <i class="fa fa-ban"></i> Remove Special
+          </button>
+        </div>
+        <div class="btn-row" style="margin-top: 6px">
+          <button id="btnRemoveNumbers">
+            <i class="fa fa-hashtag"></i> Remove Numbers
+          </button>
+          <button id="btnKeepLetters">
+            <i class="fa fa-font"></i> Keep Letters
+          </button>
+        </div>
+      </div>
+      <!-- end right-panel -->
+    </div>
+    <!-- end main-container -->
+
+    <script>
+      // ── Prevent ALL buttons from stealing keyboard focus ──────────────────────
+      // This is the standard toolbar pattern: onclick still fires, but focus never
+      // moves away from the textarea / findInput, and no button can be accidentally
+      // re-activated by Enter/Space after a previous click.
+      document.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("mousedown", (e) => e.preventDefault());
+      });
+
+      // ── DOM ────────────────────────────────────────────────────────────────────
+      const ta = document.getElementById("mainTextarea");
+      const hlDiv = document.getElementById("highlights");
+      const flash = document.getElementById("copyFlash");
+      const resizerEl = document.getElementById("resizer");
+      const editorEl = document.getElementById("editorArea");
+      const rightEl = document.getElementById("rightPanel");
+
+      // ── Undo / Redo ────────────────────────────────────────────────────────────
+      let undoStack = [""];
+      let undoPtr = 0;
+      let undoTimer = null;
+
+      function pushUndo(val) {
+        undoStack = undoStack.slice(0, undoPtr + 1);
+        if (undoStack[undoPtr] !== val) {
+          undoStack.push(val);
+          undoPtr++;
+          if (undoStack.length > 200) {
+            undoStack.shift();
+            undoPtr--;
+          }
+        }
+        syncUndoBtns();
+      }
+
+      function doUndo() {
+        if (undoPtr > 0) {
+          undoPtr--;
+          ta.value = undoStack[undoPtr];
+          updateHighlights();
+          analyze();
+          syncUndoBtns();
+        }
+      }
+      function doRedo() {
+        if (undoPtr < undoStack.length - 1) {
+          undoPtr++;
+          ta.value = undoStack[undoPtr];
+          updateHighlights();
+          analyze();
+          syncUndoBtns();
+        }
+      }
+      function syncUndoBtns() {
+        document.getElementById("btnUndo").disabled = undoPtr <= 0;
+        document.getElementById("btnRedo").disabled =
+          undoPtr >= undoStack.length - 1;
+      }
+
+      document.getElementById("btnUndo").addEventListener("click", doUndo);
+      document.getElementById("btnRedo").addEventListener("click", doRedo);
+
+      // ── Speaking highlight state ───────────────────────────────────────────────
+      let speakCharStart = -1;
+      let speakCharLength = 0;
+
+      // ── Find State ────────────────────────────────────────────────────────────
+      let findQuery = "";
+      let findMatches = []; // [{start, length}]
+      let findCurrentIdx = -1;
+      let findMatchMap = {}; // charIndex -> matchArrayIndex for O(1) lookup
+
+      function getFindMatchAt(pos) {
+        if (!findQuery || !(pos in findMatchMap)) return null;
+        const idx = findMatchMap[pos];
+        return {
+          idx,
+          length: findMatches[idx].length,
+          isCurrent: idx === findCurrentIdx,
+        };
+      }
+
+      // ── Color Highlight ────────────────────────────────────────────────────────
+      function escHtml(ch) {
+        if (ch === "&") return "&amp;";
+        if (ch === "<") return "&lt;";
+        if (ch === ">") return "&gt;";
+        return ch;
+      }
+
+      function buildHighlights(text) {
+        if (!text.length) return "";
+        let html = "";
+        const hlStart = speakCharStart;
+        const hlEnd =
+          speakCharStart >= 0 ? speakCharStart + speakCharLength : -1;
+
+        let i = 0;
+        while (i < text.length) {
+          const ch = text[i];
+          const e = escHtml(ch);
+
+          // 1. Speaking highlight (highest priority)
+          if (hlStart >= 0 && i >= hlStart && i < hlEnd) {
+            let word = "";
+            while (i < text.length && i < hlEnd) {
+              word += escHtml(text[i]);
+              i++;
+            }
+            html += `<span class="hl-speaking">${word}</span>`;
+            continue;
+          }
+
+          // 2. Find highlight
+          const fm = getFindMatchAt(i);
+          if (fm) {
+            const cls = fm.isCurrent ? "hl-find-current" : "hl-find";
+            // Don't extend into speaking range
+            const safeEnd =
+              hlStart >= 0 && hlStart > i && hlStart < i + fm.length
+                ? hlStart
+                : i + fm.length;
+            let span = "";
+            while (i < safeEnd && i < text.length) {
+              const c = text[i];
+              span += c === "\n" ? "\n" : escHtml(c);
+              i++;
+            }
+            if (span) html += `<span class="${cls}">${span}</span>`;
+            continue;
+          }
+
+          // 3. Normal highlights
+          if (ch === "\n") html += "\n";
+          else if (/[A-Z]/.test(ch))
+            html += `<span class="hl-upper">${e}</span>`;
+          else if (/[a-z]/.test(ch)) html += e;
+          else if (/\d/.test(ch)) html += `<span class="hl-digit">${e}</span>`;
+          else if (/[.,!?;:'"()\[\]{}\-\u2014\u2013\u2026]/.test(ch))
+            html += `<span class="hl-punct">${e}</span>`;
+          else if (/\s/.test(ch)) html += e;
+          else html += `<span class="hl-special">${e}</span>`;
+          i++;
+        }
+        return html;
+      }
+
+      function updateHighlights() {
+        hlDiv.innerHTML = buildHighlights(ta.value);
+        syncHlScroll();
+      }
+      function syncHlScroll() {
+        hlDiv.scrollTop = ta.scrollTop;
+        hlDiv.scrollLeft = ta.scrollLeft;
+      }
+      ta.addEventListener("scroll", syncHlScroll);
+
+      // ── Input ──────────────────────────────────────────────────────────────────
+      ta.addEventListener("input", () => {
+        updateHighlights();
+        analyze();
+        // Refresh find matches when text changes
+        if (findQuery) updateFindMatches();
+        // Auto-save to localStorage
+        localStorage.setItem("wc_text", ta.value);
+        clearTimeout(undoTimer);
+        undoTimer = setTimeout(() => pushUndo(ta.value), 600);
+      });
+
+      // ── Find Feature ──────────────────────────────────────────────────────────
+      const findBar = document.getElementById("findBar");
+      const findInput = document.getElementById("findInput");
+      const findCountEl = document.getElementById("findCount");
+
+      function openFind() {
+        findBar.classList.add("open");
+        findInput.focus();
+        findInput.select();
+        if (findQuery) updateFindMatches();
+      }
+
+      function closeFind() {
+        findBar.classList.remove("open");
+        findQuery = "";
+        findMatches = [];
+        findMatchMap = {};
+        findCurrentIdx = -1;
+        findCountEl.textContent = "0 / 0";
+        findCountEl.classList.remove("has-results");
+        updateHighlights();
+        ta.focus();
+      }
+
+      function updateFindMatches() {
+        findMatches = [];
+        findMatchMap = {};
+        findCurrentIdx = -1;
+
+        const rawQ = findInput.value;
+        findQuery = rawQ;
+
+        if (!rawQ) {
+          findCountEl.textContent = "0 / 0";
+          findCountEl.classList.remove("has-results");
+          updateHighlights();
+          return;
+        }
+
+        const text = ta.value;
+        const qLower = rawQ.toLowerCase();
+        const textLower = text.toLowerCase();
+        let pos = 0;
+        while (pos < text.length) {
+          const idx = textLower.indexOf(qLower, pos);
+          if (idx === -1) break;
+          const mIdx = findMatches.length;
+          findMatches.push({ start: idx, length: rawQ.length });
+          findMatchMap[idx] = mIdx;
+          pos = idx + 1;
+        }
+
+        // While typing: show total count as "0 / N", all matches get weak highlight only.
+        // findCurrentIdx stays -1 until the user explicitly navigates (Enter / Prev / Next).
+        updateFindCount();
+        updateHighlights();
+      }
+
+      function updateFindCount() {
+        const total = findMatches.length;
+        // findCurrentIdx=-1 → curr=0 ("0 / N" while typing)
+        const curr = findCurrentIdx >= 0 ? findCurrentIdx + 1 : 0;
+        findCountEl.textContent = `${curr} / ${total}`;
+        findCountEl.classList.toggle("has-results", total > 0);
+      }
+
+      // Navigate to the next match; keep focus in findInput throughout.
+      function findNext() {
+        if (!findMatches.length) return;
+        if (findCurrentIdx < 0) {
+          // First navigation: pick match closest to textarea cursor
+          const cursor = ta.selectionStart;
+          let best = 0,
+            bestDist = Infinity;
+          findMatches.forEach((m, i) => {
+            const d = Math.abs(m.start - cursor);
+            if (d < bestDist) {
+              bestDist = d;
+              best = i;
+            }
+          });
+          findCurrentIdx = best;
+        } else {
+          findCurrentIdx = (findCurrentIdx + 1) % findMatches.length;
+        }
+        scrollToMatch(findCurrentIdx, false); // scroll editor, keep focus in findInput
+        updateFindCount();
+        updateHighlights();
+        findInput.focus(); // ensure cursor stays in find bar
+      }
+
+      function findPrev() {
+        if (!findMatches.length) return;
+        if (findCurrentIdx < 0) {
+          findCurrentIdx = findMatches.length - 1;
+        } else {
+          findCurrentIdx =
+            (findCurrentIdx - 1 + findMatches.length) % findMatches.length;
+        }
+        scrollToMatch(findCurrentIdx, false);
+        updateFindCount();
+        updateHighlights();
+        findInput.focus();
+      }
+
+      // moveCursor=true  → also focus textarea and select the match (Replace action only)
+      // moveCursor=false → scroll viewport only, keep focus where it is (default for all find nav)
+      function scrollToMatch(idx, moveCursor = false) {
+        if (idx < 0 || idx >= findMatches.length) return;
+        const match = findMatches[idx];
+        const text = ta.value;
+        const textBefore = text.substring(0, match.start);
+        const lineNum = textBefore.split("\n").length - 1;
+        const cs = getComputedStyle(ta);
+        const lineHeight = parseFloat(cs.lineHeight) || 27.75;
+        const padTop = parseFloat(cs.paddingTop) || 16;
+        const targetTop = padTop + lineNum * lineHeight - ta.clientHeight / 3;
+        ta.scrollTop = Math.max(0, targetTop);
+        syncHlScroll();
+        if (moveCursor) {
+          ta.focus();
+          ta.setSelectionRange(match.start, match.start + match.length);
+        }
+      }
+
+      // ── Replace functions ─────────────────────────────────────────────────────
+      const replaceInput = document.getElementById("replaceInput");
+
+      function doReplace() {
+        if (findCurrentIdx < 0 || findCurrentIdx >= findMatches.length) return;
+        const match = findMatches[findCurrentIdx];
+        const rep = replaceInput.value;
+        const text = ta.value;
+        pushUndo(text);
+        ta.value =
+          text.substring(0, match.start) +
+          rep +
+          text.substring(match.start + match.length);
+        localStorage.setItem("wc_text", ta.value);
+        analyze();
+        // Recompute matches; try to stay at same position
+        const prevIdx = findCurrentIdx;
+        updateFindMatches();
+        // After replacement the count may be one less; clamp
+        if (findMatches.length > 0) {
+          findCurrentIdx = Math.min(prevIdx, findMatches.length - 1);
+          scrollToMatch(findCurrentIdx);
+          updateFindCount();
+          updateHighlights();
+        }
+        pushUndo(ta.value);
+      }
+
+      function doReplaceAll() {
+        if (!findQuery || !findMatches.length) return;
+        const rep = replaceInput.value;
+        const text = ta.value;
+        const qLower = findQuery.toLowerCase();
+        pushUndo(text);
+        // Replace all case-insensitively, preserving exact match positions
+        let result = "";
+        let last = 0;
+        // Use stored matches (already computed, sorted by position)
+        for (const m of findMatches) {
+          result += text.substring(last, m.start) + rep;
+          last = m.start + m.length;
+        }
+        result += text.substring(last);
+        ta.value = result;
+        localStorage.setItem("wc_text", ta.value);
+        analyze();
+        updateFindMatches();
+        updateHighlights();
+        pushUndo(ta.value);
+      }
+
+      replaceInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          doReplace();
+        }
+        if (e.key === "Escape") closeFind();
+      });
+
+      document.getElementById("btnReplace").onclick = doReplace;
+      document.getElementById("btnReplaceAll").onclick = doReplaceAll;
+
+      findInput.addEventListener("input", updateFindMatches);
+      findInput.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          if (e.shiftKey) findPrev();
+          else findNext();
+        }
+        if (e.key === "Escape") closeFind();
+      });
+
+      document.getElementById("btnFind").onclick = openFind;
+      document.getElementById("btnFindPrev").onclick = () => {
+        findPrev();
+        findInput.focus();
+      };
+      document.getElementById("btnFindNext").onclick = () => {
+        findNext();
+        findInput.focus();
+      };
+      document.getElementById("btnFindClose").onclick = closeFind;
+
+      // ── Helpers ────────────────────────────────────────────────────────────────
+      function set(id, val) {
+        document.getElementById(id).textContent = val;
+      }
+
+      function formatTime(words, wpm) {
+        if (!words) return "0s";
+        const secs = Math.ceil((words / wpm) * 60);
+        if (secs < 60) return secs + "s";
+        const m = Math.floor(secs / 60),
+          s = secs % 60;
+        return s > 0 ? `${m}m ${s}s` : `${m}m`;
+      }
+
+      function countSyllables(word) {
+        word = word.toLowerCase().replace(/[^a-z]/g, "");
+        if (!word.length) return 0;
+        const v = word.match(/[aeiouy]+/g);
+        let c = v ? v.length : 0;
+        if (word.endsWith("e") && c > 1) c--;
+        return Math.max(1, c);
+      }
+
+      function flesch(words, sentences, syllables) {
+        if (words < 1 || sentences < 1) return null;
+        return (
+          206.835 - 1.015 * (words / sentences) - 84.6 * (syllables / words)
+        );
+      }
+      function fleschDesc(s) {
+        if (s >= 90) return "Very Easy — 5th grade";
+        if (s >= 80) return "Easy — 6th grade";
+        if (s >= 70) return "Fairly Easy — 7th grade";
+        if (s >= 60) return "Standard — 8th–9th grade";
+        if (s >= 50) return "Fairly Difficult — 10th–12th grade";
+        if (s >= 30) return "Difficult — College level";
+        return "Very Confusing — Professional";
+      }
+      function fleschColor(s) {
+        if (s >= 70) return "#4ade80";
+        if (s >= 50) return "#f59e0b";
+        return "#ef4444";
+      }
+
+      const STOP = new Set([
+        "a",
+        "an",
+        "the",
+        "is",
+        "it",
+        "in",
+        "on",
+        "at",
+        "to",
+        "of",
+        "and",
+        "or",
+        "but",
+        "for",
+        "nor",
+        "so",
+        "yet",
+        "as",
+        "be",
+        "was",
+        "were",
+        "are",
+        "has",
+        "have",
+        "had",
+        "do",
+        "does",
+        "did",
+        "will",
+        "would",
+        "shall",
+        "should",
+        "may",
+        "might",
+        "can",
+        "could",
+        "this",
+        "that",
+        "these",
+        "those",
+        "i",
+        "you",
+        "he",
+        "she",
+        "we",
+        "they",
+        "my",
+        "your",
+        "his",
+        "her",
+        "our",
+        "its",
+        "their",
+        "me",
+        "him",
+        "us",
+        "them",
+        "not",
+        "no",
+        "with",
+        "by",
+        "from",
+        "up",
+        "about",
+        "into",
+        "than",
+        "then",
+        "just",
+        "been",
+        "being",
+        "also",
+        "there",
+        "here",
+        "if",
+        "when",
+        "which",
+        "who",
+        "what",
+        "all",
+        "each",
+      ]);
+
+      // ── Main analysis ──────────────────────────────────────────────────────────
+      function analyze() {
+        const text = ta.value;
+        const wordArr = text.trim().length
+          ? text
+              .trim()
+              .split(/\s+/)
+              .filter((w) => w.length > 0)
+          : [];
+        const words = wordArr.length;
+        const unique = new Set(
+          wordArr.map((w) => w.toLowerCase().replace(/[^a-z0-9]/g, "")),
+        ).size;
+        const chars = text.length;
+        const noSp = text.replace(/\s/g, "").length;
+        const ws = [...text].filter((c) => /\s/.test(c)).length;
+
+        const sentArr = text.trim().length
+          ? text
+              .split(/[.!?]+/)
+              .map((s) => s.trim())
+              .filter((s) => s.length > 0)
+          : [];
+        const paraArr = text.trim().length
+          ? text
+              .split(/\n\s*\n/)
+              .map((p) => p.trim())
+              .filter((p) => p.length > 0)
+          : [];
+        const lines = text.split("\n").length;
+
+        const letters = text.replace(/[^a-zA-Z]/g, "");
+        const vowels = (text.match(/[aeiouAEIOU]/g) || []).length;
+        const cons = letters.length - vowels;
+        const digits = (text.match(/\d/g) || []).length;
+        const punct = (
+          text.match(/[.,!?;:'"()\[\]{}\-\u2014\u2013\u2026]/g) || []
+        ).length;
+        const special = (
+          text.match(/[^a-zA-Z0-9\s.,!?;:'"()\[\]{}\-\u2014\u2013\u2026]/g) ||
+          []
+        ).length;
+
+        let cUp = 0,
+          cLo = 0,
+          cMix = 0;
+        wordArr.forEach((w) => {
+          const l = w.replace(/[^a-zA-Z]/g, "");
+          if (!l) return;
+          if (l === l.toUpperCase()) cUp++;
+          else if (l === l.toLowerCase()) cLo++;
+          else cMix++;
+        });
+
+        const avgWord =
+          words > 0
+            ? (
+                wordArr.reduce(
+                  (s, w) => s + w.replace(/[^a-z]/gi, "").length,
+                  0,
+                ) / words
+              ).toFixed(2)
+            : "0.00";
+        const avgSent =
+          sentArr.length > 0 ? (words / sentArr.length).toFixed(2) : "0.00";
+
+        let totalSyl = 0;
+        wordArr.forEach((w) => {
+          totalSyl += countSyllables(w);
+        });
+
+        const contentW = wordArr.filter(
+          (w) => !STOP.has(w.toLowerCase().replace(/[^a-z]/g, "")),
+        ).length;
+        const lexical =
+          words > 0 ? Math.round((contentW / words) * 100) + "%" : "0%";
+
+        const cWords = wordArr
+          .map((w) => w.replace(/[^a-zA-Z0-9]/g, ""))
+          .filter((w) => w.length > 0);
+        const longest = cWords.length
+          ? cWords.reduce((a, b) => (a.length >= b.length ? a : b))
+          : "—";
+        const shortest = cWords.length
+          ? cWords.reduce((a, b) => (a.length <= b.length ? a : b))
+          : "—";
+
+        const freq = {};
+        wordArr.forEach((w) => {
+          const k = w.toLowerCase().replace(/[^a-z0-9]/g, "");
+          if (k.length > 1) freq[k] = (freq[k] || 0) + 1;
+        });
+        const topWords = Object.entries(freq)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 5);
+        const fScore = flesch(words, sentArr.length, totalSyl);
+
+        set("sWords", words.toLocaleString());
+        set("sUnique", unique.toLocaleString());
+        set("sChars", chars.toLocaleString());
+        set("sCharsNoSpace", noSp.toLocaleString());
+        set("sSentences", sentArr.length.toLocaleString());
+        set("sParagraphs", paraArr.length.toLocaleString());
+        set("sLines", lines.toLocaleString());
+        set("sWhitespace", ws.toLocaleString());
+        set("sVowels", vowels.toLocaleString());
+        set("sConsonants", cons.toLocaleString());
+        set("sLetters", letters.length.toLocaleString());
+        set("sDigits", digits.toLocaleString());
+        set("sPunct", punct.toLocaleString());
+        set("sSpecial", special.toLocaleString());
+        set("cUpper", cUp);
+        set("cLower", cLo);
+        set("cMixed", cMix);
+        set("sAvgWord", avgWord);
+        set("sAvgSent", avgSent);
+        set("sSyllables", totalSyl.toLocaleString());
+        set("sLexical", lexical);
+
+        document.getElementById("sLongest").textContent =
+          longest !== "—"
+            ? `Longest: "${longest}" (${longest.length} chars)`
+            : "Longest: —";
+        document.getElementById("sShortest").textContent =
+          shortest !== "—"
+            ? `Shortest: "${shortest}" (${shortest.length} char${shortest.length === 1 ? "" : "s"})`
+            : "Shortest: —";
+
+        set("sReadAvg", formatTime(words, 238));
+        set("sReadSlow", formatTime(words, 130));
+        set("sSpeak", formatTime(words, 150));
+        set("sType", formatTime(words, 40));
+        set("fWords", words.toLocaleString());
+        set("fChars", chars.toLocaleString());
+        set("fLines", lines.toLocaleString());
+        set("fRead", formatTime(words, 238));
+
+        if (fScore !== null && words >= 5) {
+          const cl = Math.max(0, Math.min(100, fScore));
+          set("rScore", Math.round(fScore));
+          document.getElementById("rBar").style.width = cl + "%";
+          document.getElementById("rBar").style.background =
+            fleschColor(fScore);
+          document.getElementById("rDesc").textContent = fleschDesc(fScore);
+        } else {
+          set("rScore", "—");
+          document.getElementById("rBar").style.width = "0%";
+          document.getElementById("rDesc").textContent =
+            "Need more text to calculate…";
+        }
+
+        const box = document.getElementById("topWordsList");
+        if (!topWords.length) {
+          box.innerHTML = `<div class="output-box muted">No text yet…</div>`;
+        } else {
+          const mx = topWords[0][1];
+          box.innerHTML = topWords
+            .map(
+              ([w, c], i) => `
+            <div class="top-word-row">
+              <div class="tw-rank">${i + 1}.</div>
+              <div class="tw-word">${w}</div>
+              <div class="tw-bar-wrap"><div class="tw-bar" style="width:${Math.round((c / mx) * 100)}%"></div></div>
+              <div class="tw-count">${c}</div>
+            </div>`,
+            )
+            .join("");
+        }
+      }
+
+      // ── Copy flash ─────────────────────────────────────────────────────────────
+      function showFlash(e) {
+        flash.style.left = e.clientX + 10 + "px";
+        flash.style.top = e.clientY - 30 + "px";
+        flash.style.opacity = "1";
+        setTimeout(() => (flash.style.opacity = "0"), 900);
+      }
+
+      // ── Toolbar ────────────────────────────────────────────────────────────────
+      document.getElementById("btnPaste").onclick = async () => {
+        try {
+          const t = await navigator.clipboard.readText();
+          pushUndo(ta.value);
+          ta.value = t;
+          updateHighlights();
+          analyze();
+          pushUndo(ta.value);
+          localStorage.setItem("wc_text", ta.value);
+        } catch {
+          ta.focus();
+          document.execCommand("paste");
+        }
+      };
+      document.getElementById("btnClear").onclick = () => {
+        pushUndo(ta.value);
+        ta.value = "";
+        updateHighlights();
+        analyze();
+        pushUndo(ta.value);
+        localStorage.setItem("wc_text", "");
+        if (findQuery) updateFindMatches();
+      };
+      document.getElementById("btnCopyAll").onclick = (e) => {
+        navigator.clipboard.writeText(ta.value);
+        showFlash(e);
+      };
+
+      // ── Transform ──────────────────────────────────────────────────────────────
+      function transform(fn) {
+        pushUndo(ta.value);
+        ta.value = fn(ta.value);
+        updateHighlights();
+        analyze();
+        if (findQuery) updateFindMatches();
+        localStorage.setItem("wc_text", ta.value);
+        pushUndo(ta.value);
+      }
+
+      // ── Case converters ────────────────────────────────────────────────────────
+      document.getElementById("btnUpper").onclick = () =>
+        transform((t) => t.toUpperCase());
+      document.getElementById("btnLower").onclick = () =>
+        transform((t) => t.toLowerCase());
+      document.getElementById("btnTitle").onclick = () =>
+        transform((t) =>
+          t.replace(
+            /\w\S*/g,
+            (w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase(),
+          ),
+        );
+      document.getElementById("btnSentence").onclick = () =>
+        transform((t) =>
+          t
+            .toLowerCase()
+            .replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase()),
+        );
+      document.getElementById("btnCamel").onclick = () =>
+        transform((t) =>
+          t
+            .trim()
+            .toLowerCase()
+            .replace(/[\s_-]+(\w)/g, (_, c) => c.toUpperCase()),
+        );
+      document.getElementById("btnSnake").onclick = () =>
+        transform((t) =>
+          t
+            .trim()
+            .toLowerCase()
+            .replace(/[\s-]+/g, "_")
+            .replace(/[^a-z0-9_]/g, ""),
+        );
+      document.getElementById("btnKebab").onclick = () =>
+        transform((t) =>
+          t
+            .trim()
+            .toLowerCase()
+            .replace(/[\s_]+/g, "-")
+            .replace(/[^a-z0-9-]/g, ""),
+        );
+      document.getElementById("btnAlternate").onclick = () =>
+        transform((t) => {
+          let i = 0;
+          return t.replace(/[a-zA-Z]/g, (c) =>
+            i++ % 2 === 0 ? c.toLowerCase() : c.toUpperCase(),
+          );
+        });
+
+      // ── Quick actions (original) ───────────────────────────────────────────────
+      document.getElementById("btnRemoveExtra").onclick = () =>
+        transform((t) =>
+          t
+            .replace(/[ \t]+/g, " ")
+            .replace(/\n[ \t]+/g, "\n")
+            .replace(/[ \t]+\n/g, "\n")
+            .trim(),
+        );
+      document.getElementById("btnRemoveLines").onclick = () =>
+        transform((t) =>
+          t
+            .split("\n")
+            .filter((l) => l.trim().length > 0)
+            .join("\n"),
+        );
+      document.getElementById("btnReverse").onclick = () =>
+        transform((t) =>
+          t
+            .split("\n")
+            .map((l) => l.split(/\s+/).reverse().join(" "))
+            .join("\n"),
+        );
+      document.getElementById("btnReverseText").onclick = () =>
+        transform((t) => t.split("").reverse().join(""));
+      document.getElementById("btnSortLines").onclick = () =>
+        transform((t) =>
+          t
+            .split("\n")
+            .sort((a, b) => a.localeCompare(b))
+            .join("\n"),
+        );
+      document.getElementById("btnDedup").onclick = () =>
+        transform((t) => {
+          const seen = new Set();
+          return t
+            .split("\n")
+            .filter((l) => {
+              const k = l.trim().toLowerCase();
+              if (seen.has(k)) return false;
+              seen.add(k);
+              return true;
+            })
+            .join("\n");
+        });
+      document.getElementById("btnToParagraph").onclick = () =>
+        transform((t) => {
+          return t
+            .split(/\n{2,}/)
+            .map((para) =>
+              para
+                .trim()
+                .replace(/\n+/g, " ")
+                .replace(/\s{2,}/g, " "),
+            )
+            .filter((para) => para.length > 0)
+            .join("\n\n");
+        });
+
+      // ── Quick actions (new) ────────────────────────────────────────────────────
+      document.getElementById("btnToSingleLine").onclick = () =>
+        transform((t) =>
+          t
+            .replace(/\s*\n\s*/g, " ")
+            .replace(/\s{2,}/g, " ")
+            .trim(),
+        );
+      document.getElementById("btnRemovePunct").onclick = () =>
+        transform((t) =>
+          t.replace(
+            /[.,!?;:'"()\[\]{}\-\u2014\u2013\u2026`~@#$%^&*+=|\\/<>]/g,
+            "",
+          ),
+        );
+      document.getElementById("btnRemoveSpecial").onclick = () =>
+        transform((t) =>
+          t.replace(/[^a-zA-Z0-9\s.,!?;:'"()\[\]{}\-\u2014\u2013\u2026]/g, ""),
+        );
+      document.getElementById("btnRemoveNumbers").onclick = () =>
+        transform((t) => t.replace(/\d/g, ""));
+      document.getElementById("btnKeepLetters").onclick = () =>
+        transform((t) =>
+          t
+            .replace(/[^a-zA-Z\s]/g, "")
+            .replace(/\n/g, "\n")
+            .replace(/ {2,}/g, " "),
+        );
+
+      // ── Voice Gender Toggle ────────────────────────────────────────────────────
+      let voiceGender = "male";
+      let availableVoices = [];
+
+      function loadVoices() {
+        availableVoices = window.speechSynthesis.getVoices();
+      }
+      loadVoices();
+      if (window.speechSynthesis.onvoiceschanged !== undefined) {
+        window.speechSynthesis.onvoiceschanged = loadVoices;
+      }
+
+      function pickVoice(gender) {
+        const maleKeywords = [
+          "alex",
+          "david",
+          "mark",
+          "daniel",
+          "jorge",
+          "male",
+          "fred",
+          "tom",
+          "luca",
+          "reed",
+          "guy",
+          "james",
+          "bruce",
+          "arthur",
+          "thomas",
+          "oliver",
+        ];
+        const femaleKeywords = [
+          "female",
+          "woman",
+          "zira",
+          "cortana",
+          "samantha",
+          "karen",
+          "victoria",
+          "moira",
+          "fiona",
+          "tessa",
+          "veena",
+          "kyoko",
+          "milena",
+          "google uk english female",
+          "google us english",
+        ];
+        const lower = (v) => v.name.toLowerCase();
+        const isFemale = (v) =>
+          femaleKeywords.some((k) => lower(v).includes(k));
+        const isMale = (v) => maleKeywords.some((k) => lower(v).includes(k));
+        const lang = (navigator.language || "en").split("-")[0];
+        let pool = availableVoices.filter((v) => v.lang.startsWith(lang));
+        if (!pool.length) pool = availableVoices;
+        if (gender === "female") {
+          const fem = pool.filter(isFemale);
+          if (fem.length) return fem[0];
+          const even = pool.filter((_, i) => i % 2 === 0);
+          return even.length ? even[0] : pool[0];
+        } else {
+          const mal = pool.filter(isMale);
+          if (mal.length) return mal[0];
+          const odd = pool.filter((_, i) => i % 2 !== 0);
+          return odd.length ? odd[0] : pool[0];
+        }
+      }
+
+      const voiceToggleEl = document.getElementById("voiceToggle");
+      const voiceLblM = document.getElementById("voiceLabelMale");
+      const voiceLblF = document.getElementById("voiceLabelFemale");
+
+      voiceToggleEl.addEventListener("click", () => {
+        voiceGender = voiceGender === "male" ? "female" : "male";
+        if (voiceGender === "female") {
+          voiceToggleEl.classList.add("female");
+          voiceLblM.classList.remove("active");
+          voiceLblF.classList.add("active");
+        } else {
+          voiceToggleEl.classList.remove("female");
+          voiceLblF.classList.remove("active");
+          voiceLblM.classList.add("active");
+        }
+        // Mid-speech: restart with new voice from current word
+        // Paused: mark flag so Resume will restart with the new voice instead of synth.resume()
+        if (synth.speaking && !speechPaused) {
+          startSpeechFrom(currentSpeakCharIdx);
+        } else if (speechPaused) {
+          pendingVoiceChange = true;
+        }
+      });
+
+      // ── Read Aloud ─────────────────────────────────────────────────────────────
+      const synth = window.speechSynthesis;
+      const btnSpeak = document.getElementById("btnSpeak");
+      const btnSpeakPause = document.getElementById("btnSpeakPause");
+      const btnSpeakStop = document.getElementById("btnSpeakStop");
+      const speechBarEl = document.getElementById("speechBar");
+      const speechStatusEl = document.getElementById("speechStatus");
+      const speechRateIn = document.getElementById("speechRate");
+      const speechRateVal = document.getElementById("speechRateVal");
+
+      let speechPaused = false;
+      let speechWordIdx = 0;
+      let speechWordCnt = 0;
+      let currentSpeakCharIdx = 0; // tracks position in original text
+      let speechResumeMode = false;
+      let speechResumeCharIdx = -1;
+      let pendingVoiceChange = false; // voice toggled while paused → restart on resume
+
+      // ── Speech localStorage persistence ───────────────────────────────────────
+      function saveSpeechState(charIdx, wordIdx, wordCnt) {
+        try {
+          localStorage.setItem("wc_speech_char", String(charIdx));
+          localStorage.setItem("wc_speech_wordidx", String(wordIdx));
+          localStorage.setItem("wc_speech_wordcnt", String(wordCnt));
+        } catch (e) {}
+      }
+      function clearSpeechState() {
+        try {
+          localStorage.removeItem("wc_speech_char");
+          localStorage.removeItem("wc_speech_wordidx");
+          localStorage.removeItem("wc_speech_wordcnt");
+        } catch (e) {}
+      }
+
+      // ── Core speech starter (handles mid-speech restart too) ──────────────────
+      function startSpeechFrom(fromCharIdx) {
+        const fullText = ta.value.trim();
+        if (!fullText) {
+          speechStatusEl.textContent = "No text!";
+          return;
+        }
+
+        if (synth.speaking || speechPaused) synth.cancel();
+        speechPaused = false;
+
+        // Clamp fromCharIdx to valid range
+        fromCharIdx = Math.max(0, Math.min(fromCharIdx, fullText.length - 1));
+
+        const priorText = fullText.substring(0, fromCharIdx);
+        const speakText = fullText.substring(fromCharIdx);
+        if (!speakText.trim()) {
+          resetSpeechUI();
+          return;
+        }
+
+        const totalWords = fullText
+          .split(/\s+/)
+          .filter((w) => w.length > 0).length;
+        const priorWords = priorText.trim()
+          ? priorText
+              .trim()
+              .split(/\s+/)
+              .filter((w) => w.length > 0).length
+          : 0;
+
+        speechWordCnt = totalWords;
+        speechWordIdx = priorWords;
+        currentSpeakCharIdx = fromCharIdx;
+
+        const utt = new SpeechSynthesisUtterance(speakText);
+        utt.rate = parseFloat(speechRateIn.value);
+        const chosenVoice = pickVoice(voiceGender);
+        if (chosenVoice) utt.voice = chosenVoice;
+
+        utt.onstart = () => {
+          pendingVoiceChange = false;
+          btnSpeak.disabled = false;
+          btnSpeak.innerHTML = '<i class="fa fa-volume-up"></i> Speaking…';
+          btnSpeak.classList.add("active");
+          btnSpeakPause.disabled = false;
+          btnSpeakPause.innerHTML = '<i class="fa fa-pause"></i> Pause';
+          btnSpeakStop.disabled = false;
+          speechStatusEl.textContent = "Speaking…";
+          speechResumeMode = false;
+          const startPct = Math.min(
+            100,
+            Math.round((priorWords / totalWords) * 100),
+          );
+          speechBarEl.style.width = startPct + "%";
+        };
+
+        utt.onboundary = (ev) => {
+          if (ev.name === "word") {
+            // Count words in utterance text up to this boundary
+            const uttBefore = speakText.substring(0, ev.charIndex).trim();
+            const uttWords = uttBefore
+              ? uttBefore.split(/\s+/).filter((w) => w.length > 0).length
+              : 0;
+            speechWordIdx = priorWords + uttWords;
+
+            const pct = Math.min(
+              100,
+              Math.round((speechWordIdx / Math.max(1, speechWordCnt)) * 100),
+            );
+            speechBarEl.style.width = pct + "%";
+            speechStatusEl.textContent = `${speechWordIdx} / ${speechWordCnt}`;
+
+            currentSpeakCharIdx = fromCharIdx + ev.charIndex;
+            speakCharStart = fromCharIdx + ev.charIndex;
+            speakCharLength = ev.charLength || 1;
+            updateHighlights();
+
+            // Persist for refresh-resume
+            saveSpeechState(currentSpeakCharIdx, speechWordIdx, speechWordCnt);
+          }
+        };
+
+        utt.onend = () => {
+          speechBarEl.style.width = "100%";
+          clearSpeechState();
+          setTimeout(resetSpeechUI, 700);
+        };
+        utt.onerror = () => {
+          clearSpeechState();
+          resetSpeechUI();
+          speechStatusEl.textContent = "Error";
+        };
+
+        synth.speak(utt);
+      }
+
+      function resetSpeechUI() {
+        pendingVoiceChange = false;
+        btnSpeak.disabled = false;
+        btnSpeak.innerHTML = '<i class="fa fa-volume-up"></i> Read Aloud';
+        btnSpeak.classList.remove("active");
+        btnSpeakPause.disabled = true;
+        btnSpeakPause.innerHTML = '<i class="fa fa-pause"></i> Pause';
+        btnSpeakStop.disabled = true;
+        speechBarEl.style.width = "0%";
+        speechStatusEl.textContent = "Idle";
+        speechPaused = false;
+        speechResumeMode = false;
+        speakCharStart = -1;
+        speakCharLength = 0;
+        updateHighlights();
+      }
+
+      // ── Speed slider — adjusts without restarting ─────────────────────────────
+      speechRateIn.oninput = () => {
+        speechRateVal.textContent =
+          parseFloat(speechRateIn.value).toFixed(1) + "×";
+        // If actively speaking, restart from current word position
+        if (synth.speaking && !speechPaused) {
+          startSpeechFrom(currentSpeakCharIdx);
+        }
+      };
+
+      // ── Speak / Pause / Stop buttons ──────────────────────────────────────────
+      // btnSpeak = "Read Aloud" (always starts fresh from 0). Disabled in On Hold state.
+      btnSpeak.onclick = () => {
+        startSpeechFrom(0);
+      };
+
+      // btnSpeakPause handles four states:
+      //   1. speechResumeMode (On Hold after refresh)  → startSpeechFrom saved position
+      //   2. speechPaused + pendingVoiceChange         → startSpeechFrom (new voice)
+      //   3. speechPaused                              → synth.resume()
+      //   4. actively speaking                         → synth.pause() + set Speak to On Hold
+      btnSpeakPause.onclick = () => {
+        if (speechResumeMode) {
+          startSpeechFrom(speechResumeCharIdx);
+          return;
+        }
+        if (!synth.speaking && !speechPaused) return;
+        if (speechPaused) {
+          if (pendingVoiceChange) {
+            startSpeechFrom(currentSpeakCharIdx);
+          } else {
+            synth.resume();
+            speechPaused = false;
+            btnSpeak.disabled = false;
+            btnSpeak.innerHTML = '<i class="fa fa-volume-up"></i> Speaking…';
+            btnSpeak.classList.add("active");
+            btnSpeakPause.innerHTML = '<i class="fa fa-pause"></i> Pause';
+            speechStatusEl.textContent = "Speaking…";
+          }
+        } else {
+          synth.pause();
+          speechPaused = true;
+          btnSpeak.disabled = true;
+          btnSpeak.innerHTML = '<i class="fa fa-volume-up"></i> On Hold';
+          btnSpeak.classList.remove("active");
+          btnSpeakPause.innerHTML = '<i class="fa fa-play"></i> Resume';
+          speechStatusEl.textContent = "Paused";
+        }
+      };
+
+      btnSpeakStop.onclick = () => {
+        synth.cancel();
+        clearSpeechState();
+        speechResumeMode = false;
+        resetSpeechUI();
+      };
+
+      // ── Keyboard shortcuts ────────────────────────────────────────────────────
+      document.addEventListener("keydown", (e) => {
+        if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key === "z") {
+          e.preventDefault();
+          doUndo();
+        }
+        if (
+          (e.ctrlKey || e.metaKey) &&
+          (e.key === "y" || (e.shiftKey && e.key === "z"))
+        ) {
+          e.preventDefault();
+          doRedo();
+        }
+        if ((e.ctrlKey || e.metaKey) && e.key === "f") {
+          e.preventDefault();
+          openFind();
+        }
+        if (e.key === "Escape" && findBar.classList.contains("open")) {
+          closeFind();
+        }
+      });
+
+      // ── Draggable Resizer ──────────────────────────────────────────────────────
+      let isResizing = false;
+      resizerEl.addEventListener("mousedown", (e) => {
+        isResizing = true;
+        resizerEl.classList.add("dragging");
+        document.body.style.cursor = "col-resize";
+        document.body.style.userSelect = "none";
+        e.preventDefault();
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (!isResizing) return;
+        const cr = document
+          .querySelector(".main-container")
+          .getBoundingClientRect();
+        const totalW = cr.width - 40 - 22;
+        const leftW = e.clientX - cr.left - 20;
+        const rightW = totalW - leftW;
+        if (leftW >= 400 && rightW >= 370 && rightW <= 660) {
+          editorEl.style.flex = "none";
+          editorEl.style.width = leftW + "px";
+          rightEl.style.width = rightW + "px";
+          rightEl.style.minWidth = rightW + "px";
+        }
+      });
+      document.addEventListener("mouseup", () => {
+        if (!isResizing) return;
+        isResizing = false;
+        resizerEl.classList.remove("dragging");
+        document.body.style.cursor = "";
+        document.body.style.userSelect = "";
+      });
+
+      // ── Init: restore text + speech state from localStorage ───────────────────
+      (function init() {
+        // Kill any audio still running from before the refresh (some browsers keep it alive)
+        try {
+          synth.cancel();
+        } catch (e) {}
+
+        // Restore text
+        try {
+          const savedText = localStorage.getItem("wc_text");
+          if (savedText !== null && savedText !== "") {
+            ta.value = savedText;
+            undoStack = [savedText];
+            undoPtr = 0;
+          }
+        } catch (e) {}
+
+        updateHighlights();
+        analyze();
+        syncUndoBtns();
+
+        // Restore speech resume state (paused on refresh)
+        try {
+          const savedChar = localStorage.getItem("wc_speech_char");
+          const savedWordIdx = parseInt(
+            localStorage.getItem("wc_speech_wordidx") || "0",
+          );
+          const savedWordCnt = parseInt(
+            localStorage.getItem("wc_speech_wordcnt") || "1",
+          );
+
+          if (savedChar !== null) {
+            const charIdx = parseInt(savedChar);
+            if (charIdx >= 0 && ta.value.length > 0) {
+              speechResumeMode = true;
+              speechResumeCharIdx = charIdx;
+              speechWordIdx = savedWordIdx;
+              speechWordCnt = savedWordCnt;
+
+              const pct = Math.min(
+                100,
+                Math.round((savedWordIdx / Math.max(1, savedWordCnt)) * 100),
+              );
+              speechBarEl.style.width = pct + "%";
+              speechStatusEl.textContent = `On Hold · ${savedWordIdx} / ${savedWordCnt}`;
+
+              // Speak button = On Hold (disabled — resume is via Pause button)
+              btnSpeak.innerHTML = '<i class="fa fa-volume-up"></i> On Hold';
+              btnSpeak.disabled = true;
+
+              // Pause button = Resume (enabled)
+              btnSpeakPause.innerHTML = '<i class="fa fa-play"></i> Resume';
+              btnSpeakPause.disabled = false;
+
+              btnSpeakStop.disabled = false;
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </body>
+</html>
