@@ -1,0 +1,64 @@
+/* /assets/css/404.css */
+
+.error-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 6rem 1rem 7rem 1rem; /* Accommodates top and bottom navs */
+}
+
+.error-content {
+    text-align: center;
+    padding: 4rem 2rem;
+    max-width: 600px;
+    width: 100%;
+}
+
+.error-icon {
+    font-size: 4rem;
+    color: var(--primary-accent);
+    margin-bottom: 1rem;
+}
+
+.error-code {
+    font-size: 6rem;
+    font-weight: 900;
+    color: var(--nav-bottom-bg);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.error-content h2 {
+    font-size: 1.8rem;
+    color: var(--secondary-theme);
+    margin-bottom: 1rem;
+}
+
+.error-content p {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.error-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+
+/* 404 Page Adjustments */
+@media (max-width: 480px) {
+  .error-code {
+    font-size: 4.5rem;
+  }
+
+  .error-content h2 {
+    font-size: 1.4rem;
+  }
+}

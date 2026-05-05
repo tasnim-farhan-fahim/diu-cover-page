@@ -1,0 +1,336 @@
+/* /assets/css/main.css */
+
+/* --- CSS Variables & Palettes --- */
+:root {
+  --primary-accent: #6a32eb;     /* From script.js/style.css loader color */
+  --bg-glass: rgba(255, 255, 255, 0.8);
+  --text-dark: #333333;
+  --font-main: 'Roboto', sans-serif;
+  --nav-top-bg: rgba(0, 0, 0, 0.8);
+  --nav-bottom-bg: #000000;
+}
+
+/* Hide the scrollbar*/
+html::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent;
+}
+/* --- Global Resets --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-main);
+}
+
+/* --- Global Resets & Body --- */
+body {
+  background-color: #f4f7f6; 
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Pseudo-element for the blurred background image */
+body::before {
+  content: "";
+  position: fixed;
+  top: -10px; 
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  
+  /* Assuming main-bg.png is inside your /assets/img/ folder */
+  background-image: url('../img/main-bg.png'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* The Blur Effect */
+  filter: blur(2px); 
+  
+  z-index: -1; 
+  opacity: 0.8; 
+}
+
+body::selection {
+  background-color: #6a32eb;
+  color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Top Left Back Button Styles - Center Fill Micro-Interaction */
+.back-button {
+  position: fixed;
+  top: 40px;
+  left: 20px;
+  background-color: #000000;
+  color: #6a32eb;
+  border: 2px solid #6a32eb;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem; /* Perfect size for the thin angle icon */
+  cursor: pointer;
+  box-shadow: none; /* No ugly static shadows */
+  z-index: 9999;
+  overflow: hidden; /* Keeps the expanding background inside the circle */
+  transition: color 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+/* The hidden background that will grow on hover */
+.back-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: #6a32eb; 
+  border-radius: 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.back-button:hover {
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  transform: translateY(-3px); 
+  box-shadow: 0 10px 20px -5px rgba(106, 50, 235, 0.4); 
+}
+
+.back-button:hover::before {
+  width: 120%;
+  height: 120%;
+}
+
+/* Top Left Back Button Adjustments for Mobile */
+@media (max-width: 768px) {
+  .back-button {
+    top: 40px;
+    left: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
+
+/* --- Utility Classes --- */
+
+/* Glass Panel Base */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  padding: 2.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+/* --- Features Grid --- */
+.grid-section {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+
+/* Feature Cards */
+.feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--primary-accent);
+    margin-bottom: 1.2rem;
+}
+
+.feature-card h2 {
+    font-size: 1.4rem;
+    color: var(--text-dark, #333);
+    margin-bottom: 1rem;
+}
+
+.feature-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    flex-grow: 1; /* Pushes button to bottom */
+}
+.feature-list {
+  list-style: none;
+  margin-top: 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.feature-list li {
+  margin-bottom: 0.5rem;
+}
+
+.policy-links {
+  margin-top: 1.5rem;
+  font-weight: 600;
+}
+
+.policy-links a {
+  color: var(--primary-accent);
+}
+
+.policy-links a:hover {
+  text-decoration: underline;
+}
+
+.divider {
+  margin: 0 10px;
+  color: #ccc;
+}
+
+/* --- Buttons --- */
+.btn-primary,
+.btn-secondary,
+.btn-outline {
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-accent);
+  color: #fff;
+  animation: softGlow 3s infinite;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(106, 50, 235, 0.4);
+}
+
+.btn-secondary {
+  background-color: var(--nav-bottom-bg);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--primary-accent);
+  color: var(--primary-accent);
+  margin-top: 1rem;
+}
+
+.btn-outline:hover {
+  background-color: var(--primary-accent);
+  color: #fff;
+}
+
+/* Footer Back Links */
+.action-footer {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.action-footer .btn-secondary {
+    background: transparent;
+    border: 2px solid var(--primary-accent);
+    color: var(--primary-accent);
+    text-decoration: none;
+}
+
+.action-footer .btn-secondary:hover {
+    background: var(--primary-accent);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* --- Global Animations --- */  
+@keyframes softGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(106, 50, 235, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(106, 50, 235, 0.6);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes crystalSlide {
+    0% {
+        left: -100%;
+    }
+    20% {
+        left: 200%; /* Slides completely across and disappears */
+    }
+    100% {
+        left: 200%; /* Wait before sliding again */
+    }
+}
+
+/* Animation Delays */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .btn-primary, .btn-secondary, .btn-outline {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+  }
+} 

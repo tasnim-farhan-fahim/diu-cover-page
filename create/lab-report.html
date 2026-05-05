@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Report | DIU Cover Page</title>
+    <!-- Page Metadata -->
+    <meta name="author" content="Tasnim Farhan Fahim">
+    <meta name="description" content="Create your Lab Report Cover Page in seconds. Input your experiment details  to instantly generate and download your cover page.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diucoverpage.com/create/lab-report.html" />
+    <!-- Tab Icon -->
+    <link rel="icon" href="../assets/img/tab-icon.png" type="image/png">
+    <!-- Custom Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Lab Report | DIU Cover Page",
+        "url": "https://diucoverpage.com/create/lab-report.html",
+        "author": {
+          "@type": "Person",
+          "name": "Tasnim Farhan Fahim"
+        }
+      }
+    </script>
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9557711562563778" crossorigin="anonymous"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icon cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/forms.css">
+  </head>
+<body>
+
+    <button class="back-button" onclick="window.history.back()">
+        <i class="fa-solid fa-angle-left"></i>
+    </button>
+
+    <main class="form-wrapper animate-slide-up">
+        <section class="glass-panel form-panel">
+            <h2><i class="fa-solid fa-flask"></i> Lab Report</h2>
+            
+            <form id="labReportForm" onsubmit="handleFormSubmit(event, 'labReport')">
+                <fieldset>
+                    <legend>Experiment Details</legend>
+                     <div class="form-group">
+                        <input type="text" id="experimentNo" name="experimentNo" placeholder=" " required>
+                        <label>Experiment No.</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="experimentName" name="experimentName" placeholder=" " required>
+                        <label>Experiment Name</label>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend>Course Details</legend>
+                    <div class="form-group">
+                        <input type="text" id="courseTitle" name="courseTitle" placeholder=" " required>
+                        <label>Course Title</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="courseCode" name="courseCode" placeholder=" " required>
+                        <label>Course Code</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Submitted To</legend>
+                    <div class="form-group">
+                        <input type="text" id="teacherName" name="teacherName" placeholder=" " required>
+                        <label>Teacher's Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="teacherDesignation" name="teacherDesignation" placeholder=" " required>
+                        <label>Designation</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="teacherDepartment" name="teacherDepartment" placeholder=" " required>
+                        <label>Department</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="teacherUniversity" name="teacherUniversity" placeholder=" " value="Daffodil International University" required>
+                        <label>University</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Submitted By</legend>
+                    <div class="form-group">
+                        <input type="text" id="studentName" name="studentName" placeholder=" " required>
+                        <label>Student's Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="studentId" name="studentId" placeholder=" " required>
+                        <label>Student ID</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="section" name="section" placeholder=" " required>
+                        <label>Section</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="semester" name="semester" placeholder=" " required>
+                        <label>Semester</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="studentDepartment" name="studentDepartment" placeholder=" " required>
+                        <label>Department</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="studentUniversity" name="studentUniversity" placeholder=" " value="Daffodil International University" required>
+                        <label>University</label>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Submission Details</legend>
+                    <div class="form-group">
+                        <input type="date" id="submissionDate" name="submissionDate" placeholder=" " required>
+                        <label>Submission Date</label>
+                    </div>
+                </fieldset>
+
+                <div class="submit-container">
+                    <button type="submit" class="btn-primary">Generate Cover Page <i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <script src="../assets/js/engine.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+</body>
+</html>

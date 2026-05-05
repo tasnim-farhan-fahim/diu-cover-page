@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DIU Cover Page</title>
+    <!-- Page Metadata -->
+    <meta name="author" content="Tasnim Farhan Fahim" />
+    <meta name="description" content="Create DIU Cover Page | Are you a student of DIU? Generate your Assignment, Lab Report, and Index Cover Pages easily. Download as PDF/Image. Free and Easy to use." />
+    <meta name="keywords" content="DIU Cover Page, Create DIU Cover Page, Assignment Cover Page, Lab Report Cover Page, Daffodil International University" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://diucoverpage.com/" />
+    <!-- Tab Icon -->
+    <link rel="icon" href="assets/img/tab-icon.png" type="image/png">
+
+    <!-- Custom Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DIU Cover Page",
+        "url": "https://diucoverpage.com",
+        "author": {
+          "@type": "Person",
+          "name": "Tasnim Farhan Fahim"
+        }
+      }
+    </script>
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9557711562563778" crossorigin="anonymous"></script>
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" />
+    <!-- Font Awesome Icon cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/navbar.css" />
+
+  </head>
+  <body>
+    <main>
+
+    </main>
+
+    <script src="/assets/js/navigation.js"></script>
+    <script src="/assets/js/home.js"></script>
+  </body>
+</html>

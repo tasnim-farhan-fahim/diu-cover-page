@@ -1,0 +1,69 @@
+/ (Root)
+│
+├── 404.html
+├── ads.txt
+├── index.html
+├── privacy-policy.html
+├── README.md
+├── robots.txt
+├── sitemap.xml
+├── structure.txt
+├── template.html
+├── terms-conditions.html
+│
+├── /about/
+│   ├── contact.html
+│   └── index.html
+│
+├── /assets/
+│   ├── /css/
+│   │   ├── 404.css
+│   │   ├── about.css
+│   │   ├── create.css
+│   │   ├── forms.css
+│   │   ├── guidelines.css
+│   │   ├── home.css
+│   │   ├── legal.css
+│   │   ├── main.css
+│   │   ├── navbar.css
+│   │   └── output-preview.css
+│   │
+│   ├── /img/
+│   │   ├── bg-diu-second.png
+│   │   ├── crosshair.png
+│   │   ├── doc-header-logo.png
+│   │   ├── doc-watermark-logo.png
+│   │   ├── example-cover-page.png
+│   │   ├── main-bg.png
+│   │   ├── system-ui.png
+│   │   ├── tab-icon.png
+│   │   ├── top-nav-logo.png
+│   │   └── word_counter.png
+│   │
+│   └── /js/
+│       ├── engine.js
+│       ├── export-handler.js
+│       ├── handler.js
+│       ├── navigation.js
+│       └── survey.js
+│
+├── /create/
+│   ├── assignment.html
+│   ├── combined-report.html
+│   ├── index.html
+│   ├── lab-report.html
+│   ├── report-index.html
+│   └── /output/
+│       └── output-view.html
+│
+├── /guidelines/
+│   ├── creation-tips.html
+│   ├── faq.html
+│   ├── index.html
+│   └── /blog/
+│       └── index.html
+│
+└── /other-tools/
+    ├── axis-color-picker.html
+    ├── index.html
+    └── word-counter.html

@@ -1,0 +1,78 @@
+/* /assets/css/create.css */
+
+.create-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 7rem 1rem 7rem 1rem; /* Space for top and bottom navs */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Glass Panel Definition (ensuring it works independently on this page) */
+.glass-panel {
+    background: var(--bg-glass, rgba(255, 255, 255, 0.8));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* Header Section */
+.create-header {
+    text-align: center;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.create-header h1 {
+    font-size: 2.2rem;
+    color: var(--nav-bottom-bg);
+    margin-bottom: 0.5rem;
+}
+
+.create-header p {
+    font-size: 1.05rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Grid Layout */
+.selection-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* Media Query included here to avoid editing responsive.css */
+@media (min-width: 768px) {
+    .selection-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* History Section */
+.history-section {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.highlight-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(106, 50, 235, 0.3);
+}
+
+.highlight-card .card-icon {
+    color: var(--nav-bottom-bg, #000);
+}
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .create-header h1 {
+    font-size: 26px;
+  }
+} 

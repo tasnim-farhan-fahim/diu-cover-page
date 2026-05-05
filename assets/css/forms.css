@@ -1,0 +1,128 @@
+/* /assets/css/forms.css */
+
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 7rem 1rem 7rem 1rem;
+  min-height: 100vh;
+}
+
+.form-panel {
+  max-width: 650px;
+  width: 100%;
+  padding: 3rem 2rem;
+  text-align: left;
+}
+
+.form-panel h2 {
+  text-align: center;
+  color: var(--nav-bottom-bg);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+fieldset {
+  border: 1px solid rgba(106, 50, 235, 0.3);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+legend {
+  font-weight: 700;
+  color: var(--primary-accent);
+  padding: 0 10px;
+  font-size: 1.25rem;
+}
+
+/* --- Floating Label Styles --- */
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 14px 15px;
+  background: transparent;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--text-dark);
+  outline: none;
+  transition: all 0.3s ease;
+}
+/* .form-group select option {
+    height: 200px;
+} */
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary-accent);
+  box-shadow: 0 0 8px rgba(106, 50, 235, 0.2);
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  background: transparent;
+  color: #777;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* The Float Trigger: Activates on focus, or when there is text (using the placeholder hack) */
+.form-group input:focus ~ label,
+.form-group input:not(:placeholder-shown) ~ label,
+.form-group select:focus ~ label,
+.form-group select:valid ~ label {
+  top: 0;
+  font-size: 0.85rem;
+  color: var(--primary-accent);
+  color: #ffffff;
+  background: #6a32eb; /* Matches your body background to hide the input border behind the label */
+  padding: 0 10px;
+  border-radius: 5px;
+}
+
+/* Date input specific fix for floating labels */
+.form-group input[type="date"] {
+  color: transparent; /* Hides default date placeholder until focused/filled */
+}
+.form-group input[type="date"]:focus,
+.form-group input[type="date"]:valid {
+  color: var(--text-dark);
+}
+
+.submit-container {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.index-recommendation {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .form-panel h2 {
+    font-size: 1.6rem;
+  }
+  legend {
+    font-size: 1rem;
+  }
+  .form-group input:focus ~ label,
+  .form-group input:not(:placeholder-shown) ~ label,
+  .form-group select:focus ~ label,
+  .form-group select:valid ~ label {
+    font-size: 0.65rem;
+  }
+}

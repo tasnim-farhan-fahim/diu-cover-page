@@ -1,0 +1,250 @@
+/* /assets/css/guidelines.css */
+
+.guide-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 7rem 1rem 7rem 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+
+/* Header for the Hub */
+.guide-header {
+    text-align: center;
+    padding: 2rem;
+    width: 100%;
+}
+
+.guide-header h1 {
+    font-size: 2.2rem;
+    color: var(--nav-bottom-bg);
+    margin-bottom: 0.5rem;
+}
+
+.guide-header p {
+    font-size: 1.05rem;
+    color: #555;
+}
+
+/* Grid Layout for Hub */
+.guide-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .guide-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.guide-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.5rem 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.guide-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--primary-accent);
+    margin-bottom: 1.2rem;
+}
+
+.guide-card h2 {
+    font-size: 1.4rem;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+}
+
+.guide-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+/* Content Pages (Tips & FAQ) */
+.guide-content-card {
+    width: 100%;
+    padding: 3rem 2rem;
+}
+
+.guide-content-card h2 {
+    color: var(--nav-bottom-bg);
+    margin-bottom: 0.5rem;
+}
+
+.guide-content-card hr {
+    border: none;
+    height: 2px;
+    background: rgba(106, 50, 235, 0.2);
+    margin-bottom: 1.5rem;
+}
+
+/* Step List Styling */
+.step-list {
+  text-align: left;
+    margin-left: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.step-list li {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.step-list strong {
+    color: var(--nav-bottom-bg);
+    font-size: 1.1rem;
+    display: inline-block;
+    margin-bottom: 0.3rem;
+}
+
+.note-box {
+    background: rgba(106, 50, 235, 0.05);
+    border-left: 4px solid var(--primary-accent);
+    padding: 1.5rem;
+    border-radius: 0 10px 10px 0;
+    margin-top: 2rem;
+    color: #333;
+}
+
+/* --- Demo Image Container Styling --- */
+.demo-image-container {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px dashed rgba(106, 50, 235, 0.3);
+    border-radius: 10px;
+}
+
+.demo-image {
+    max-width: 100%;
+    height: auto; /* Maintains aspect ratio on smaller screens */
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.demo-image:hover {
+    transform: scale(1.02); /* Slight zoom when the user hovers over the demo */
+}
+
+/* FAQ Styling */
+.faq-item {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.faq-item:last-child {
+    border-bottom: none;
+}
+
+.faq-item h3 {
+    color: var(--primary-accent);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.faq-item p {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Responsive Design for Cards */
+@media (min-width: 768px) {
+    .guide-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* Makes the 3rd odd card stretch beautifully across the bottom row */
+    .guide-card.blog-card {
+        grid-column: 1 / -1; 
+        max-width: 800px; /* Prevents it from getting too wide */
+        margin: 0 auto; /* Centers the stretched card */
+        width: 100%;
+    }
+}
+
+
+
+/* =========================================
+   Blog & News Feed Specific Styles
+========================================= */
+
+.blog-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 850px; /* Keeps line length readable */
+    margin: 0 auto;
+}
+
+.blog-post-card {
+    padding: 2.5rem 2rem;
+    text-align: left; /* Articles read best left-aligned */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Subtle slide-right effect for articles */
+.blog-post-card:hover {
+    transform: translateX(8px); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.post-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #777;
+    font-weight: 500;
+}
+
+.post-meta i {
+    color: var(--primary-accent);
+    margin-right: 6px;
+}
+
+.blog-post-card h2 {
+    font-size: 1.6rem;
+    color: var(--nav-bottom-bg);
+    margin-bottom: 1rem;
+}
+
+.blog-post-card p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Mobile adjustments for meta details */
+@media (max-width: 480px) {
+    .post-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  .guide-header h1 {
+    font-size: 26px;
+  }
+} 

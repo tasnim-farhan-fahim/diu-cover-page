@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Report Index | DIU Cover Page</title>
+    <!-- Page Metadata -->
+    <meta name="author" content="Tasnim Farhan Fahim">
+    <meta name="description" content="Easily create a custom Lab Report Index page. Select your total number of experiments, fill it up to instantly generate and download a perfectly formatted index table and attach on your combined report submission.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://diucoverpage.com/create/report-index.html" />
+    <!-- Tab Icon -->
+    <link rel="icon" href="../assets/img/tab-icon.png" type="image/png">
+    <!-- Custom Schema.org JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Lab Report Index | DIU Cover Page",
+        "url": "https://diucoverpage.com/create/report-index.html",
+        "author": {
+          "@type": "Person",
+          "name": "Tasnim Farhan Fahim"
+        }
+      }
+    </script>
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9557711562563778" crossorigin="anonymous"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icon cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/forms.css">
+  </head>
+<body>
+
+    <!-- Back Button -->
+    <button class="back-button" onclick="window.history.back()">
+        <i class="fa-solid fa-angle-left"></i>
+    </button>
+
+    <main class="form-wrapper animate-slide-up">
+        <section class="glass-panel form-panel">
+            <h2><i class="fa-solid fa-list-ol"></i> Reports Index</h2>
+            
+            <form id="indexForm" onsubmit="handleFormSubmit(event, 'index')">
+                
+                <fieldset>
+                    <legend>Index Table Details</legend>
+                    
+                    <!-- Dynamic Controller Dropdown (Only input here) -->
+                    <div class="form-group ">
+                        <select id="experimentCount" class="custom-mobile-select" name="experimentCount" onclick="openCenteredMenu(event)" onchange="generateIndexFields()">
+                            <option value="" disabled selected></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                        </select>
+                        <label>Select Total Experiments</label>
+                        <p class="index-recommendation"><i class="fa-solid fa-lightbulb"></i> Recommendation:<em> generate up to 10 entries to ensure optimal formatting and page layout; larger tables may impact print and display quality.</em></p>
+                    </div>
+                </fieldset>
+
+                <!-- This container will hold the dynamically generated fields -->
+                <div id="dynamicFieldsContainer"></div>
+
+                <div class="submit-container">
+                    <button type="submit" class="btn-primary">Generate Index Page <i class="fa-solid fa-wand-magic-sparkles"></i></button>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="../assets/js/engine.js"></script>
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/handler.js"></script>
+</body>
+</html>

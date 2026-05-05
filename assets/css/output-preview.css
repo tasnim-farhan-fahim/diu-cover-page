@@ -1,0 +1,315 @@
+/* /assets/css/output.css */
+
+.main-wrapper {
+  min-height: 100vh;
+  padding: 8rem 2rem;
+  display: flex;
+  flex-direction: column;
+}
+/* --- A4 Page Setup --- */
+.output-wrapper {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.a4-main-container {
+  width: 210mm;
+  max-width: 210mm;
+  min-height: 297mm;
+  max-height: 297mm;
+  background: white;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto"; /* Standard academic font */
+  color: #000;
+  overflow: hidden;
+}
+
+/* Footer Watermark (Main Container) */
+.footer-watermark {
+  position: absolute;
+  bottom: 2mm;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: #000000;
+  z-index: 10;
+}
+
+/* --- Inner Border Container (Approx 10mm inset) --- */
+.a4-inner-container {
+  margin: 10mm; /* The inset border */
+  flex-grow: 1;
+  background: white;
+  border: 2px solid #000000;
+  position: relative;
+  padding: 10mm 15mm;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 24px;
+  line-height: 2.1rem;
+}
+
+/* Center Watermark */
+.bg-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 55%;
+  opacity: 0.2;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Content Wrapper (to sit above watermark) */
+.cover-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Typography & Elements --- */
+.header-logo {
+  width: 85%;
+  margin: 0 auto 20px auto;
+  display: block;
+}
+.doc-title,
+.submission-col-label {
+  text-align: center;
+  margin-bottom: 5px;
+}
+.doc-title span,
+.submission-col-label span {
+  text-align: center;
+  font-weight: bold;
+  color: #2a3a5e;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #2a3a5e;
+}
+.doc-title {
+  text-transform: uppercase;
+}
+.course-info {
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+/* Two Column Layout for To/By */
+.submission-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+  gap: 5mm;
+}
+
+/* Pill Shaped Date */
+.submission-date {
+  text-align: center;
+  margin: 0 auto;
+  padding: 4px 8px;
+  border: 2px solid #2a3a5e;
+  border-radius: 50px; /* 1cap rounded border */
+  font-weight: bold;
+  color: #2a3a5e;
+  width: max-content;
+}
+
+/* Table for Index */
+table {
+    border: 1px solid rgba(0, 0, 0);
+}
+.index-table {
+  width: 116%;
+  font-size: 16px;
+  border-collapse: collapse;
+  margin: 0mm -12.5mm;
+  line-height: 1rem;
+}
+.index-header {
+  background-color: #f4f6fb;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+.index-data-cell-exp-no, .index-data-cell-date, .index-data-cell-exp-name, .index-data-cell-page-no, .index-data-cell-remarks {
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.index-table th,
+.index-table td {
+  padding: 8px;
+  text-align: center;
+}
+.index-table .index-data-cell-exp-name {
+  text-align: left;
+}
+/* --- Controls UI (Buttons) --- */
+.controls-container {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+@media only screen and (max-width: 900px) {
+  .output-wrapper {
+    min-height: 80vh;
+  }
+  .a4-main-container {
+    width: 132mm;
+    min-height: 186.79mm;
+    max-height: 186.79mm;
+  }
+  .a4-inner-container {
+    margin: 5mm;
+    padding: 5mm 10mm;
+    font-size: 17px;
+    line-height: 1.3rem;
+  }
+  .submission-grid {
+    gap: 4mm;
+  }
+  .course-info {
+    margin-bottom: 15px;
+  }
+  .footer-watermark {
+    font-size: 8px;
+    bottom: 1mm;
+  }
+
+  /* Index Table */
+  .index-table {
+    width: 118%;
+    font-size: 10px;
+    border-collapse: collapse;
+    margin: 0mm -9mm;
+    line-height: 0.7rem;
+  }
+
+  .index-table th,
+  .index-table td {
+    padding: 4px;
+    text-align: center;
+  }
+  .controls-container button {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .output-wrapper {
+    min-height: 60vh;
+  }
+  .a4-main-container {
+    width: 95mm;
+    min-height: 134.357mm;
+    max-height: 134.357mm;
+  }
+  .a4-inner-container {
+    margin: 3mm;
+    padding: 3mm 6mm;
+    font-size: 12px;
+    line-height: 0.9rem;
+    border: 1px solid #000000;
+  }
+  .doc-title span,
+  .submission-col-label span {
+    border-bottom: 1px solid #2a3a5e;
+  }
+  .submission-grid {
+    gap: 2mm;
+  }
+  .course-info {
+    margin-bottom: 8px;
+  }
+  .submission-date {
+    border: 1px solid #2a3a5e;
+  }
+  .footer-watermark {
+    font-size: 6px;
+    bottom: 0.4mm;
+  }
+  /* Index Table */
+  .index-table {
+    width: 114%;
+    font-size: 8px;
+    border-collapse: collapse;
+    margin: 0mm -5.4mm;
+    line-height: 0.47rem;
+  }
+
+  .index-table th,
+  .index-table td {
+    padding: 3px;
+    text-align: center;
+  }
+  /* .controls-container button {
+    font-size: 10px;
+  } */
+}
+@media only screen and (max-width: 425px) {
+  .main-wrapper {
+    padding: 8rem 1rem;
+  }
+  .output-wrapper {
+    min-height: 55vh;
+  }
+  .a4-main-container {
+    width: 85mm;
+    min-height: 120.24mm;
+    max-height: 120.24mm;
+  }
+  .a4-inner-container {
+    margin: 3mm;
+    padding: 3mm 6mm;
+    font-size: 10px;
+    line-height: 0.8rem;
+    border: 1px solid #000000;
+  }
+  .doc-title span,
+  .submission-col-label span {
+    border-bottom: 1px solid #2a3a5e;
+  }
+  .submission-grid {
+    gap: 1mm;
+  }
+  .course-info {
+    margin-bottom: 5px;
+  }
+  .submission-date {
+    border: 1px solid #2a3a5e;
+  }
+  .footer-watermark {
+    font-size: 5px;
+    bottom: 0.6mm;
+  }
+    /* Index Table */
+  .index-table {
+    width: 116.4%;
+    font-size: 7px;
+    border-collapse: collapse;
+    margin: 0mm -5.5mm;
+    line-height: 0.44rem;
+  }
+
+  .index-table th,
+  .index-table td {
+    padding: 2px;
+    text-align: center;
+  }
+  /* .controls-container button {
+    font-size: 8px;
+  } */
+}
