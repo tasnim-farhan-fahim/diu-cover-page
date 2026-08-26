@@ -244,6 +244,7 @@ body.modal-open {
   font-size: 3rem;
   color: #ff0000;
   margin-bottom: 1rem;
+  padding: 0;
 }
 
 .survey-text {
