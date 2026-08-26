@@ -61,10 +61,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
     });
 
-    // Copy Link Logic
+    // Copy Full Message Logic
     if (copyBtn) {
+        const shareMessage = `Help with a quick survey? 
+
+    I’m Tasnim Farhan Fahim, collecting data for my final year thesis project titled "Reels Addiction and Its Impact on University Students’ Learning and Mental Health".
+
+    This survey focuses on Reels, TikTok, and Shorts video addiction among university students, and I need your help. Your honest response really matters.
+
+    • Duration: maximum 5 minutes
+    • Confidentiality: Your response will remain entirely anonymous, and no personal information will be collected.
+
+    Please tap here to participate: https://forms.gle/VnykvDPub2bZXK4x9`;
+
         copyBtn.addEventListener('click', function() {
-            navigator.clipboard.writeText(surveyLink).then(() => {
+            navigator.clipboard.writeText(shareMessage).then(() => {
                 const originalText = this.innerHTML;
                 this.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
                 this.classList.add('copied');
@@ -74,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }, 2000);
             }).catch(err => {
                 console.error('Failed to copy:', err);
-                alert('Copy failed. Survey link: ' + surveyLink);
+                alert('Failed to copy text automatically.');
             });
         });
     }
